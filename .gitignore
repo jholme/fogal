@@ -17,6 +17,12 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# generated files
+#*.class
+target/
+target-eclipse/
+.settings/
+
 # =========================
 # Operating System Files
 # =========================

@@ -7,6 +7,7 @@ class Photo {
 	String description
 	String location
 	String photoDate // yyyy-MM-dd
+	java.sql.Blob image
 	
 	static belongsTo = [gallery: Gallery]
 
@@ -16,5 +17,6 @@ class Photo {
 		description nullable: true, blank: true
 		location nullable: true, blank: true
 		photoDate nullable: true, blank: true
+		image nullable: true
     }
 }
