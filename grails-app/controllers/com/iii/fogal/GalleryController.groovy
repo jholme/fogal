@@ -33,5 +33,18 @@ class GalleryController {
 		def map = [galleryInstance: Gallery.get(params.gallery)]
 		render(view: "show", model: map)
 	}
+	
+	@Override
+	def save() {
+		println params.name
+		println params.path
+		println params.description
+		String imageDir = grailsApplication.config.file.upload.directory?:'/fogalFiles'
+		println "imageDir: ${imageDir}"
+		String newDir = "${imageDir}/${params.path}"
+		File dirFile = new File(newDir)
+		dirFile.mkdir()
+		super.save()
+	}
 
 }

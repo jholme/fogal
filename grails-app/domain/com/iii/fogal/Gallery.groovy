@@ -11,6 +11,6 @@ class Gallery {
     static constraints = {
 		name nullable: false, blank: false
 		description nullable: true, blank: true
-		path nullable: false, blank: false
+		path nullable: false, blank: false, unique: true
     }
 }
