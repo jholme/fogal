@@ -50,6 +50,9 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.27'
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
+		compile 'org.imgscalr:imgscalr-lib:4.2' // supports bootstrap-file-upload plugin
+		compile 'com.drewnoakes:metadata-extractor:2.8.1'
+		compile 'com.adobe.xmp:xmpcore:5.1.2'
     }
 
     plugins {
@@ -59,12 +62,17 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ":scaffolding:2.0.2"
         compile ':cache:1.1.1'
-
+//		compile ':jquery-ui:1.8.15'
+//		compile ":bootstrap-file-upload:2.1.2"
+//		compile ":ajax-uploader:1.1"
+		
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.8" // or ":hibernate4:4.3.1.1"
         runtime ":database-migration:1.3.8"
         runtime ":jquery:1.11.0"
         runtime ":resources:1.2.1"
+//		runtime ':twitter-bootstrap:2.3.2'
+//		runtime ':twitter-bootstrap:2.0.2.25'
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
         //runtime ":cached-resources:1.1"

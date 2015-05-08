@@ -32,11 +32,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${photoInstance?.fileName}">
+				<g:if test="${photoInstance?.originalFilename}">
 				<li class="fieldcontain">
-					<span id="fileName-label" class="property-label"><g:message code="photo.fileName.label" default="File Name" /></span>
+					<span id="originalFilename-label" class="property-label"><g:message code="photo.originalFilename.label" default="Original Filename" /></span>
 					
-						<span class="property-value" aria-labelledby="fileName-label"><g:fieldValue bean="${photoInstance}" field="fileName"/></span>
+						<span class="property-value" aria-labelledby="originalFilename-label"><g:fieldValue bean="${photoInstance}" field="originalFilename"/></span>
 					
 				</li>
 				</g:if>
@@ -64,6 +64,23 @@
 					<span id="photoDate-label" class="property-label"><g:message code="photo.photoDate.label" default="Photo Date" /></span>
 					
 						<span class="property-value" aria-labelledby="photoDate-label"><g:fieldValue bean="${photoInstance}" field="photoDate"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${photoInstance?.originalFilename}">
+				<li class="fieldcontain">
+					<span id="image-label" class="property-label"><g:message code="photo.image.label" default="Image" /></span>
+					<span class="property-value" aria-labelledby="image-label"><img src="<g:createLink controller='photo' action='renderImage' id='${photoInstance.id}'/>"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${photoInstance?.fileSize}">
+				<li class="fieldcontain">
+					<span id="fileSize-label" class="property-label"><g:message code="photo.fileSize.label" default="File Size" /></span>
+					
+						<span class="property-value" aria-labelledby="fileSize-label"><g:fieldValue bean="${photoInstance}" field="fileSize"/></span>
 					
 				</li>
 				</g:if>

@@ -26,7 +26,7 @@
 					
 						<g:sortableColumn property="title" title="${message(code: 'photo.title.label', default: 'Title')}" />
 					
-						<g:sortableColumn property="fileName" title="${message(code: 'photo.fileName.label', default: 'File Name')}" />
+						<g:sortableColumn property="originalFilename" title="${message(code: 'photo.originalFilename.label', default: 'Original Filename')}" />
 					
 						<g:sortableColumn property="description" title="${message(code: 'photo.description.label', default: 'Description')}" />
 					
@@ -34,7 +34,7 @@
 					
 						<g:sortableColumn property="photoDate" title="${message(code: 'photo.photoDate.label', default: 'Photo Date')}" />
 					
-						<th><g:message code="photo.gallery.label" default="Gallery" /></th>
+						<g:sortableColumn property="image" title="${message(code: 'photo.image.label', default: 'Image')}" />
 					
 					</tr>
 				</thead>
@@ -44,7 +44,7 @@
 					
 						<td><g:link action="show" id="${photoInstance.id}">${fieldValue(bean: photoInstance, field: "title")}</g:link></td>
 					
-						<td>${fieldValue(bean: photoInstance, field: "fileName")}</td>
+						<td>${fieldValue(bean: photoInstance, field: "originalFilename")}</td>
 					
 						<td>${fieldValue(bean: photoInstance, field: "description")}</td>
 					
@@ -52,7 +52,8 @@
 					
 						<td>${fieldValue(bean: photoInstance, field: "photoDate")}</td>
 					
-						<td>${fieldValue(bean: photoInstance, field: "gallery")}</td>
+<%--						<td>${fieldValue(bean: photoInstance, field: "image")}</td>--%>
+						<td><img src="<g:createLink controller='photo' action='renderImage' id='${photoInstance.id}'/>"/></td>
 					
 					</tr>
 				</g:each>

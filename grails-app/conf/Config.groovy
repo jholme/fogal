@@ -86,9 +86,14 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+		file.upload.directory = "C:\\fogalFiles"
+		imageUpload {
+		  temporaryFile = "C:\\fogalFiles"//'/tmp/uploaded.file' // Path to where files will be uploaded
+		}
     }
     production {
         grails.logging.jul.usebridge = false
+		file.upload.directory = "/fogalFiles"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }

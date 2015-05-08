@@ -11,12 +11,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'fileName', 'error')} required">
-	<label for="fileName">
-		<g:message code="photo.fileName.label" default="File Name" />
+<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'originalFilename', 'error')} required">
+	<label for="originalFilename">
+		<g:message code="photo.originalFilename.label" default="Original Filename" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="fileName" required="" value="${photoInstance?.fileName}"/>
+	<g:textField name="originalFilename" required="" value="${photoInstance?.originalFilename}"/>
 
 </div>
 
@@ -44,6 +44,24 @@
 		
 	</label>
 	<g:textField name="photoDate" value="${photoInstance?.photoDate}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'image', 'error')} ">
+	<label for="image">
+		<g:message code="photo.image.label" default="Image" />
+		
+	</label>
+	<input type="file" id="image" name="image" />
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'fileSize', 'error')} required">
+	<label for="fileSize">
+		<g:message code="photo.fileSize.label" default="File Size" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="fileSize" type="number" value="${photoInstance.fileSize}" required=""/>
 
 </div>
 

@@ -55,11 +55,33 @@
 					<span id="photos-label" class="property-label"><g:message code="gallery.photos.label" default="Photos" /></span>
 					
 						<g:each in="${galleryInstance.photos}" var="p">
-						<span class="property-value" aria-labelledby="photos-label"><g:link controller="photo" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="photos-label">
+							<g:link controller="photo" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link>
+							<img src="<g:createLink controller='photo' action='renderImage' id='${p.id}'/>" align="middle"/>
+						</span>
 						</g:each>
 					
 				</li>
 				</g:if>
+				
+				<li class="fieldcontain">
+					<span id="create-photo" class="property-label"><g:message code="default.create.label" args="Photo" default="Upload Photos" /></span>
+					
+					<g:uploadForm url="[resource:galleryInstance, action:'uploadPhoto']" enctype="multipart/form-data">
+						<fieldset class="form">
+							<label for="image">
+								<g:message code="photo.image.label" default="Image" />
+								
+							</label>
+							<input type="file" id="image" name="image" multiple="true" />
+							<input type="hidden" name="gallery" value="${galleryInstance?.id}" />
+						</fieldset>
+						<fieldset class="buttons">
+							<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+						</fieldset>
+					</g:uploadForm>					
+					
+				</li>
 			
 			</ol>
 			<g:form url="[resource:galleryInstance, action:'delete']" method="DELETE">
