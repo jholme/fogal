@@ -41,6 +41,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${photoInstance?.thumbnailFilename}">
+				<li class="fieldcontain">
+					<span id="thumbnailFilename-label" class="property-label"><g:message code="photo.thumbnailFilename.label" default="Original Filename" /></span>
+					
+						<span class="property-value" aria-labelledby="thumbnailFilename-label"><g:fieldValue bean="${photoInstance}" field="thumbnailFilename"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${photoInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="photo.description.label" default="Description" /></span>
@@ -68,10 +77,10 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${photoInstance?.originalFilename}">
+				<g:if test="${photoInstance?.thumbnailFilename}">
 				<li class="fieldcontain">
 					<span id="image-label" class="property-label"><g:message code="photo.image.label" default="Image" /></span>
-					<span class="property-value" aria-labelledby="image-label"><img src="<g:createLink controller='photo' action='renderImage' id='${photoInstance.id}'/>"/></span>
+					<span class="property-value" aria-labelledby="image-label"><img src="<g:createLink controller='photo' action='renderThumbnail' id='${photoInstance.id}'/>"/></span>
 					
 				</li>
 				</g:if>
@@ -101,6 +110,12 @@
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
+			
+				<g:if test="${photoInstance?.originalFilename}"><br/>
+<%--					<span id="image-label" class="property-label"><g:message code="photo.image.label" default="Image" /></span>--%>
+					<span class="property-value" aria-labelledby="image-label"><img src="<g:createLink controller='photo' action='renderImage' id='${photoInstance.id}'/>"/></span>
+					
+				</g:if>
 		</div>
 	</body>
 </html>

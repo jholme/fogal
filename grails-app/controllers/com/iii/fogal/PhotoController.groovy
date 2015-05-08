@@ -12,12 +12,25 @@ import org.apache.commons.io.IOUtils
 class PhotoController {
 
     def scaffold = Photo
+	def galleryService
+	private static final String FULL_IMAGE = "full image"
+	private static final String THUM_IMAGE = "thumbnail image"
 	
 	def renderImage() {
-		Photo photo = Photo.findById(params.id)
+		_renderSelected(FULL_IMAGE)
+	}
+	
+	def renderThumbnail() {
+		_renderSelected(THUM_IMAGE)
+	}
+	
+	private def _renderSelected(String imageType) {
 		try {
+			Photo photo = Photo.findById(params.id)
 			String imageDir = grailsApplication.config.file.upload.directory?:'/tmp'
-			File imageFile = new File("${imageDir}/${photo.originalFilename}")
+			String galleryPath = photo?.gallery?.path
+			String fileName = THUM_IMAGE.equals(imageType) ? photo.thumbnailFilename : FULL_IMAGE.equals(imageType) ? photo.originalFilename : ""
+			File imageFile = new File("${imageDir}/${galleryPath}/${fileName}")
 			response.setContentLength(imageFile.size() as Integer)
 			InputStream fileStream = new FileInputStream(imageFile)
 			response.outputStream.write(IOUtils.toByteArray(fileStream))
@@ -26,79 +39,61 @@ class PhotoController {
 		}
 	}
 
-	def renderImageDB() {
-		Photo photo = Photo.findById(params.id)
-		if (photo?.image) {
-			response.setContentLength(photo.image.length)
-			response.outputStream.write(photo.image)
-		} else {
-			response.sendError(404)
-		}
-	}
+//	def renderImageDB() {
+//		Photo photo = Photo.findById(params.id)
+//		if (photo?.image) {
+//			response.setContentLength(photo.image.length)
+//			response.outputStream.write(photo.image)
+//		} else {
+//			response.sendError(404)
+//		}
+//	}
 	
 	@Override
 	def save() {
 		println request
+		Photo photo
 		try {
+			photo = _initializePhotoFromParams(photo)
 			if (request instanceof MultipartHttpServletRequest){
-//				List<MultipartFile> files = request.getFiles("image")
-//				for (file in files) println file.getOriginalFilename()
-				String storageDirectory = grailsApplication.config.file.upload.directory?:'/tmp'
-				println storageDirectory
 				for (filename in request.getFileNames()) {
 					println filename
 					List<MultipartFile> files = request.getFiles(filename)
-					for (MultipartFile file in files) {
-						String oName = file.getOriginalFilename()
-						println oName
-						Long fileSize = file.getSize()
-//						def fileNameArray = file.originalFilename.split(".")
-//						String oFileBase = fileNameArray[0]
-//						String oFileExtension = fileNameArray[1]//file.originalFilename.substring(file.originalFilename.lastIndexOf("."))
-						String newFilenameBase = UUID.randomUUID().toString()
-						String newFilename = params.title + "_" + newFilenameBase + "_" + oName
-						File newFile = new File("$storageDirectory/$newFilename")
-						file.transferTo(newFile)
-						Photo photo = new Photo(title:"${params.title}_${oName}", fileSize:fileSize, originalFilename:newFilename)
-						Gallery gallery = Gallery.findById(2)
-						gallery.addToPhotos(photo)
-						gallery.save(flush:true)
-						if (photo.validate()) {
-							photo.save(flush:true)
-							println "save photo: ${photo}"
-						} else {
-							println "failed to save photo: ${photo}"
-						}
-					}
-//					MultipartFile file = request.getFile(filename)
-//					File newFile = new File("${storageDirectory}/${filename}")
-//					println newFile.path
-//					file.transferTo(newFile)
+					Integer galleryId = new Integer(params.gallery?.id)
+					def photolist = galleryService.createPhotosForImages(files, galleryId)
+					photo = photolist[0]
 				}
-//				def fileMap = request.getFileMap()
-//				fileMap.each{ k, v ->
-//					println "${k}:${v.originalFilename}"
-//				}
-				render(view:'/photo/index')
 			}
 		} catch (Exception e) {
 			println e
 		}
-//		def count = 1
-//		while (request.getParameterNames().hasMoreElements()) {
-//			//String name = request.getParameterNames().nextElement().toString()
-//			Object name = request.getParameterNames().nextElement()
-//			String param = request.getParameter(name.toString())
-//			count++
-//			println name
-//		}
-//		println "count: ${count}"
-		//super.save()
+		def map = [photoInstance: photo]
+		render(view: "show", model: map)
 	}
 	
-	def imageUpload() {
-		render(view: "imageUpload", model: [:])
+	// populate default values from UI in case image metadata lacks any fields
+	private Photo _initializePhotoFromParams(Photo photo) {
+		photo = new Photo(	title:params.title, 
+							originalFilename:params.originalFilename, 
+							description:params.description, 
+							location:params.location, 
+							photoDate:params.photoDate, 
+							fileSize:_getIntegerFromString(params.fileSize))
 	}
+	
+	private Integer _getIntegerFromString(String param) {
+		Integer target
+		try {
+			target = new Integer(param)
+		} catch (Exception e) {
+			target = 1
+		}
+		target
+	}
+	
+//	def imageUpload() {
+//		render(view: "imageUpload", model: [:])
+//	}
 	
 //	def upload() {
 //		switch(request.method){

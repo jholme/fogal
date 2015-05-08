@@ -20,6 +20,15 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'thumbnailFilename', 'error')} required">
+	<label for="thumbnailFilename">
+		<g:message code="photo.thumbnailFilename.label" default="Thumbnail Filename" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="thumbnailFilename" required="" value="${photoInstance?.thumbnailFilename}"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'description', 'error')} ">
 	<label for="description">
 		<g:message code="photo.description.label" default="Description" />

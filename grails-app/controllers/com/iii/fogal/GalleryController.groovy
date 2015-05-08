@@ -14,7 +14,7 @@ class GalleryController {
     def scaffold = true
 	def galleryService
 	
-	@Override
+	//@Override
 	def uploadPhoto() {
 		println request
 		try {
@@ -23,14 +23,13 @@ class GalleryController {
 					println filename
 					List<MultipartFile> files = request.getFiles(filename)
 					Integer galleryId = new Integer(params.gallery)
-					galleryService.createPhotosForImages(files, galleryId)
+					def photolist = galleryService.createPhotosForImages(files, galleryId)
+					photolist = null
 				}
 			}
 		} catch (Exception e) {
 			println e
 		}
-//		render(view:"/gallery/show/${params.gallery}")
-//		render(view:"/gallery/index")
 		def map = [galleryInstance: Gallery.get(params.gallery)]
 		render(view: "show", model: map)
 	}
