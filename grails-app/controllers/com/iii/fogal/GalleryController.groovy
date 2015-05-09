@@ -14,7 +14,6 @@ class GalleryController {
     def scaffold = true
 	def galleryService
 	
-	//@Override
 	def uploadPhoto() {
 		println request
 		try {

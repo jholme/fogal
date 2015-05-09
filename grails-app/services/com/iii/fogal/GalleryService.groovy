@@ -16,41 +16,33 @@ import javax.imageio.ImageIO
 
 class GalleryService {
 
-	private static final String TITLE = "User Comment"//, tag.description: girls handlebars // title
-	private static final String DESCRIPTION = "Image Description"//, tag.description: girls bike handlebars - 1362
-	private static final String ARTIST = "Artist"//, tag.description: John Hol e
-	private static final String PHOTO_DATE = "Date/Time Original"//, tag.description: 2014:05:27 17:35:28
-	private static final String CITY = "City"//, tag.description: Oakland
-	private static final String SUB_LOCATION = "Sub-location"//, tag.description: 56th Street
-	private static final String PROVINCE_STATE =  "Province/State"//, tag.description: CA
-	private static final String COUNTRY = "Country/Primary Location Name"//, tag.description: USA
+	private static final String TITLE = "User Comment"
+	private static final String DESCRIPTION = "Image Description"
+	private static final String ARTIST = "Artist"
+	private static final String PHOTO_DATE = "Date/Time Original"
+	private static final String CITY = "City"
+	private static final String SUB_LOCATION = "Sub-location"
+	private static final String PROVINCE_STATE =  "Province/State"
+	private static final String COUNTRY = "Country/Primary Location Name"
 	private static final Integer THUMBNAIL_SIZE = 100
 	
 	def grailsApplication
 	
 	List<Photo> createPhotosForImages(List<MultipartFile> files, Integer galleryId) {
 		List<Photo> photoList = new ArrayList<Photo>()
-//		String imageDir = grailsApplication.config.file.upload.directory?:'/fogalFiles'
-//		println "imageDir: ${imageDir}"
 		Gallery gallery = Gallery.findById(galleryId)
 		println "gallery.path: ${gallery.path}"
 		for (MultipartFile file in files) {
 			Long fileSize = file.getSize()
 			String oName = file.getOriginalFilename()
 			println oName
-//			String[] fileNameArray = oName.split(/\./)
-//			String oFileBase = fileNameArray[0]
-//			String oFileExt = fileNameArray[1]//file.originalFilename.substring(file.originalFilename.lastIndexOf("."))
 			String filenameBase = UUID.randomUUID().toString()
-//			String newFilename = oFileBase + "_" + filenameBase + "." + oFileExt
 			String newFilename = _buildNewFilename(filenameBase, oName)
 			File newFile = _createNewFile(file, newFilename, gallery)
 			File tnFile = _createThumbnailFile(newFile, newFilename, gallery)
-//			File newFile = new File("${imageDir}/${gallery.path}/${newFilename}")
-//			file.transferTo(newFile)
 			
 			Photo photo = new Photo(title:"${oName}", fileSize:fileSize, originalFilename:newFilename, thumbnailFilename:tnFile.name)
-			photo = populatePhotoMetadata(photo, newFile)
+			photo = _populatePhotoMetadata(photo, newFile)
 			gallery.addToPhotos(photo)
 			gallery.save(flush:true)
 			if (photo.validate()) {
@@ -67,7 +59,7 @@ class GalleryService {
 	private String _buildNewFilename(String filenameBase, String oName) {
 		String[] fileNameArray = oName.split(/\./)
 		String oFileBase = fileNameArray[0]
-		String oFileExt = fileNameArray[1]//file.originalFilename.substring(file.originalFilename.lastIndexOf("."))
+		String oFileExt = fileNameArray[1]
 		String newFilename = oFileBase + "_" + filenameBase + "." + oFileExt
 		println newFilename
 		newFilename
@@ -84,7 +76,6 @@ class GalleryService {
 	private File _createThumbnailFile(File newFile, String fileName, Gallery gallery) {
 		String imageDir = grailsApplication.config.file.upload.directory?:'/fogalFiles'
 		println "imageDir: ${imageDir}"
-		//
 		BufferedImage thumbnail = Scalr.resize(ImageIO.read(newFile), THUMBNAIL_SIZE);
 		String thumbnailFilename = _buildNewFilename("thumbnail", fileName)//newFilenameBase + '-thumbnail.png'
 		File thumbnailFile = new File("${imageDir}/${gallery.path}/${thumbnailFilename}")
@@ -94,7 +85,7 @@ class GalleryService {
 		thumbnailFile
 	}
 
-    Photo populatePhotoMetadata(Photo photo, File file) {
+    Photo _populatePhotoMetadata(Photo photo, File file) {
 		String imageDir = grailsApplication.config.file.upload.directory?:'/tmp'
 		println "imageDir: ${imageDir}"
         try {

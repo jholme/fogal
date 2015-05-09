@@ -112,7 +112,6 @@
 			</g:form>
 			
 				<g:if test="${photoInstance?.originalFilename}"><br/>
-<%--					<span id="image-label" class="property-label"><g:message code="photo.image.label" default="Image" /></span>--%>
 					<span class="property-value" aria-labelledby="image-label"><img src="<g:createLink controller='photo' action='renderImage' id='${photoInstance.id}'/>"/></span>
 					
 				</g:if>
