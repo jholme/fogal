@@ -4,6 +4,8 @@ class BootStrap {
     def init = { servletContext ->
 		environments {
 			development {
+				
+				// default gallery and photos (1)
 				Gallery daydead = new Gallery(name:"Day of the Dead", description:"This gallery is for 'Day of the Dead' photos", path:"daydead")
 				//daydead.save(flush:true)
 				Photo photo1 = new Photo(title:"Photo 1", originalFilename:"photo1.jpg", thumbnailFilename:"photo1_thumbnail.jpg", description:"Photo One", location:"Oaxaca", photoDate:"2015-05-06", fileSize:0)
@@ -17,6 +19,7 @@ class BootStrap {
 				daydead.addToPhotos(photo3)
 				daydead.save(flush:true)
 				
+				// default gallery and photos (2)
 				Gallery otherStuff = new Gallery(name:"Other Stuff", description:"This gallery is for other stuff", path:"ostuff")
 				//otherStuff.save(flush:true)
 				Photo photo4 = new Photo(title:"Photo 4", originalFilename:"photo4.jpg", thumbnailFilename:"photo4_thumbnail.jpg", description:"Photo One", location:"Oaxaca", photoDate:"2015-05-06", fileSize:0)
@@ -29,6 +32,17 @@ class BootStrap {
 				photo6.save(flush:true)
 				otherStuff.addToPhotos(photo6)
 				otherStuff.save(flush:true)
+				
+				// spring-security
+				def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
+				def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+				def testUser = new User(username: 'me', password: 'password')
+				testUser.save(flush: true)
+				UserRole.create testUser, adminRole, true
+				assert User.count() == 1
+				assert Role.count() == 2
+				assert UserRole.count() == 1
+		  
 			}
 		}
     }

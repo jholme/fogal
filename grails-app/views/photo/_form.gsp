@@ -2,30 +2,27 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'title', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'title', 'error')}">
 	<label for="title">
 		<g:message code="photo.title.label" default="Title" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="title" required="" value="${photoInstance?.title}"/>
+	<g:textField name="title" value="${photoInstance?.title}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'originalFilename', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'originalFilename', 'error')}">
 	<label for="originalFilename">
 		<g:message code="photo.originalFilename.label" default="Original Filename" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="originalFilename" required="" value="${photoInstance?.originalFilename}"/>
+	<g:textField name="originalFilename" value="${photoInstance?.originalFilename}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'thumbnailFilename', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'thumbnailFilename', 'error')}">
 	<label for="thumbnailFilename">
 		<g:message code="photo.thumbnailFilename.label" default="Thumbnail Filename" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="thumbnailFilename" required="" value="${photoInstance?.thumbnailFilename}"/>
+	<g:textField name="thumbnailFilename" value="${photoInstance?.thumbnailFilename}"/>
 
 </div>
 
@@ -65,21 +62,19 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'fileSize', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'fileSize', 'error')}">
 	<label for="fileSize">
 		<g:message code="photo.fileSize.label" default="File Size" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="fileSize" type="number" value="${photoInstance.fileSize}" required=""/>
+	<g:field name="fileSize" type="number" value="${photoInstance.fileSize}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'gallery', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: photoInstance, field: 'gallery', 'error')}">
 	<label for="gallery">
 		<g:message code="photo.gallery.label" default="Gallery" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="gallery" name="gallery.id" from="${com.iii.fogal.Gallery.list()}" optionKey="id" required="" value="${photoInstance?.gallery?.id}" class="many-to-one"/>
+	<g:select id="gallery" name="gallery.id" from="${com.iii.fogal.Gallery.list()}" optionKey="id" value="${photoInstance?.gallery?.id}" class="many-to-one"/>
 
 </div>
 

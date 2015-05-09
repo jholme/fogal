@@ -88,7 +88,7 @@ environments {
         grails.logging.jul.usebridge = true
 		file.upload.directory = "C:\\fogalFiles"
 		imageUpload {
-		  temporaryFile = "C:\\fogalFiles"//'/tmp/uploaded.file' // Path to where files will be uploaded
+		  temporaryFile = "C:\\fogalFiles"// Path to where files will be uploaded
 		}
     }
     production {
@@ -118,3 +118,82 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.iii.fogal.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.iii.fogal.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.iii.fogal.Role'
+//grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+//	'/':                              ['permitAll'],
+//	'/index':                         ['permitAll'],
+//	'/index.gsp':                     ['permitAll'],
+//	'/**/js/**':                      ['permitAll'],
+//	'/**/css/**':                     ['permitAll'],
+//	'/**/images/**':                  ['permitAll'],
+//	'/**/favicon.ico':                ['permitAll']
+//]
+
+// spring-security
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugin.springsecurity.rejectIfNoRule = true
+grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+grails.plugin.springsecurity.logout.postOnly = false
+// static rules
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':					['permitAll'],
+	'/index':				['permitAll'],
+	'/index.gsp':			['permitAll'],
+	'/assets/**':			['permitAll'],
+	'/**/js/**':			['permitAll'],
+	'/**/css/**':			['permitAll'],
+	'/**/images/**':		['permitAll'],
+	'/**/favicon.ico':		['permitAll']//,
+//	'/photo/create/**':		['ROLE_ADMIN'],
+//	'/photo/edit/**':		['ROLE_ADMIN'],
+//	'/photo/show/**':		['permitAll'],
+//	'/gallery/index':		['permitAll'],
+//	'/gallery/create/**':	['ROLE_ADMIN'],
+//	'/gallery/edit/**':		['ROLE_ADMIN'],
+//	'/gallery/show/**':		['permitAll']
+ ]
+// intercept url map
+grails.plugin.springsecurity.interceptUrlMap = [
+	'/':							['permitAll'],
+	'/index':						['permitAll'],
+	'/index.gsp':					['permitAll'],
+	'/**/js/**':					['permitAll'],
+	'/**/css/**':					['permitAll'],
+	'/**/images/**':				['permitAll'],
+	'/**/favicon.ico':				['permitAll'],
+	// login/out
+	'/login/**':					['permitAll'],
+	'/logout/**':					['permitAll'],
+	// photo
+	'/photo/index':					['permitAll'],
+	'/photo/create/**':				['ROLE_ADMIN'],
+	'/photo/delete/**':				['ROLE_ADMIN'],
+	'/photo/edit/**':				['ROLE_ADMIN'],
+	'/photo/save/**':				['ROLE_ADMIN'],
+	'/photo/show/**':				['permitAll'],
+	'/photo/renderImage/**':		['permitAll'],
+	'/photo/renderThumbnail/**':	['permitAll'],
+	'/photo/update/**':				['ROLE_ADMIN'],
+	// gallery
+	'/gallery/index':				['permitAll'],
+	'/gallery/create/**':			['ROLE_ADMIN'],
+	'/gallery/delete/**':			['ROLE_ADMIN'],
+	'/gallery/edit/**':				['ROLE_ADMIN'],
+	'/gallery/save/**':				['ROLE_ADMIN'],
+	'/gallery/show/**':				['permitAll'],
+	'/gallery/update/**':			['ROLE_ADMIN'],
+	'/gallery/uploadPhoto/**':		['ROLE_ADMIN']
+ ]
+//
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/photo/index':			['permitAll'],
+	'/photo/show/**':		['permitAll'],
+	'/gallery/index':		['permitAll'],
+	'/gallery/show/**':		['permitAll']
+ ]
+

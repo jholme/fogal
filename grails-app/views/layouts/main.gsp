@@ -1,3 +1,4 @@
+<%@ page import="grails.plugin.springsecurity.SecurityTagLib" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -19,7 +20,16 @@
 		<r:layoutResources />
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
+		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a>
+			<span style="float:right">
+			<sec:ifLoggedIn>
+			<g:link controller='logout' action='index'>Logout</g:link>
+			</sec:ifLoggedIn>
+			<sec:ifNotLoggedIn>
+			<g:link controller='login' action='auth'>Login</g:link>
+			</sec:ifNotLoggedIn>
+			</span>
+		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>

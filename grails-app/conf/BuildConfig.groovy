@@ -40,6 +40,7 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+		mavenRepo 'http://repo.spring.io/milestone'
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -62,6 +63,7 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ":scaffolding:2.0.2"
         compile ':cache:1.1.1'
+		compile ':spring-security-core:2.0-RC2'
 //		compile ':jquery-ui:1.8.15'
 //		compile ":bootstrap-file-upload:2.1.2"
 //		compile ":ajax-uploader:1.1"
