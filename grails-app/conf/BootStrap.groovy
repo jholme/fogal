@@ -35,7 +35,8 @@ class BootStrap {
 			production {
 				initCategories()
 				initGalleries()
-//				security1()
+				initPhotos()
+				security1()
 			}
 		}
     }

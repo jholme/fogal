@@ -95,6 +95,7 @@ environments {
     production {
         grails.logging.jul.usebridge = false
 		file.upload.directory = "C:\\fogalFiles"//"/fogalFiles"
+		file.newFile.directory = "C:\\fogalFilesNew"
         // TODO: grails.serverURL = "http://www.changeme.com"
  		imageUpload {
 		  temporaryFile = "C:\\fogalFiles"// Path to where files will be uploaded

@@ -66,8 +66,8 @@ class GalleryService {
 		try {
 			Gallery gallery = Gallery.findByPath(galleryPath)
 			println "gallery.path: ${gallery.path}"
-			String sourceFileDir = grailsApplication.config.file.newFile.directory?:'C:\fogalFilesNew'
-			String targetFileDir = grailsApplication.config.file.upload.directory?:'C:\fogalFiles'//'/fogalFiles'
+			String sourceFileDir = grailsApplication.config.file.newFile.directory?:'C:\\fogalFilesNew'
+			String targetFileDir = grailsApplication.config.file.upload.directory?:'C:\\fogalFiles'//'/fogalFiles'
 			for (String fn in fileNames) {
 				File photoFile = _createNewFileFromDisk(fn, gallery, sourceFileDir, targetFileDir)
 				File tnFile = _createThumbnail(photoFile, photoFile.name, gallery)
