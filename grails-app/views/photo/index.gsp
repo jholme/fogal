@@ -56,7 +56,7 @@
 					
 						<td>${fieldValue(bean: photoInstance, field: "photoDate")}</td>
 					
-						<td><img src="<g:createLink controller='photo' action='renderThumbnail' id='${photoInstance.id}'/>"/></td>
+						<td><img src="<g:createLink controller='photo' action='renderThumbnailImage' id='${photoInstance.id}'/>"/></td>
 					
 					</tr>
 				</g:each>

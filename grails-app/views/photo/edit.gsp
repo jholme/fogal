@@ -30,12 +30,23 @@
 			<g:form url="[resource:photoInstance, action:'update']" method="PUT"  enctype="multipart/form-data">
 				<g:hiddenField name="version" value="${photoInstance?.version}" />
 				<fieldset class="form">
-					<g:render template="form"/>
+                    <g:render template="form"/>
+<%--					<g:render template="form" keys="${photoInstance.image}" required=""--%>
+<%--					           disabled="${mode == 'edit'}"/>--%>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:submitButton class="save" name="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:link class="show" action="show" resource="${photoInstance}"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
 				</fieldset>
 			</g:form>
 		</div>
 	</body>
 </html>
+
+<%--https://jira.grails.org/browse/GRAILS-11308--%>
+<%--https://jira.grails.org/browse/GRAILS-11067--%>
+<%--http://stackoverflow.com/questions/14841302/how-to-conditionally-disable-a-form-input-field--%>
+<%--<g:select name="teacherType" from="${TeacherType?.values()}"--%>
+<%--  keys="${TeacherType.values()*.name()}" required=""--%>
+<%--  value="${teacherInstance?.teacherType?.name()}"--%>
+<%--  disabled="${mode == 'edit'}"/>--%>

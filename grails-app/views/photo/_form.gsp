@@ -31,7 +31,7 @@
 		<g:message code="photo.description.label" default="Description" />
 		
 	</label>
-	<g:textField name="description" value="${photoInstance?.description}"/>
+	<g:textArea name="description" value="${photoInstance?.description}"/>
 
 </div>
 

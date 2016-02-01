@@ -12,7 +12,7 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+<!--				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li> -->
 			</ul>
 		</div>
 		<div id="edit-gallery" class="content scaffold-edit" role="main">
@@ -27,6 +27,18 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
+            <g:if test="${galleryInstance?.category}">
+            <li class="fieldcontain">
+                <span id="path-label" class="property-label"><g:message code="gallery.category.label" default="Category" /></span>
+                
+                    <span class="property-value" aria-labelledby="category-label">
+                        <g:link controller="category" action="show" id="${galleryInstance.category.id}">
+                        <g:fieldValue bean="${galleryInstance.category}" field="name"/>
+                        </g:link>
+                    </span>
+                
+            </li>
+            </g:if>
 			<g:form url="[resource:galleryInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${galleryInstance?.version}" />
 				<fieldset class="form">
@@ -34,6 +46,7 @@
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:link class="show" action="show" resource="${galleryInstance}"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
 				</fieldset>
 			</g:form>
 		</div>

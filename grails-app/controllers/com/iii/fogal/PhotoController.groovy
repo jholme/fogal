@@ -8,29 +8,36 @@ import java.awt.image.BufferedImage
 import org.imgscalr.Scalr
 import javax.imageio.ImageIO
 import org.apache.commons.io.IOUtils
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.nio.file.Files
 
 class PhotoController {
 
-    def scaffold = Photo
+    static scaffold = Photo
 	def galleryService
-	private static final String FULL_IMAGE = "full image"
-	private static final String THUM_IMAGE = "thumbnail image"
+	def photoService
+	//static allowedMethods = [save: "POST", update: ['PUT','POST'], delete: 'POST']
 	
-	def renderImage() {
-		_renderSelected(FULL_IMAGE)
+	def renderMainImage() {
+		_renderImage(photoService.FULL_IMAGE)
 	}
 	
-	def renderThumbnail() {
-		_renderSelected(THUM_IMAGE)
+	def renderThumbnailImage() {
+		_renderImage(photoService.THUM_IMAGE)
 	}
 	
-	private def _renderSelected(String imageType) {
+	private def _renderImage(String imageType) {
 		try {
 			Photo photo = Photo.findById(params.id)
-			String imageDir = grailsApplication.config.file.upload.directory?:'/tmp'
-			String galleryPath = photo?.gallery?.path
-			String fileName = THUM_IMAGE.equals(imageType) ? photo.thumbnailFilename : FULL_IMAGE.equals(imageType) ? photo.originalFilename : ""
-			File imageFile = new File("${imageDir}/${galleryPath}/${fileName}")
+//			String imageDir = grailsApplication.config.file.upload.directory?:'/tmp'
+//			//String galleryPath = photo?.gallery?.path
+//			Gallery gallery = photo.gallery
+//			Category category = gallery.category
+//			String fileName = THUM_IMAGE.equals(imageType) ? photo.thumbnailFilename : FULL_IMAGE.equals(imageType) ? photo.originalFilename : ""
+//			//File imageFile = new File("${imageDir}/${galleryPath}/${fileName}")
+//			Path imagePath = Paths.get(imageDir, category.path, gallery.path, fileName)
+			File imageFile = photoService.prepareToRender(imageType, photo)//imagePath.toFile()
 			response.setContentLength(imageFile.size() as Integer)
 			InputStream fileStream = new FileInputStream(imageFile)
 			response.outputStream.write(IOUtils.toByteArray(fileStream))
@@ -38,37 +45,61 @@ class PhotoController {
 			response.sendError(404)
 		}
 	}
-
-//	def renderImageDB() {
-//		Photo photo = Photo.findById(params.id)
-//		if (photo?.image) {
-//			response.setContentLength(photo.image.length)
-//			response.outputStream.write(photo.image)
-//		} else {
-//			response.sendError(404)
+	
+	def delete() {
+		Photo photo = Photo.get(params.id)
+		Gallery gallery = photo.gallery
+//		try {
+//			log.debug(photo)
+//			photoService.deleteImages(photo)
+//			gallery.photos.remove(photo)
+//			photo.delete(flush:true)
+//		} catch (Exception e) {
+//			log.debug e
 //		}
+		//Photo tempPhoto = _createTempPhoto(photo)
+		photoService.deletePhotoFromGallery(photo)
+		photoService.deletePhotoFromFilesystem(photo)
+		redirect(controller:'gallery', action:'show', params:[id:gallery.id])
+	}
+	
+//	private Photo _createTempPhoto(Photo photo) {
+//		Photo tempPhoto = new Photo()
+//		tempPhoto.gallery = photo.gallery
+//		tempPhoto.originalFilename = photo.originalFilename
+//		tempPhoto.thumbnailFilename = photo.thumbnailFilename
+//		tempPhoto.title = photo.title
+//		tempPhoto
 //	}
 	
-	@Override
 	def save() {
-		println request
+		log.debug "Photo.save.1"
 		Photo photo
 		try {
 			photo = _initializePhotoFromParams(photo)
 			if (request instanceof MultipartHttpServletRequest){
 				for (filename in request.getFileNames()) {
-					println filename
+					log.debug "filename: ${filename}"
 					List<MultipartFile> files = request.getFiles(filename)
-					Integer galleryId = new Integer(params.gallery?.id)
-					def photolist = galleryService.createPhotosForImages(files, galleryId)
+					log.debug "gallery.id: ${params.gallery.id}"
+					Integer galleryId = new Integer(params.gallery.id)
+					def photolist = galleryService.createPhotosFromUpload(files, galleryId)
 					photo = photolist[0]
 				}
 			}
 		} catch (Exception e) {
-			println e
+			log.debug e
 		}
 		def map = [photoInstance: photo]
 		render(view: "show", model: map)
+	}
+	
+	def show() {
+		super.show()
+	}
+	
+	def update() {
+		super.update()
 	}
 	
 	// populate default values from UI in case image metadata lacks any fields

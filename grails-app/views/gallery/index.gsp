@@ -12,7 +12,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+<%--				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--%>
 			</ul>
 		</div>
 		<div id="list-gallery" class="content scaffold-list" role="main">
@@ -33,7 +33,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${galleryInstanceList}" status="i" var="galleryInstance">
+				<g:each in="${galleryInstanceList.sort{it.name}}" status="i" var="galleryInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${galleryInstance.id}">${fieldValue(bean: galleryInstance, field: "name")}</g:link></td>

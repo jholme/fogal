@@ -25,12 +25,26 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
+			
+            <g:if test="${params?.category}">
+            <li class="fieldcontain">
+                <span id="path-label" class="property-label"><g:message code="gallery.category.label" default="Category" /></span>
+                <span class="property-value" aria-labelledby="category-label">
+                    <g:link controller="category" action="show" id="${params.category}">
+                    <g:fieldValue bean="${com.iii.fogal.Category.findById(params.category as Long)}" field="name"/>
+                    </g:link>
+                </span>
+            </li>
+            </g:if>
+            
 			<g:form url="[resource:galleryInstance, action:'save']" >
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
+				<g:hiddenField name="category" value="${params.category}" />
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <g:link class="show" controller="category" action="show" id="${params.category}"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
 				</fieldset>
 			</g:form>
 		</div>

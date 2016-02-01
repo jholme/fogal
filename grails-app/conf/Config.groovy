@@ -87,15 +87,19 @@ environments {
     development {
         grails.logging.jul.usebridge = true
 		file.upload.directory = "C:\\fogalFiles"
+		file.newFile.directory = "C:\\fogalFilesNew"
 		imageUpload {
 		  temporaryFile = "C:\\fogalFiles"// Path to where files will be uploaded
 		}
     }
     production {
         grails.logging.jul.usebridge = false
-		file.upload.directory = "/fogalFiles"
+		file.upload.directory = "C:\\fogalFiles"//"/fogalFiles"
         // TODO: grails.serverURL = "http://www.changeme.com"
-    }
+ 		imageUpload {
+		  temporaryFile = "C:\\fogalFiles"// Path to where files will be uploaded
+		}
+   }
 }
 
 // log4j configuration
@@ -105,6 +109,12 @@ log4j = {
     //appenders {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
+	
+	root {
+		info()
+	}
+	
+	debug "grails.app"
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
@@ -169,6 +179,14 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	// login/out
 	'/login/**':					['permitAll'],
 	'/logout/**':					['permitAll'],
+	// category
+	'/category/index':				['permitAll'],
+	'/category/create/**':			['ROLE_ADMIN'],
+	'/category/delete/**':			['ROLE_ADMIN'],
+	'/category/edit/**':			['ROLE_ADMIN'],
+	'/category/save/**':			['ROLE_ADMIN'],
+	'/category/show/**':			['permitAll'],
+	'/category/update/**':			['ROLE_ADMIN'],
 	// photo
 	'/photo/index':					['permitAll'],
 	'/photo/create/**':				['ROLE_ADMIN'],
@@ -176,8 +194,8 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/photo/edit/**':				['ROLE_ADMIN'],
 	'/photo/save/**':				['ROLE_ADMIN'],
 	'/photo/show/**':				['permitAll'],
-	'/photo/renderImage/**':		['permitAll'],
-	'/photo/renderThumbnail/**':	['permitAll'],
+	'/photo/renderMainImage/**':		['permitAll'],
+	'/photo/renderThumbnailImage/**':	['permitAll'],
 	'/photo/update/**':				['ROLE_ADMIN'],
 	// gallery
 	'/gallery/index':				['permitAll'],
@@ -191,9 +209,11 @@ grails.plugin.springsecurity.interceptUrlMap = [
  ]
 //
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/photo/index':			['permitAll'],
-	'/photo/show/**':		['permitAll'],
-	'/gallery/index':		['permitAll'],
-	'/gallery/show/**':		['permitAll']
+	'/category/index':			['permitAll'],
+	'/category/show/**':		['permitAll'],
+	'/photo/index':				['permitAll'],
+	'/photo/show/**':			['permitAll'],
+	'/gallery/index':			['permitAll'],
+	'/gallery/show/**':			['permitAll']
  ]
 

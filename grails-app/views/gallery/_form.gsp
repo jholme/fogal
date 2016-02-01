@@ -16,7 +16,7 @@
 		<g:message code="gallery.description.label" default="Description" />
 		
 	</label>
-	<g:textField name="description" value="${galleryInstance?.description}"/>
+	<g:textArea name="description" value="${galleryInstance?.description}"/>
 
 </div>
 

@@ -6,8 +6,13 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>org.eclipse.wst.common.project.facet.core.builder</name>
+			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+			<triggers>full,incremental,</triggers>
 			<arguments>
+				<dictionary>
+					<key>LaunchConfigHandle</key>
+					<value>&lt;project&gt;/.externalToolBuilders/org.eclipse.wst.common.project.facet.core.builder.launch</value>
+				</dictionary>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
@@ -26,7 +31,7 @@
 		<link>
 			<name>.link_to_grails_plugins</name>
 			<type>2</type>
-			<location>C:/Users/jholme/Documents/workspace-ggts-3.5.0.RELEASE/fogal/target/work/plugins</location>
+			<location>C:/Users/Margit/Documents/John/workspace-ggts-3.6.4.RELEASE/fogal/target/work/plugins</location>
 		</link>
 	</linkedResources>
 </projectDescription>

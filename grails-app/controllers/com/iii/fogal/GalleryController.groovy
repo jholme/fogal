@@ -11,7 +11,7 @@ import org.apache.commons.io.IOUtils
 
 class GalleryController {
 
-    def scaffold = true
+    static scaffold = Gallery
 	def galleryService
 	
 	def uploadPhoto() {
@@ -21,8 +21,9 @@ class GalleryController {
 				for (filename in request.getFileNames()) {
 					println filename
 					List<MultipartFile> files = request.getFiles(filename)
+					println "galleryId: ${params.gallery}"
 					Integer galleryId = new Integer(params.gallery)
-					def photolist = galleryService.createPhotosForImages(files, galleryId)
+					def photolist = galleryService.createPhotosFromUpload(files, galleryId)
 					photolist = null
 				}
 			}
@@ -33,17 +34,40 @@ class GalleryController {
 		render(view: "show", model: map)
 	}
 	
-	@Override
+	// save gallery object
+	// create path on filesystem: imageDir, gallery.category.path, gallery.path
 	def save() {
-		println params.name
-		println params.path
-		println params.description
-		String imageDir = grailsApplication.config.file.upload.directory?:'/fogalFiles'
-		println "imageDir: ${imageDir}"
-		String newDir = "${imageDir}/${params.path}"
-		File dirFile = new File(newDir)
-		dirFile.mkdir()
-		super.save()
+		println "gallery name: ${params.name}"
+		println "gallery path: ${params.path}"
+		println "gallery description: ${params.description}"
+		println "gallery category: ${params.category}"
+//		String imageDir = grailsApplication.config.file.upload.directory?:'C:\fogalFiles'//'/fogalFiles'
+//		println "imageDir: ${imageDir}"
+//		Path galleryPath = Paths.get()
+//		String newDir = "${imageDir}/${params.path}"
+//		File dirFile = new File(newDir)
+//		dirFile.mkdir()
+		Gallery newGal = new Gallery(params)
+		newGal.save()
+		//galleryService.addGalleryToFileSystem(params.path, params.category)
+		forward action:"show", id: newGal.id
+	}
+	
+//	def create() {
+//		//super.create()
+//		def categoryId = params.category
+//		println "categoryId: ${categoryId}"
+//		Category category = Category.findById(categoryId)
+//	}
+	
+	def delete() {
+		Gallery gallery = Gallery.get(params.id)
+		Category category = gallery.category
+		Gallery.withTransaction {
+			gallery.delete()
+		}
+//		galleryService.deleteGalleryFromCategory(gallery, category)
+		redirect(controller:'category', action:'show', params:[id:category.id])
 	}
 
 }
