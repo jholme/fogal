@@ -6,7 +6,7 @@
 	<label for="title">
 		<g:message code="photo.title.label" default="Title" />
 	</label>
-	<g:textField name="title" value="${photoInstance?.title}" size="60"/>
+	<g:textField name="title" value="${photoInstance?.title}"/>
 
 </div>
 
@@ -14,7 +14,7 @@
 	<label for="originalFilename">
 		<g:message code="photo.originalFilename.label" default="Original Filename" />
 	</label>
-	<g:textField name="originalFilename" value="${photoInstance?.originalFilename}" size="60"/>
+	<g:textField name="originalFilename" value="${photoInstance?.originalFilename}"/>
 
 </div>
 
@@ -22,7 +22,7 @@
 	<label for="thumbnailFilename">
 		<g:message code="photo.thumbnailFilename.label" default="Thumbnail Filename" />
 	</label>
-	<g:textField name="thumbnailFilename" value="${photoInstance?.thumbnailFilename}" size="60"/>
+	<g:textField name="thumbnailFilename" value="${photoInstance?.thumbnailFilename}"/>
 
 </div>
 
@@ -40,7 +40,7 @@
 		<g:message code="photo.location.label" default="Location" />
 		
 	</label>
-	<g:textField name="location" value="${photoInstance?.location}" size="60"/>
+	<g:textField name="location" value="${photoInstance?.location}"/>
 
 </div>
 
@@ -49,7 +49,7 @@
 		<g:message code="photo.photoDate.label" default="Photo Date" />
 		
 	</label>
-	<g:textField name="photoDate" value="${photoInstance?.photoDate}" size="60"/>
+	<g:textField name="photoDate" value="${photoInstance?.photoDate}"/>
 
 </div>
 

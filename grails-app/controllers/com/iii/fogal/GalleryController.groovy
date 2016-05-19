@@ -13,6 +13,8 @@ class GalleryController {
 
     static scaffold = Gallery
 	def galleryService
+	def photoService
+	def utilityService
 	
 	def uploadPhoto() {
 		println request
@@ -68,6 +70,22 @@ class GalleryController {
 		}
 //		galleryService.deleteGalleryFromCategory(gallery, category)
 		redirect(controller:'category', action:'show', params:[id:category.id])
+	}
+	
+	def galleryThum() {
+		try {
+			Long galleryId = params.id as Long
+			log.debug "galleryThum: ${galleryId}"
+			Gallery gallery = Gallery.get(galleryId)
+			//Gallery gallery = category.galleries[utilityService.getRandom(category.galleries)]
+			Photo photo = gallery.photos[utilityService.getRandom(gallery.photos)]
+			File imageFile = photoService.prepareToRender(photoService.THUM_IMAGE, photo)
+			response.setContentLength(imageFile.size() as Integer)
+			InputStream fileStream = new FileInputStream(imageFile)
+			response.outputStream.write(IOUtils.toByteArray(fileStream))
+		} catch (Exception e) {
+			response.sendError(404)
+		}
 	}
 
 }

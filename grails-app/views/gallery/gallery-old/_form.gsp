@@ -7,7 +7,7 @@
 		<g:message code="gallery.name.label" default="Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="name" required="" value="${galleryInstance?.name}" size="60"/>
+	<g:textField name="name" required="" value="${galleryInstance?.name}"/>
 
 </div>
 
@@ -25,7 +25,7 @@
 		<g:message code="gallery.path.label" default="Path" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="path" required="" value="${galleryInstance?.path}" size="60"/>
+	<g:textField name="path" required="" value="${galleryInstance?.path}"/>
 
 </div>
 
@@ -39,9 +39,9 @@
 <g:each in="${galleryInstance?.photos?}" var="p">
     <li><g:link controller="photo" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
 </g:each>
-<%--<li class="add">--%>
-<%--<g:link controller="photo" action="create" params="['gallery.id': galleryInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'photo.label', default: 'Photo')])}</g:link>--%>
-<%--</li>--%>
+<li class="add">
+<g:link controller="photo" action="create" params="['gallery.id': galleryInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'photo.label', default: 'Photo')])}</g:link>
+</li>
 </ul>
 
 

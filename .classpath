@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="grails-app/conf"/>
+	<classpathentry excluding="groovy/com/iii/|groovy/com/iii/fogal/|java/|groovy/|groovy/com/" kind="src" path="src"/>
 	<classpathentry kind="src" path="grails-app/controllers"/>
 	<classpathentry kind="src" path="grails-app/domain"/>
 	<classpathentry kind="src" path="grails-app/services"/>

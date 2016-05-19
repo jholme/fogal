@@ -46,15 +46,15 @@ class BootStrap {
 	
 	def initCategories() {
 		println "initCategories"
-		Category farmworkers = new Category(name:"Farmworkers", description:"Farmworkers", path:"farmworkers")
+		Category farmworkers = new Category(name:"Farmworkers", description:"Farmworkers", path:"farmworkers", homePageTile:HomePageTile.TILE_01)
 		farmworkers.save(flush:true)
-		Category immigrants = new Category(name:"Immigrants", description:"Immigrants", path:"immigrants")
+		Category immigrants = new Category(name:"Immigrants", description:"Immigrants", path:"immigrants", homePageTile:HomePageTile.TILE_02)
 		immigrants.save(flush:true)
-		Category mexico = new Category(name:"Mexico", description:"Mexico", path:"mexico")
+		Category mexico = new Category(name:"Mexico", description:"Mexico", path:"mexico", homePageTile:HomePageTile.TILE_03)
 		mexico.save(flush:true)
-		Category students = new Category(name:"Students", description:"Students", path:"students")
+		Category students = new Category(name:"Students", description:"Students", path:"students", homePageTile:HomePageTile.TILE_04)
 		students.save(flush:true)
-		Category unions = new Category(name:"Unions", description:"Unions", path:"unions")
+		Category unions = new Category(name:"Unions", description:"Unions", path:"unions", homePageTile:HomePageTile.TILE_05)
 		unions.save(flush:true)
 	}
 
@@ -118,15 +118,55 @@ class BootStrap {
 	
 	def initPhotos() {
 		// daydead
-		galleryService.createPhotosFromDisk(['photo1.jpg','photo2.jpg','photo3.jpg'], "daydead")
+		try {
+			galleryService.createPhotosFromDisk(['photo1.jpg','photo2.jpg','photo3.jpg'], "daydead")
+		} catch (Exception e) {
+			log.debug "initPhotos (daydead): ${e}"
+		}
 		// bicycles
-		galleryService.createPhotosFromDisk(['photo4.jpg'], "bicycles")
+		try {
+			galleryService.createPhotosFromDisk(['photo4.jpg', 'photo44.jpg'], "bicycles")
+		} catch (Exception e) {
+			log.debug "initPhotos (bicycles): ${e}"
+		}
 		// blancaNavidad
-		galleryService.createPhotosFromDisk(['photo5.jpg'], "blancaNavidad")
+		try {
+			galleryService.createPhotosFromDisk(['photo5.jpg'], "blancaNavidad")
+		} catch (Exception e) {
+			log.debug "initPhotos (blancaNavidad): ${e}"
+		}
 		// coastalFarmworkers
-		galleryService.createPhotosFromDisk(['photo6.jpg'], "coastalFarmworkers")
+		try {
+			galleryService.createPhotosFromDisk(['photo6.jpg','photo11.jpg'], "coastalFarmworkers")
+		} catch (Exception e) {
+			log.debug "initPhotos (coastalFarmworkers): ${e}"
+		}
+		// feeHikeProtest
+		try {
+			galleryService.createPhotosFromDisk(['photo7.jpg','photo8.jpg'], "feeHikeProtest")
+		} catch (Exception e) {
+			log.debug "initPhotos (feeHikeProtest): ${e}"
+		}
+		// janitorsStrike
+		try {
+			galleryService.createPhotosFromDisk(['photo9.jpg','photo10.jpg','photo99.jpg'], "janitorsStrike")
+		} catch (Exception e) {
+			log.debug "initPhotos (janitorsStrike): ${e}"
+		}
+		// nahuatls
+		try {
+			galleryService.createPhotosFromDisk(['photo12.jpg','photo13.jpg'], "nahuatls")
+		} catch (Exception e) {
+			log.debug "initPhotos (nahuatls): ${e}"
+		}
+		// teachersProtest
+		try {
+			galleryService.createPhotosFromDisk(['photo14.jpg','photo15.jpg'], "teachersProtest")
+		} catch (Exception e) {
+			log.debug "initPhotos (teachersProtest): ${e}"
+		}
 	}
-	
+
 	def security1() {
 		// spring-security
 		Role adminRole = new Role(authority: 'ROLE_ADMIN')
