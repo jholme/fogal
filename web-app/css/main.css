@@ -440,6 +440,20 @@ fieldset, .buttons {
     margin-right: auto;
 }
 
+.catname {
+	position: relative;
+	top: -20%;
+	text-align: center;
+	font-size: 1.2em;
+	visibility: visible;
+	z-index: 10;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.9);
+}
+
+.catname a {
+	color: #fff;
+}
+
 .gallery-caption {
     font-size: 0.8em;
     display: block;

@@ -4,6 +4,21 @@
 	<head>
 		<meta name="layout" content="main"/>
 		<title>Photographs &amp; Stories</title>
+        <g:javascript library="jquery-2.2.4.min"/>      
+		<script>
+		$(document).ready(function(){
+	        <g:each var="hpTile" in="${HomePageTile.values()}">
+            <g:set var="cat" value="${Category.findWhere(homePageTile:hpTile)}" />
+            $("#${cat?.path}").hide();
+		    $("#${hpTile.cssId}").mouseout(function(){
+		        $("#${cat?.path}").hide();
+		    });
+		    $("#${hpTile.cssId}").mouseover(function(){
+		        $("#${cat?.path}").show();
+		    });
+	        </g:each>
+		});
+		</script>
 		<style type="text/css" media="screen">
 <%--			#status {--%>
 <%--				background-color: #eee;--%>
@@ -131,6 +146,7 @@
 			     border: 1px solid red;
 			     padding: 2px;
 			     text-align: center;
+			     vertical-align: bottom;
 			     font-size: small;
 			     font-weight: bold;
 			}
@@ -166,142 +182,168 @@
 <%--				</g:each>--%>
 <%--			</ul>--%>
 <%--		</div>--%>
+
 		<div id="page-body" role="main">
-<%--			<h1>Welcome to Grails</h1>--%>
-<%--			<p>Congratulations, you have successfully started your first Grails application! At the moment--%>
-<%--			   this is the default page, feel free to modify it to either redirect to a controller or display whatever--%>
-<%--			   content you may choose. Below is a list of controllers that are currently deployed in this application,--%>
-<%--			   click on each to execute its default action:</p>--%>
             
             <div id="tile-container">
             
             <!-- tile_01 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_01)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile portrait" id="${HomePageTile.TILE_01.cssId}" style="top:0px; left:0px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='porThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_01)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_01.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile portrait" id="${cssId}" style="top:0px; left:0px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='porThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile portrait" id="${HomePageTile.TILE_01.cssId}" style="top:0px; left:0px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_01.cssId}</g:link></div>
+                <div class="tile portrait" id="${cssId}" style="top:0px; left:0px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile portrait" id="${HomePageTile.TILE_01.cssId}" style="top:0px; left:0px">${HomePageTile.TILE_01.cssId}</div>
-                </sec:ifNotLoggedIn>
+                <div class="tile portrait" id="cssId" style="top:0px; left:0px">cssId</div>
+                </sec:ifNotLoggedIn>${cssId}
             </g:else>
             
             <!-- tile_02 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_02)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile portrait" id="${HomePageTile.TILE_02.cssId}" style="top:223px; left:0px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='porThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_02)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_02.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile portrait" id="${cssId}" style="top:223px; left:0px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='porThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile portrait" id="${HomePageTile.TILE_02.cssId}" style="top:223px; left:0px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_02.cssId}</g:link></div>
+                <div class="tile portrait" id="${cssId}" style="top:223px; left:0px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile portrait" id="${HomePageTile.TILE_02.cssId}" style="top:223px; left:0px">${HomePageTile.TILE_02.cssId}</div>
+                <div class="tile portrait" id="${cssId}" style="top:223px; left:0px">${cssId}</div>
                 </sec:ifNotLoggedIn>
             </g:else>
             
             <!-- tile_03 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_03)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile landscape" id="${HomePageTile.TILE_03.cssId}" style="top:0px; left:145px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='lanThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_03)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_03.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile landscape" id="${cssId}" style="top:0px; left:145px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='lanThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_03.cssId}" style="top:0px; left:145px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_03.cssId}</g:link></div>
+                <div class="tile landscape" id="${cssId}" style="top:0px; left:145px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_03.cssId}" style="top:0px; left:145px">${HomePageTile.TILE_03.cssId}</div>
+                <div class="tile landscape" id="${cssId}" style="top:0px; left:145px">${cssId}</div>
                 </sec:ifNotLoggedIn>
             </g:else>
             
             <!-- tile_04 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_04)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile landscape" id="${HomePageTile.TILE_04.cssId}" style="top:145px; left:145px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='lanThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_04)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_04.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile landscape" id="${cssId}" style="top:145px; left:145px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='lanThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_04.cssId}" style="top:145px; left:145px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_04.cssId}</g:link></div>
+                <div class="tile landscape" id="${cssId}" style="top:145px; left:145px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_04.cssId}" style="top:145px; left:145px">${HomePageTile.TILE_04.cssId}</div>
+                <div class="tile landscape" id="${cssId}" style="top:145px; left:145px">${cssId}</div>
                 </sec:ifNotLoggedIn>
             </g:else>
             
             <!-- tile_05 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_05)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile landscape" id="${HomePageTile.TILE_05.cssId}" style="top:290px; left:145px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='lanThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_05)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_05.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile landscape" id="${cssId}" style="top:290px; left:145px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='lanThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_05.cssId}" style="top:290px; left:145px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_05.cssId}</g:link></div>
+                <div class="tile landscape" id="${cssId}" style="top:290px; left:145px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_05.cssId}" style="top:290px; left:145px">${HomePageTile.TILE_05.cssId}</div>
+                <div class="tile landscape" id="${cssId}" style="top:290px; left:145px">${cssId}</div>
                 </sec:ifNotLoggedIn>
             </g:else>
                 
             <!-- tile_06 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_06)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile portrait" id="${HomePageTile.TILE_06.cssId}" style="top:0px; left:355px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='porThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_06)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_06.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile portrait" id="${cssId}" style="top:0px; left:355px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='porThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile portrait" id="${HomePageTile.TILE_06.cssId}" style="top:0px; left:355px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_06.cssId}</g:link></div>
+                <div class="tile portrait" id="${cssId}" style="top:0px; left:355px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile portrait" id="${HomePageTile.TILE_06.cssId}" style="top:0px; left:355px">${HomePageTile.TILE_06.cssId}</div>
+                <div class="tile portrait" id="${cssId}" style="top:0px; left:355px">${cssId}</div>
                 </sec:ifNotLoggedIn>
             </g:else>
             
             <!-- tile_07 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_07)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile portrait" id="${HomePageTile.TILE_07.cssId}" style="top:223px; left:355px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='porThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_07)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_07.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile portrait" id="${cssId}" style="top:223px; left:355px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='porThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile portrait" id="${HomePageTile.TILE_07.cssId}" style="top:223px; left:355px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_07.cssId}</g:link></div>
+                <div class="tile portrait" id="${cssId}" style="top:223px; left:355px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile portrait" id="${HomePageTile.TILE_07.cssId}" style="top:223px; left:355px">${HomePageTile.TILE_07.cssId}</div>
+                <div class="tile portrait" id="${cssId}" style="top:223px; left:355px">${cssId}</div>
                 </sec:ifNotLoggedIn>
             </g:else>
             
             <!-- tile_08 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_08)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile landscape" id="${HomePageTile.TILE_08.cssId}" style="top:0px; left:500px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='lanThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_08)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_08.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile landscape" id="${cssId}" style="top:0px; left:500px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='lanThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_08.cssId}" style="top:0px; left:500px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_08.cssId}</g:link></div>
+                <div class="tile landscape" id="${cssId}" style="top:0px; left:500px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_08.cssId}" style="top:0px; left:500px">${HomePageTile.TILE_08.cssId}</div>
+                <div class="tile landscape" id="${cssId}" style="top:0px; left:500px">${cssId}</div>
                 </sec:ifNotLoggedIn>
             </g:else>
             
             <!-- tile_09 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_09)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile landscape" id="${HomePageTile.TILE_09.cssId}" style="top:145px; left:500px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='lanThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_09)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_09.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile landscape" id="${cssId}" style="top:145px; left:500px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='lanThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_09.cssId}" style="top:145px; left:500px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_09.cssId}</g:link></div>
+                <div class="tile landscape" id="${cssId}" style="top:145px; left:500px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_09.cssId}" style="top:145px; left:500px">${HomePageTile.TILE_09.cssId}</div>
+                <div class="tile landscape" id="${cssId}" style="top:145px; left:500px">${cssId}</div>
                 </sec:ifNotLoggedIn>
             </g:else>
             
             <!-- tile_10 -->
-            <g:set var="catId" value="${Category.findWhere(homePageTile:HomePageTile.TILE_10)?.id}" />
-            <g:if test="${catId}">
-                <div class="tile landscape" id="${HomePageTile.TILE_10.cssId}" style="top:290px; left:500px"><g:link controller="category" action="show" id="${catId}"><img src="<g:createLink controller='category' action='lanThum' id='${catId}'/>"/></g:link></div>
+            <g:set var="cat" value="${Category.findWhere(homePageTile:HomePageTile.TILE_10)}" />
+            <g:set var="cssId" value="${HomePageTile.TILE_10.cssId}" />
+            <g:if test="${cat?.id}">
+                <div class="tile landscape" id="${cssId}" style="top:290px; left:500px"><g:link controller="category" action="show" id="${cat?.id}"><img src="<g:createLink controller='category' action='lanThum' id='${cat?.id}'/>"/></g:link>
+                <div id="${cat?.path}" class="catname"><g:link controller="category" action="show" id="${cat?.id}">${cat?.name}</g:link></div>
+                </div>
             </g:if><g:else>
                 <sec:ifLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_10.cssId}" style="top:290px; left:500px"><g:link controller="category" action="index">pick a Category for ${HomePageTile.TILE_10.cssId}</g:link></div>
+                <div class="tile landscape" id="${cssId}" style="top:290px; left:500px"><g:link controller="category" action="index">pick a Category for ${cssId}</g:link></div>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
-                <div class="tile landscape" id="${HomePageTile.TILE_10.cssId}" style="top:290px; left:500px">${HomePageTile.TILE_10.cssId}</div>
+                <div class="tile landscape" id="${cssId}" style="top:290px; left:500px">${cssId}</div>
                 </sec:ifNotLoggedIn>
             </g:else>
             
