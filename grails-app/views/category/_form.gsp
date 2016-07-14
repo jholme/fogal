@@ -1,4 +1,4 @@
-<%@ page import="com.iii.fogal.Category" %>
+<%@ page import="com.iii.fogal.*" %>
 
 
 
@@ -7,7 +7,7 @@
 		<g:message code="category.name.label" default="Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="name" required="" value="${categoryInstance?.name}"/>
+	<g:textField name="name" required="" value="${categoryInstance?.name}" size="60"/>
 
 </div>
 
@@ -25,7 +25,15 @@
 		<g:message code="category.path.label" default="Path" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="path" required="" value="${categoryInstance?.path}"/>
+	<g:textField name="path" required="" value="${categoryInstance?.path}" size="60"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: categoryInstance, field: 'homePageTile', 'error')} ">
+    <label for="homePageTile">
+        <g:message code="category.homePageTile.label" default="homePageTile" />
+    </label>
+    <g:select name="homePageTile" from="${HomePageTile.values()}"/>
 
 </div>
 

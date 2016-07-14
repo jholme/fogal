@@ -34,7 +34,9 @@ class GalleryService {
 	private static final String SUB_LOCATION = "Sub-location"
 	private static final String PROVINCE_STATE =  "Province/State"
 	private static final String COUNTRY = "Country/Primary Location Name"
-	private static final Integer THUMBNAIL_SIZE = 100
+	private static final Integer THUMBNAIL_SIZE = 200
+	private static final String IMAGE_HEIGHT = "Image Height"
+	private static final String IMAGE_WIDTH = "Image Width"
 	// "Keywords", "Copyright Notice"
 	
 	def grailsApplication
@@ -56,7 +58,7 @@ class GalleryService {
 				_initPhoto(photo, photoFile, gallery, photoList)
 			}
 		} catch (Exception e) {
-			e.printStackTrace()
+			log.debug "createPhotosFromUpload: ${e}"
 		}
 		photoList
 	}
@@ -65,7 +67,7 @@ class GalleryService {
 		List<Photo> photoList = new ArrayList<Photo>()
 		try {
 			Gallery gallery = Gallery.findByPath(galleryPath)
-			println "gallery.path: ${gallery.path}"
+			log.debug "gallery.path: ${gallery.path}"
 			String sourceFileDir = grailsApplication.config.file.newFile.directory?:'C:\\fogalFilesNew'
 			String targetFileDir = grailsApplication.config.file.upload.directory?:'C:\\fogalFiles'//'/fogalFiles'
 			for (String fn in fileNames) {
@@ -76,6 +78,7 @@ class GalleryService {
 				_initPhoto(photo, photoFile, gallery, photoList)
 			}
 		} catch (Exception e) {
+			log.debug "createPhotosFromDisk: ${e}"
 			e.printStackTrace()
 		}
 		photoList
@@ -123,14 +126,21 @@ class GalleryService {
 
 	private void _initPhoto(Photo photo, File photoFile, Gallery gallery, List<Photo> photoList) {
 		photo = _populatePhotoMetadata(photo, photoFile)
-		gallery.addToPhotos(photo)
-		gallery.save(flush:true)
-		if (photo.validate()) {
-			photo.save(flush:true)
-			photoList.add(photo)
-			println "save photo: ${photo}"
-		} else {
-			println "failed to save photo: ${photo}"
+		try {
+			gallery.addToPhotos(photo)
+			gallery.save(flush:true)
+			if (photo.validate()) {
+				photo.calculateAspect()
+				photo.save(flush:true)
+				photoList.add(photo)
+				println "save photo: ${photo}"
+			} else {
+				log.debug "failed to save photo: ${photo}"
+				log.error photo.errors
+			}
+	
+		} catch (Exception e) {
+			log.error "init photo failed: ${e}"
 		}
 	}
 
@@ -176,7 +186,9 @@ class GalleryService {
 					if (CREDIT.equals(name)) photo.credit = desc.trim()
 					if (COPYRIGHT.equals(name)) photo.copyright = desc.trim()
 					if (DESCRIPTION.equals(name)) photo.description = _trimAndLog(desc)
-					if (PHOTO_DATE.equals(name)) { photo.photoDate = desc.trim(); println "photoDate: ${desc.trim()}" }
+					if (PHOTO_DATE.equals(name)) photo.photoDate = _trimAndLog(desc)//desc.trim(); println "photoDate: ${desc.trim()}" }
+					if (IMAGE_HEIGHT.equals(name)) photo.imageHeight = _castToLong(desc)
+					if (IMAGE_WIDTH.equals(name)) photo.imageWidth = _castToLong(desc)
 					if (CITY.equals(name)) city = desc.trim()
 					if (SUB_LOCATION.equals(name)) sublocation = desc.trim()
 					if (PROVINCE_STATE.equals(name)) state = desc.trim()
@@ -193,8 +205,14 @@ class GalleryService {
 	
 	String _trimAndLog(String term) {
 		term = term.trim()
-		println term
+		if (term.length() > 2047) term = term.substring(0, 2047)
+		log.debug term
 		term
+	}
+	
+	Long _castToLong(String term) {
+		term = term.trim()
+		Long retval = term.split(" ")[0] as Long
 	}
 	
 	private String _assembleLocation(String sublocation, String city, String state, String country) {
@@ -308,6 +326,26 @@ class GalleryService {
 		} catch (Exception e) {
 			log.debug("_deleteGalleryFromFileSystem: ${e}")
 			throw e
+		}
+	}
+	
+	Boolean updateGalleryOnFileSystem(Gallery gallery, String newPath) {
+		Boolean success = false
+		try {
+			Category category = gallery.category//Category.findById(categoryId as String)
+			String baseDir = grailsApplication.config.file.upload.directory
+			Path galleryPath = Paths.get(baseDir, category.path, gallery.path)
+			File galleryDir = galleryPath.toFile()
+			log.debug "galleryDir: ${galleryDir} (writeable: ${galleryDir.canWrite()})"
+			Path galleryPathNew = Paths.get(baseDir, category.path, newPath)
+			File galleryDirNew = galleryPathNew.toFile()
+			log.debug "galleryDirNew: ${galleryDirNew} (readable: ${galleryDirNew.canRead()})"
+			success = galleryDir.renameTo(galleryDirNew)
+			log.debug "galleryDir: ${galleryDir} (success: ${success})"
+		} catch (Exception e) {
+			log.debug("updateGalleryOnFileSystem: ${e}")
+		} finally {
+			return success
 		}
 	}
 	
