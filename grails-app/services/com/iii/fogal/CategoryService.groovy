@@ -3,6 +3,7 @@ package com.iii.fogal
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.Files
+
 import org.apache.commons.io.FileDeleteStrategy
 
 class CategoryService {
@@ -34,4 +35,23 @@ class CategoryService {
 		FileDeleteStrategy.FORCE.delete(categoryDir)
 	}
 	
+	Boolean updateCategoryOnFileSystem(Category category, String newPath) {
+		Boolean success = false
+		try {
+			String baseDir = grailsApplication.config.file.upload.directory
+			Path categoryPath = Paths.get(baseDir, category.path)
+			File categoryDir = categoryPath.toFile()
+			log.debug "categoryDir: ${categoryDir} (writeable: ${categoryDir.canWrite()})"
+			Path categoryPathNew = Paths.get(baseDir, newPath)
+			File categoryDirNew = categoryPathNew.toFile()
+			log.debug "categoryDirNew: ${categoryDirNew} (readable: ${categoryDirNew.canRead()})"
+			success = categoryDir.renameTo(categoryDirNew)
+			log.debug "categoryDir: ${categoryDir} (success: ${success})"
+		} catch (Exception e) {
+			log.debug("updateCategoryOnFileSystem: ${e}")
+		} finally {
+			return success
+		}
+	}
+
 }

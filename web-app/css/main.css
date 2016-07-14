@@ -323,6 +323,11 @@ img {
 /*     padding: 0.3em 1.8em 1.25em; */
 }
 
+.photo-next-prev .invis {
+    color: #000;
+    cursor: default;
+}
+
 .photo-description {
 	width: 500px;
 	height: 500px;
@@ -577,7 +582,7 @@ fieldset.embedded legend {
 
 .errors,
 .message {
-	font-size: 0.8em;
+	font-size: 1.0em;
 	line-height: 2;
 	margin: 1em 2em;
 	padding: 0.25em;
@@ -585,11 +590,11 @@ fieldset.embedded legend {
 
 .message {
 	background: #f3f3ff;
-	border: 1px solid #b2d1ff;
-	color: #006dba;
-	   -moz-box-shadow: 0 0 0.25em #b2d1ff;
-	-webkit-box-shadow: 0 0 0.25em #b2d1ff;
-	        box-shadow: 0 0 0.25em #b2d1ff;
+	border: 1px solid #ff0000;
+	color: #ff0000;
+	   -moz-box-shadow: 0 0 0.25em #ff0000;
+	-webkit-box-shadow: 0 0 0.25em #ff0000;
+	        box-shadow: 0 0 0.25em #ff0000;
 }
 
 .errors {
@@ -613,7 +618,8 @@ fieldset.embedded legend {
 }
 
 .message {
-	background: transparent url(../images/skin/information.png) 0.5em 50% no-repeat;
+    background: transparent 0.5em 50% no-repeat;
+/* 	background: transparent url(../images/skin/information.png) 0.5em 50% no-repeat; */
 	text-indent: 2.2em;
 }
 

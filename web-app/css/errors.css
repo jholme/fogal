@@ -48,6 +48,7 @@ h2 {
 }
 
 .error-details dt {
+    color: #000;
 	clear: left;
 	float: left;
 	font-weight: bold;
@@ -55,10 +56,12 @@ h2 {
 }
 
 .error-details dt:after {
+    color: #000;
 	content: ":";
 }
 
 .error-details dd {
+	color: #000;
 	display: block;
 }
 
@@ -77,11 +80,12 @@ h2 {
 
 .snippet .line {
 	display: block;
+	color: #000;
 }
 
 .snippet .lineNumber {
 	background-color: #ddd;
-	color: #999;
+	color: #000;
 	display: inline-block;
 	margin-right: 5px;
 	padding: 0 3px;
@@ -91,12 +95,13 @@ h2 {
 
 .snippet .error {
 	background-color: #fff3f3;
+	color: #000;
 	font-weight: bold;
 }
 
 .snippet .error .lineNumber {
 	background-color: #faa;
-	color: #333;
+	color: #000;
 	font-weight: bold;
 }
 

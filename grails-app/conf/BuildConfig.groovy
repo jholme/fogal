@@ -26,7 +26,7 @@ grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
-        // excludes 'ehcache'
+        excludes 'ehcache'
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
@@ -69,12 +69,15 @@ grails.project.dependency.resolution = {
 //        compile ':cache:1.1.1'
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.8'
+		compile ':cache-ehcache:1.0.5'
 		compile ':spring-security-core:2.0-RC5'
 		compile ':asset-pipeline:2.1.5'
 		
         // plugins needed at runtime but not for compilation
 //        runtime ":hibernate:3.6.10.8" // or ":hibernate4:4.3.1.1"
-        runtime ":hibernate4:4.3.8.1" // or ":hibernate4:4.3.1.1"
+        runtime (":hibernate4:4.3.8.1") { // or ":hibernate4:4.3.1.1"
+			excludes 'ehcache'
+        }
         runtime ":database-migration:1.3.8"
         runtime ":jquery:1.11.1"
 //        runtime ":resources:1.2.1"

@@ -329,4 +329,24 @@ class GalleryService {
 		}
 	}
 	
+	Boolean updateGalleryOnFileSystem(Gallery gallery, String newPath) {
+		Boolean success = false
+		try {
+			Category category = gallery.category//Category.findById(categoryId as String)
+			String baseDir = grailsApplication.config.file.upload.directory
+			Path galleryPath = Paths.get(baseDir, category.path, gallery.path)
+			File galleryDir = galleryPath.toFile()
+			log.debug "galleryDir: ${galleryDir} (writeable: ${galleryDir.canWrite()})"
+			Path galleryPathNew = Paths.get(baseDir, category.path, newPath)
+			File galleryDirNew = galleryPathNew.toFile()
+			log.debug "galleryDirNew: ${galleryDirNew} (readable: ${galleryDirNew.canRead()})"
+			success = galleryDir.renameTo(galleryDirNew)
+			log.debug "galleryDir: ${galleryDir} (success: ${success})"
+		} catch (Exception e) {
+			log.debug("updateGalleryOnFileSystem: ${e}")
+		} finally {
+			return success
+		}
+	}
+	
 }

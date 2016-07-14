@@ -98,4 +98,30 @@ class CategoryController {
 		photo
 	}
 	
+	def beforeInterceptor = [action:this.&_handleCategoryPathUpdate, only:'update']
+	
+	private Boolean _handleCategoryPathUpdate() {
+		log.debug "_handleCategoryPathUpdate"
+		Boolean success = true
+		String newPath = params.path
+		log.debug "newPath: ${newPath}"
+		Category category = Category.findById(params.id as Long)
+		log.debug "oldPath: ${category.path}"
+		if (!newPath?.equals(category.path)) {
+			success = categoryService.updateCategoryOnFileSystem(category, newPath)
+		}
+		if (!success) {
+			String msg = "Could not change category path from '${category?.path}' to '${newPath}'"
+			log.debug msg
+			flash.message = msg
+			redirect(action: 'edit', params:['id':params.id])
+		}
+		success
+	}
+
+	private _validateGallery() {
+		_validateGalleryIdx()
+		_handleCategoryPathUpdate()
+	}
+
 }

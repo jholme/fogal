@@ -68,8 +68,95 @@ class GalleryController {
 		Gallery.withTransaction {
 			gallery.delete()
 		}
-//		galleryService.deleteGalleryFromCategory(gallery, category)
 		redirect(controller:'category', action:'show', params:[id:category.id])
+	}
+	
+	def beforeInterceptor = [action:this.&_validateGallery, only:'update']
+	//def afterInterceptor = [action:this.&_handleGalleryPathUpdate, only:'update']
+	
+	private _validateGallery() {
+		_validateGalleryIdx()
+		_handleGalleryPathUpdate()
+	}
+	
+	private Boolean _handleGalleryPathUpdate() {
+		log.debug "_handleGalleryPathUpdate"
+		Boolean success = true
+		String newPath = params.path
+		log.debug "newPath: ${newPath}"
+		Gallery gallery = Gallery.findById(params.id as Long)
+		log.debug "oldPath: ${gallery.path}"
+		if (!newPath?.equals(gallery.path)) {
+			success = galleryService.updateGalleryOnFileSystem(gallery, newPath)
+		}
+		if (!success) {
+			String msg = "Could not change gallery path from '${gallery?.path}' to '${newPath}'"
+			log.debug msg
+			flash.message = msg
+			redirect(action: 'edit', params:['id':params.id])
+		}
+		success
+	}
+		
+	private Boolean _validateGalleryIdx() {
+		Map photoIdx = [:]
+		for (param in params) {
+			if (param.toString().startsWith('galleryIdx')) {
+				log.debug (param)
+				Map paramMap = _populatePhotoIdx(param)
+				photoIdx.put(paramMap.entrySet().key[0], paramMap.entrySet().value[0])
+				log.debug"photoIdx: ${photoIdx}"
+			} else {
+				log.debug param
+			}
+		}
+		log.debug"photoIdx: ${photoIdx}"
+		List origValues = photoIdx.entrySet().collect { entry -> entry.value }
+		log.debug "origValues: ${origValues}"
+		List uniqueValues = origValues.clone().unique()
+		log.debug "uniqueValues: ${uniqueValues}"
+		Boolean bool = photoIdx.values().any{ it < 1 }
+		log.debug "photoIdx.values().any() < 1: ${bool}"
+		log.debug "photoIdx.values().max(): ${photoIdx.values().max()}"
+		
+		if (photoIdx.values().max() > photoIdx.size()) {
+			flash.message = "Photo order values must be contiguous."
+			redirect(action: 'edit', params:['id':params.id])
+			return false
+		} else if (photoIdx.values().any{ it < 1 }) {
+			flash.message = "Photo order values must 1 or higher."
+			redirect(action: 'edit', params:['id':params.id])
+			return false
+		} else if (uniqueValues.size() < origValues.size()) {
+			flash.message = "Photo order values must be unique."
+			redirect(action: 'edit', params:['id':params.id])
+			return false
+		} else {
+			Gallery gallery = Gallery.findById(params.id as Long)
+			photoIdx.each { k,v ->
+				Photo.withTransaction {
+					Photo photo = Photo.findById(k)
+					photo.galleryIdx = v
+					photo.save(flush:true)
+					log.debug "after save: ${photo}"
+					log.debug "after save: ${photo.errors}"
+				}
+			}
+			return true
+		}
+	}
+		
+	private Map _populatePhotoIdx(param) {
+		String key = param.key
+		String val = param.value
+		log.debug "key: ${key}, value: ${val}"
+		Integer idx1 = key.indexOf("_") + 1
+		Integer photoId = key.substring(idx1) as Integer
+		Integer galIdx = val as Integer
+		log.debug"photoId:${photoId}, galIdx:${galIdx}"
+		Map retval = [:]
+		retval.put(photoId,galIdx)
+		retval
 	}
 	
 	def galleryThum() {
@@ -77,7 +164,6 @@ class GalleryController {
 			Long galleryId = params.id as Long
 			log.debug "galleryThum: ${galleryId}"
 			Gallery gallery = Gallery.get(galleryId)
-			//Gallery gallery = category.galleries[utilityService.getRandom(category.galleries)]
 			Photo photo = gallery.photos[utilityService.getRandom(gallery.photos)]
 			File imageFile = photoService.prepareToRender(photoService.THUM_IMAGE, photo)
 			response.setContentLength(imageFile.size() as Integer)

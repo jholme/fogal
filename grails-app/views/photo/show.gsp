@@ -6,18 +6,12 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'photo.label', default: 'Photo')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
-	</head>
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.structure.min.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.theme.css')}" type="text/css">
+  	</head>
 	<body>
 		<a href="#show-photo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-<%--		<div class="nav" role="navigation">--%>
-<%--			<ul>--%>
-<%--				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--%>
-<%--				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>--%>
-<%--                <sec:ifLoggedIn>--%>
-<%--				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--%>
-<%--				</sec:ifLoggedIn>--%>
-<%--			</ul>--%>
-<%--		</div>--%>
 		<div id="show-photo" class="content scaffold-show" role="main">
 			<h1><g:if test="${photoInstance?.title}">${photoInstance?.title}</g:if></h1>
 			<g:if test="${flash.message}">
@@ -31,145 +25,15 @@
             </ol>
             
             <ol class="photo-next-prev">
-                <li>Previous</li>
-                <li>Description</li>
-                <li>Next</li>
+                <g:if test="${photoInstance.galleryIdx > 1}"><li><g:link action="show" id="${Photo.findByGalleryIdx(photoInstance.galleryIdx - 1).id}">Previous</g:link></li></g:if><g:else><li class="invis">Previous</li></g:else>
+                <li id="dialog-link" style="cursor:pointer">Description</li>
+                <g:if test="${photoInstance.galleryIdx < photoInstance.gallery.photos.size()}"><li><g:link action="show" id="${Photo.findByGalleryIdx(photoInstance.galleryIdx + 1).id}">Next</g:link></li></g:if>
             </ol>
-            
-<%--			<ol class="property-list photo">--%>
-			
-<%--				<g:if test="${photoInstance?.title}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="title-label" class="property-label"><g:message code="photo.title.label" default="Title" /></span>--%>
-<%--					--%>
-<%--						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${photoInstance}" field="title"/></span>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-            
-<%--                <g:if test="${photoInstance?.credit}">--%>
-<%--                <li class="fieldcontain">--%>
-<%--                    <span id="credit-label" class="property-label"><g:message code="photo.credit.label" default="Credit" /></span>--%>
-<%--                    --%>
-<%--                        <span class="property-value" aria-labelledby="credit-label"><g:fieldValue bean="${photoInstance}" field="credit"/></span>--%>
-<%--                    --%>
-<%--                </li>--%>
-<%--                </g:if>--%>
-            
-<%--                <g:if test="${photoInstance?.copyright}">--%>
-<%--                <li class="fieldcontain">--%>
-<%--                    <span id="copyright-label" class="property-label"><g:message code="photo.copyright.label" default="Copyright" /></span>--%>
-<%--                    --%>
-<%--                        <span class="property-value" aria-labelledby="copyright-label"><g:fieldValue bean="${photoInstance}" field="copyright"/></span>--%>
-<%--                    --%>
-<%--                </li>--%>
-<%--                </g:if>--%>
-			
-<%--				<g:if test="${photoInstance?.originalFilename}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="originalFilename-label" class="property-label"><g:message code="photo.originalFilename.label" default="Original Filename" /></span>--%>
-<%--					--%>
-<%--						<span class="property-value" aria-labelledby="originalFilename-label"><g:fieldValue bean="${photoInstance}" field="originalFilename"/></span>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-			
-<%--				<g:if test="${photoInstance?.thumbnailFilename}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="thumbnailFilename-label" class="property-label"><g:message code="photo.thumbnailFilename.label" default="Thumbnail Filename" /></span>--%>
-<%--					--%>
-<%--						<span class="property-value" aria-labelledby="thumbnailFilename-label"><g:fieldValue bean="${photoInstance}" field="thumbnailFilename"/></span>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-			
-<%--				<g:if test="${photoInstance?.description}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="description-label" class="property-label"><g:message code="photo.description.label" default="Description" /></span>--%>
-<%--					--%>
-<%--						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${photoInstance}" field="description"/></span>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-			
-<%--				<g:if test="${photoInstance?.location}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="location-label" class="property-label"><g:message code="photo.location.label" default="Location" /></span>--%>
-<%--					--%>
-<%--						<span class="property-value" aria-labelledby="location-label"><g:fieldValue bean="${photoInstance}" field="location"/></span>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-			
-<%--				<g:if test="${photoInstance?.photoDate}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="photoDate-label" class="property-label"><g:message code="photo.photoDate.label" default="Photo Date" /></span>--%>
-<%--					--%>
-<%--						<span class="property-value" aria-labelledby="photoDate-label"><g:fieldValue bean="${photoInstance}" field="photoDate"/></span>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-			
-<%--				<g:if test="${photoInstance?.thumbnailFilename}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="image-label" class="property-label"><g:message code="photo.image.label" default="Image" /></span>--%>
-<%--					<span class="property-value" aria-labelledby="image-label"><img src="<g:createLink controller='photo' action='renderThumbnailImage' id='${photoInstance.id}'/>"/></span>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-			
-<%--				<g:if test="${photoInstance?.fileSize}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="fileSize-label" class="property-label"><g:message code="photo.fileSize.label" default="File Size" /></span>--%>
-<%--					--%>
-<%--						<span class="property-value" aria-labelledby="fileSize-label"><g:fieldValue bean="${photoInstance}" field="fileSize"/></span>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-            
-<%--                <g:if test="${photoInstance?.imageHeight}">--%>
-<%--                <li class="fieldcontain">--%>
-<%--                    <span id="fileSize-label" class="property-label"><g:message code="photo.imageHeight.label" default="Image Height" /></span>--%>
-<%--                    --%>
-<%--                        <span class="property-value" aria-labelledby="imageHeight-label"><g:fieldValue bean="${photoInstance}" field="imageHeight"/></span>--%>
-<%--                    --%>
-<%--                </li>--%>
-<%--                </g:if>--%>
-            
-<%--                <g:if test="${photoInstance?.imageWidth}">--%>
-<%--                <li class="fieldcontain">--%>
-<%--                    <span id="fileSize-label" class="property-label"><g:message code="photo.imageWidth.label" default="Image Width" /></span>--%>
-<%--                    --%>
-<%--                        <span class="property-value" aria-labelledby="imageWidth-label"><g:fieldValue bean="${photoInstance}" field="imageWidth"/></span>--%>
-<%--                    --%>
-<%--                </li>--%>
-<%--                </g:if>--%>
-            
-<%--                <g:if test="${photoInstance?.aspect}">--%>
-<%--                <li class="fieldcontain">--%>
-<%--                    <span id="fileSize-label" class="property-label"><g:message code="photo.aspect.label" default="Aspect" /></span>--%>
-<%--                    --%>
-<%--                        <span class="property-value" aria-labelledby="aspect-label"><g:fieldValue bean="${photoInstance}" field="aspect"/></span>--%>
-<%--                    --%>
-<%--                </li>--%>
-<%--                </g:if>--%>
-			
-<%--				<g:if test="${photoInstance?.gallery}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="gallery-label" class="property-label"><g:message code="photo.gallery.label" default="Gallery" /></span>--%>
-<%--					--%>
-<%--						<span class="property-value" aria-labelledby="gallery-label"><g:link controller="gallery" action="show" id="${photoInstance?.gallery?.id}">${photoInstance?.gallery?.encodeAsHTML()}</g:link></span>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-			
-<%--			</ol>--%>
 			
 			<g:if test="${photoInstance?.originalFilename}"><br/>
-<%--				<span class="property-value" aria-labelledby="image-label"><img src="<g:createLink controller='photo' action='renderMainImage' id='${photoInstance.id}'/>"/></span>--%>
                 <span id="img-container">
                 <img class="rendered-image" src="<g:createLink controller='photo' action='renderMainImage' id='${photoInstance.id}'/>"/><br/>
-                <span class="rendered-image">${photoInstance?.title }</span>
+                <span class="rendered-image">${photoInstance?.encodeAsHTML()}</span>
                 </span>
 			</g:if>
             
@@ -182,5 +46,58 @@
             </g:form><br/>
             </sec:ifLoggedIn>
 		</div>
-	</body>
+ 
+		<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" style="display:none" id="dialog" title="Description">
+		  <p>${photoInstance.description}</p>
+		</div>
+
+<%--<div id="dialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" style="position: absolute; height: auto; width: 400px; top: 641px; left: 521px; display: none;" tabindex="-1" role="dialog" aria-describedby="dialog" aria-labelledby="ui-id-11">--%>
+<%--<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle">--%>
+<%--<span id="ui-id-11" class="ui-dialog-title">Dialog Title</span>--%>
+<%--<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" type="button" role="button" title="Close">--%>
+<%--<span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span>--%>
+<%--<span class="ui-button-text">Close</span>--%>
+<%--</button>--%>
+<%--</div>--%>
+<%--<div id="dialog" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 54px; max-height: none; height: auto;">--%>
+<%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>--%>
+<%--</div>--%>
+<%--<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">--%>
+<%--<div class="ui-dialog-buttonset">--%>
+<%--<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" role="button">--%>
+<%--<span class="ui-button-text">Ok</span>--%>
+<%--</button>--%>
+<%--<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" role="button">--%>
+<%--<span class="ui-button-text">Cancel</span>--%>
+<%--</button>--%>
+<%--</div>--%>
+<%--</div>--%>
+        <script>
+        $( "#dialog" ).dialog({
+            autoOpen: false,
+            width: 400,
+            buttons: [
+                {
+                    text: "Ok",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                },
+                {
+                    text: "Cancel",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+
+        // Link to open the dialog
+        $( "#dialog-link" ).click(function( event ) {
+            $( "#dialog" ).dialog( "open" );
+            event.preventDefault();
+        });
+
+        </script>
+    </body>
 </html>

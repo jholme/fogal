@@ -13,7 +13,7 @@ class Category {
 	String description
 	String path
 	List<Gallery> galleries = []
-	HomePageTile homePageTile
+	com.iii.fogal.HomePageTile homePageTile
 	
 	static hasMany = [galleries: Gallery]
 	static mapping = {
@@ -24,7 +24,7 @@ class Category {
 		name nullable: false, blank: false
 		description nullable: true, blank: true
 		path nullable: false, blank: false, unique: true
-		homePageTile nullable:true, blank: true, inList: HomePageTile.values() as List
+		homePageTile nullable:true, inList: HomePageTile.values() as List
     }
 	
 	/*
