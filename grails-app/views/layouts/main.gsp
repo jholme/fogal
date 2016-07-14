@@ -41,6 +41,13 @@
                     <li class="controller"><g:link controller="category" action="show" id="${cat.id}">${fieldValue(bean: cat, field: "name")}</g:link></li>
                 </g:each>
             </ul>
+            <ul>
+                <li><a href="http://www.google.com">more</a></li>
+                <span style="color: #fff;">&nbsp;|&nbsp;</span>
+                <li><a href="http://www.google.com">stuff</a></li>
+                <span style="color: #fff;">&nbsp;|&nbsp;</span>
+                <li><a href="http://www.google.com">here</a></li>
+            </ul>
             </div>
 		</div>
 		<div class="footer">

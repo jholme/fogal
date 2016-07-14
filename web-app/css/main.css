@@ -99,10 +99,10 @@ img {
 /* FOOTER */
 
 #footer-list {
-    float:right;
+/*     float:right; */
     position:relative;
     left:-50%;
-    text-align:left;
+    text-align:center;
 }
 
 #footer-list ul {
