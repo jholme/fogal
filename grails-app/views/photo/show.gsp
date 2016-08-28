@@ -29,14 +29,14 @@
                 <li id="dialog-link" style="cursor:pointer">Description</li>
                 <g:if test="${photoInstance.galleryIdx < photoInstance.gallery.photos.size()}"><li><g:link action="show" id="${Photo.findByGalleryIdx(photoInstance.galleryIdx + 1).id}">Next</g:link></li></g:if>
             </ol>
-			
-			<g:if test="${photoInstance?.originalFilename}"><br/>
-                <span id="img-container">
-                <img class="rendered-image" src="<g:createLink controller='photo' action='renderMainImage' id='${photoInstance.id}'/>"/><br/>
-                <span class="rendered-image">${photoInstance?.encodeAsHTML()}</span>
-                </span>
-			</g:if>
-            
+
+<%--			<g:if test="${photoInstance?.originalFilename}"><br/>--%>
+<%--                <span id="img-container">--%>
+<%--                <img class="rendered-image" src="<g:createLink controller='photo' action='renderMainImage' id='${photoInstance.id}'/>"/><br/>--%>
+<%--                <span class="rendered-image">${photoInstance?.encodeAsHTML()}</span>--%>
+<%--                </span>--%>
+<%--			</g:if>--%>
+
             <sec:ifLoggedIn>
             <g:form url="[resource:photoInstance, action:'delete']" method="DELETE">
                 <fieldset class="buttons">
@@ -50,7 +50,16 @@
 		<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" style="display:none" id="dialog" title="Description">
 		  <p>${photoInstance.description}</p>
 		</div>
-
+            
+            <div style="display:block;">
+            <g:if test="${photoInstance?.originalFilename}"><br/>
+                <span id="img-container">
+                <img class="rendered-image" src="<g:createLink controller='photo' action='renderMainImage' id='${photoInstance.id}'/>"/><br/>
+                <span class="rendered-image">${photoInstance?.encodeAsHTML()}</span>
+                </span>
+            </g:if>
+            </div>
+ 
 <%--<div id="dialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" style="position: absolute; height: auto; width: 400px; top: 641px; left: 521px; display: none;" tabindex="-1" role="dialog" aria-describedby="dialog" aria-labelledby="ui-id-11">--%>
 <%--<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle">--%>
 <%--<span id="ui-id-11" class="ui-dialog-title">Dialog Title</span>--%>

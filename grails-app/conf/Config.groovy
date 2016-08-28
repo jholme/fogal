@@ -83,22 +83,35 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+String fogalFiles
+String fogalFilesNew
+println "os-name: ${System.getProperty('os.name')}"
+if (System.getProperty('os.name').contains('Win')) {
+	println "got windows"
+	fogalFiles = "C:\\fogalFiles"
+	fogalFilesNew = "C:\\fogalFilesNew"
+} else {
+	println "got unix"
+	fogalFiles = "/fogalFiles"
+	fogalFilesNew = "/fogalFilesNew"
+}
+
 environments {
     development {
         grails.logging.jul.usebridge = true
-		file.upload.directory = "C:\\fogalFiles"
-		file.newFile.directory = "C:\\fogalFilesNew"
+		file.upload.directory = fogalFiles
+		file.newFile.directory = fogalFilesNew
 		imageUpload {
-		  temporaryFile = "C:\\fogalFiles"// Path to where files will be uploaded
+		  temporaryFile = fogalFiles// Path to where files will be uploaded
 		}
     }
     production {
         grails.logging.jul.usebridge = false
-		file.upload.directory = "C:\\fogalFiles"//"/fogalFiles"
-		file.newFile.directory = "C:\\fogalFilesNew"
+		file.upload.directory = fogalFiles
+		file.newFile.directory = fogalFilesNew
         // TODO: grails.serverURL = "http://www.changeme.com"
  		imageUpload {
-		  temporaryFile = "C:\\fogalFiles"// Path to where files will be uploaded
+		  temporaryFile = fogalFiles// Path to where files will be uploaded
 		}
    }
 }
@@ -210,8 +223,10 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/gallery/save/**':					['ROLE_ADMIN'],
 	'/gallery/show/**':					['permitAll'],
 	'/gallery/update/**':				['ROLE_ADMIN'],
-	'/gallery/uploadPhoto/**':			['ROLE_ADMIN']
- ]
+	'/gallery/uploadPhoto/**':			['ROLE_ADMIN'],
+	// static
+ 	'/tranatworcom/**':					['permitAll']
+]
 //
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/category/index':			['permitAll'],
