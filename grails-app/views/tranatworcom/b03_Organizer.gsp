@@ -40,14 +40,16 @@
 <%--</TR>--%>
 
 <TR ALIGN="CENTER">
-<TD COLSPAN="3" WIDTH="735"><IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5"></TD>
+<TD COLSPAN="3" WIDTH="735">
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</TD>
 </TR>
 
 <TR VALIGN="TOP">
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
     <span class="lg"><g:link controller="tranatworcom" action="b0_Index">Braceros &amp; Border Jumpers</g:link><br><br><br></span>
-	<span class="med">The Story of<br>a Union Organizer<br><br><br><br></span>
+	<span class="med" style="font-weight:bold">The Story of<br>a Union Organizer<br><br><br><br></span>
     <span class="xsm">project support from<br/>the Rockefeller Foundation</span>
 </TD>
 
@@ -73,13 +75,13 @@ I think he came every year as a bracero, at least until 1958 or 59.  My grandfat
 
 <TR>
 <TD COLSPAN="3" WIDTH="735" BGCOLOR="#FFFFFF">
-<table border="0" width="735"><tr><td><!-- photo -->
-<br>
-<img src="images/b_10.jpg" width="735" height="489" alt="Elvia &amp; Agustin Ramirez">
-</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_10.jpg" width="735" height="489" alt="Elvia &amp; Agustin Ramirez" style="float:right"/><br/>
+<span class="caption" style="float:right; width:306px">
 Fairfield, CA  12/3/01<br>
 Agustin and Elvia Ramirez.  Agustin works as a union<br>organizer for the International Longshore and Warehouse<br>Union, and Elvia works in a Napa Valley winery.
-</span></td></tr></table>
+</span>
+</div>
 </TD>
 </TR>
 
@@ -122,13 +124,13 @@ My father came as a bracero because he did not have any land.  He was one of fou
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
 
-<table cellspacing="2" border="0" width="250"><tr><td><!-- photo -->
-<br>
-<img src="images/b_09.jpg" width="250" height="166" alt="bracero camp">
-</td></tr><tr><td class="xsm"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_09.jpg" width="250" height="166" alt="bracero camp" style="float:right"/><br/>
+<span class="caption" style="float:left; width:250px">
 San Joaquin Delta, Stockton, CA  7/19/95<br>
 A camp used for braceros in the 1940s and 50s, and which was still used to house migrant farmworkers up until the 1980s.
-</span></td></tr></table>
+</span>
+</div>
 
 </TD>
 
@@ -197,15 +199,14 @@ They asked me if I wanted to go to Mexico.  And at the beginning, I said, "No wa
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
 
-<table cellspacing="2" border="0" width="250"><tr><td><!-- photo -->
-<br>
-<img src="images/b_11.jpg" width="250" height="166" alt="pruning apricots">
-</td></tr><tr><td><!-- photo -->
-<img src="images/b_12.jpg" width="250" height="166" alt="pruning apricots"></td></tr>
-<tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_11.jpg" width="250" height="166" alt="pruning apricots" style="float:right"/><br/>
+<g:img dir="images/b03_Organizer_files" file="b_12.jpg" width="250" height="166" alt="pruning apricots" style="float:right"/><br/>
+<span class="caption" style="float:right; text-align:right; width:250px">
 Fresno, CA  1/10/02<br>
 Joel and Abel Mendoza prune apricot trees.
-</span></td></tr></table>
+</span>
+</div>
 
 </TD>
 
@@ -231,15 +232,14 @@ From there I moved to Guadalajara, which is about a two-hour bus ride from Zamor
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 I made most of these decisions myself, because my parents were here.  They went to Mexico once a year, but I came to the US in December and in June.  During the vacation in December, I'd help my father prune apricots and peaches and grapes.  And during June, July and August I used to come and we'd work then too, picking apricots and pears.  Even when I was going to school there I still used to come here and work side-by-side with them in the fields.  At one point there were three of us living in Mexico, and my parents were still working in the fields here.  After a while they had a catering truck too, and with those two things they were able to support us going to school over there.  Then they built a house in Zamora, Michoacan, because that, too, was part of their dream.  So there were three of us living in that house, and we had an aunt who would come and help us cook and clean house.  Their dream was to send one of the children each year until eventually they'd have to come too because all of us would be over there.  But it just didn't materialize like that.  My parents soon realized that when they went over there, even though they loved it, they didn't have an income.  What were they going to do?  How were they going to save up a lot of money to start a business over there?  Every year they'd say, "Next year we'll come."  But every year they'd save up a few thousand dollars, but that money didn't go very far when they got there, with no income.  They had no land, and they had no business.  That's why it's become a myth now.  And they realized this after three of us were already over there.  
 
-<table cellspacing="2" align="right" border="0" width="250"><tr><td><!-- photo -->
-<br>
-<img src="images/b_13.jpg" width="250" height="166" alt="100 Palms">
-</td></tr><tr><td><!-- photo -->
-<img src="images/b_14.jpg" width="250" height="166" alt="100 Palms"></td></tr>
-<tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_13.jpg" width="250" height="166" alt="100 Palms" style="float:right"/><br/>
+<g:img dir="images/b03_Organizer_files" file="b_14.jpg" width="250" height="166" alt="100 Palms" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right; width:250px">
 100 Palms, Coachella Valley, CA  5/15/96<br>
 Farm workers and their home<br>in a trailer camp.
-</span></td></tr></table>
+</span>
+</div>
 </p>
 
 <p class="twc">
@@ -282,13 +282,13 @@ For nine months during his campaign, we would go to little towns to get the vote
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
 
-<table cellspacing="2" border="0" width="250"><tr><td><!-- photo -->
-<br>
-<img src="images/b_15.jpg" width="250" height="376" alt="piecework">
-</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_15.jpg" width="250" height="376" alt="piecework" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right; width:250px">
 Napa Valley, CA 10/7/92<br>
 A farmworker runs down the row, slicing bunches of wine grapes from the vines as he goes, so that they fall into the plastic tub which he pushes with his foot.  He works quickly because he's paid piecerate for the work.
-</span></td></tr></table>
+</span>
+</div>
 
 </TD>
 
@@ -341,13 +341,13 @@ At Christian Brothers, 80-90% of the workers were from Michoacan, and about half
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
 
-<table cellspacing="2" border="0" width="250"><tr><td><!-- photo -->
-<br>
-<img src="images/b_16.jpg" width="250" height="376" alt="">
-</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_16.jpg" width="250" height="376" alt="piecework" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right; width:250px">
 Napa Valley, CA 10/7/92<br>
 Two farm workers carry on their heads tubs of greapes they've picked, and runwith them to the hopper to empty them.
-</span></td></tr></table>
+</span>
+</div>
 
 </TD>
 
@@ -402,13 +402,14 @@ Later that year, during the picking season, the contract was up.  The union need
 It was still Elvia and my dream to work in the US, make some money, and go back to Mexico.  The first year we worked here, we saved our money, and went back and bought some land to build a house.  The next year, we told ourselves, we have a place for a house, and now we need a business.  We decided on pigs.  My father-in-law gave us a piece of land, and we built sheds for raising them.  The third year, when we went back during the winter of 83-84, bought a mill for grinding feed and a pump for a well.  Then my son Edgar was born the next year, and we couldn't go.  The year after that we couldn't go either.  Finally we realized that were weren't going to go back.  All that plan, and what we'd put into it, was gone.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 And during that time, I started with the union.  I remember that first day in January, Ben came to me and said, "Congratulations.  You're now working for the UFW."  I was expecting some training, but he gave me a set of keys and some contracts and said, "You're on your own."  That was my introduction, although later I did get some training in La Paz.  But I wasn't hired because I knew a lot.  I was hired because I knew Spanish and English.
-<table cellspacing="0" border="0" width="460"><tr><td><!-- photo -->
-<br>
-<img src="images/b_17.jpg" width="460" height="306" alt="strikers">
-</td></tr><tr><td class="xsm"><span style="font-weight:bold"><!-- caption -->
+
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_17.jpg" width="460" height="306" alt="strikers" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right; width:460px">
 Chualar, CA  8/10/98<br>
 Strikers at D'Arrigo Brothers produce company call out to strikebreakers working in the fields to stop work and join the strike, as sheriffs deputies look on.
-</span></td></tr></table>
+</span>
+</div>
 </p>
 
 <p class="twc">
@@ -443,13 +444,14 @@ When my wife and I came here, we only had two suitcases.  We landed at my mother
 I love what I do because I get to meet so many people.  The best part is when you see someone who didn't realize they had the spark in them get up and say, "This is wrong.  I won't stand for this."  When you see a person change from thinking they can't do anything to standing up for their rights, which is such a radical change, I realize that what I'm doing is worth it.  
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Obviously the people who pay us don't think that way.  They think the numbers are what they need.  But I think an organizer's job is to get a group of people to stand up for their rights, even if they're not contributing to the union with dues.  Obviously, that's the goal, but if it takes a while, that's life.   Ultimately, people will be attracted by seeing that example, and to the union that's out there standing up for people.  If you can get one person out of a hundred you touch to do that, you can say you did something good for that person.  
-<table cellspacing="0" border="0" width="460"><tr><td><!-- photo -->
-<br>
-<img src="images/b_18.jpg" width="460" height="306" alt="strikers">
-</td></tr><tr><td class="xsm"><span style="font-weight:bold"><!-- caption -->
+
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_18.jpg" width="460" height="306" alt="strikers" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right; width:460px">
 Chualar, CA  8/10/98<br>
-Strikers at the D'Arrigo Brothers produce company stop a bus going into the fields carrying strikebreakers early in the morning during the strike.
-</span></td></tr></table>
+Strikers at D'Arrigo Brothers produce company call out to strikebreakers working in the fields to stop work and join the strike, as sheriffs deputies look on.
+</span>
+</div>
 </p>
 
 <p class="twc">
@@ -470,13 +472,13 @@ I believe society as a whole has to look at immigration as a necessity, instead 
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
 
-<table cellspacing="2" border="0" width="250"><tr><td><!-- photo -->
-<br>
-<img src="images/b_19.jpg" width="250" height="166" alt="Dolores Huerta">
-</td></tr><tr><td class="xsm"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_19.jpg" width="250" height="166" alt="Dolores Huerta" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right; width:250px">
 Delano, CA  3/1/95<br>
 Dolores Huerta, vice-president of the United Farm Workers, explains the progress of contract negotiations to workers from the world's largest rose grower, Bear Creek Production Co., at a meeting at the union's old headquarters, The Forty Acres in Delano.
-</span></td></tr></table>
+</span>
+</div>
 
 </TD>
 
@@ -502,12 +504,13 @@ But we don't ever expect them to move back there.  None of my sisters or brother
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
 
-<table cellspacing="2" border="0" width="166" align="right"><tr><td><!-- photo -->
-<img src="images/b_20.jpg" width="166" height="250" alt="Dolores Huerta">
-</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b03_Organizer_files" file="b_20.jpg" width="166" height="250" alt="Dolores Huerta" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right; width:166px">
 Delano, CA  3/31/93<br>
 Mourners carry the coffin of Cesar Chavez, founder of the United Farm Workers, through the streets of Delano, where the union was born.
-</span></td></tr></table>
+</span>
+</div>
 
 </TD>
 
@@ -521,14 +524,16 @@ I really believe in my life there were three important stages.  First, my parent
 DB:  How do you measure the value of your own life?
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 I measure it by my wife and my kids.  My family.  I think my most valued possession is my family, including brothers, sisters, uncles, everyone.  We're very close.  If something happens to any of us we're always there.  That's what counts.  That's what helps us get through things.  That's why we're all here and why nobody's going back.
-<table cellspacing="2" align="left" border="0" width="306"><tr><td><!-- photo -->
-<br>
-<img src="images/b_21.jpg" width="306" height="460" alt="cesar">
-</td></tr><tr><td class="xsm"><span style="font-weight:bold"><!-- caption -->
+
+<div style="display:block; float:left">
+<g:img dir="images/b03_Organizer_files" file="b_21.jpg" width="306" height="460" alt="cesar" style="float:right"/><br/>
+<span class="caption" style="float:right; width:306px">
 San Francisco, 8/22/88<br>
 Cesar Chavez, on a picketline in front of the Mission St. Safeway, boycotting grapes.
-</span></td></tr></table><br clear="all">
+</span>
+</div>
 </p>
+<br clear="all">
 
 <ul>
 <li><g:link controller="tranatworcom" action="b0_Index">Braceros &amp; Border Jumpers</g:link></li>
@@ -547,7 +552,9 @@ Cesar Chavez, on a picketline in front of the Mission St. Safeway, boycotting gr
 </TR>
 
 <TR ALIGN="CENTER">
-<TD COLSPAN="3" WIDTH="735"><IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5"></TD>
+<TD COLSPAN="3" WIDTH="735">
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</TD>
 </TR>
 
 <%--<TR>--%>

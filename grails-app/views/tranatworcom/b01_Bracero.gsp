@@ -45,7 +45,7 @@
 <%--</tr>--%>
 
 <tr align="CENTER">
-<td class="twc" colspan="3" width="735"><g:img dir="images" file="aaOnePix.GIF" height="1" width="1" vspace="5"/></td>
+<td class="twc" colspan="3" width="735"><g:img dir="images/twc" file="aaOnePix.GIF" height="1" width="1" vspace="5"/></td>
 </tr><%-- <img src="b01_Bracero_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1"> --%>
 
 <tr valign="TOP">
@@ -53,7 +53,7 @@
 <td bgcolor="#FFFFFF" width="250">
     <span class="lg"><g:link controller="tranatworcom" action="b0_Index">Braceros &amp; Border Jumpers</g:link><br><br><br></span>
 	<span class="med" style="font-weight:bold">The Story of<br>a Bracero<br><br><br><br></span>
-    <span class="xsm" style="width:35px">project support from the Rockefeller Foundation</span>
+    <span class="xsm" style="width:35px">project support<br/>from the Rockefeller Foundation</span>
 </td>
 
 <td bgcolor="#FFFFFF" width="480">
@@ -802,7 +802,10 @@ the border, and live happily in my land.  And I can live happily in this
 </tr>
 
 <tr align="CENTER">
-<td colspan="3" width="735"><img src="b01_Bracero_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1"></td>
+<td colspan="3" width="735">
+<%--<img src="b01_Bracero_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1">--%>
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</td>
 </tr>
 
 <%--<tr>--%>

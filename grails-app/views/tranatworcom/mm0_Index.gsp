@@ -65,7 +65,10 @@
 <%--</tr>--%>
 
 <tr align="CENTER">
-<td class="twc" colspan="3" width="735"><img src="mm0_Index_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1"></td>
+<td class="twc" colspan="3" width="735">
+<%--<img src="mm0_Index_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1">--%>
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</td>
 </tr>
 
 <tr valign="TOP">
@@ -146,7 +149,10 @@ rights of Mexicans stranded in the US after the treaty of 1848.  A third
 </tr>
 
 <tr align="CENTER">
-<td colspan="3" width="735"><img src="mm0_Index_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1"></td>
+<td colspan="3" width="735">
+<%--<img src="mm0_Index_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1">--%>
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</td>
 </tr>
 
 <%--<tr>--%>

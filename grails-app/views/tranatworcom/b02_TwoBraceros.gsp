@@ -40,14 +40,17 @@
 <%--</TR>--%>
 
 <TR ALIGN="CENTER">
-<TD COLSPAN="3" WIDTH="735"><IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5"></TD>
+<TD COLSPAN="3" WIDTH="735">
+<%--<IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5">--%>
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</TD>
 </TR>
 
 <TR VALIGN="TOP">
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
     <span class="lg"><g:link controller="tranatworcom" action="b0_Index">Braceros &amp; Border Jumpers</g:link><br><br><br></span>
-	<span class="med">Two Braceros<br></span>
+	<span class="med" style="font-weight:bold">Two Braceros<br></span>
 	<span class="xsm">Celestino &amp; Amelia Garcia<br>
 	Eusebio Melero</span><br><br><br><br>
     <span class="xsm">project support from<br/>the Rockefeller Foundation</span>
@@ -68,13 +71,20 @@ DB:  In what year were you born, Mr. Garcia?
 Well, I think in February of 1916, in Sandias.  I was registered in Tetewanes, a municipio in Durango.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <i>He was  born the 6th of February of 1916, during the Revolution. I was born in 0ctober, 1920.</i>  
-<table cellspacing="2" border="0" width="319" align="right"><tr><td><!-- photo -->
-<br>
-<img src="images/b_06.jpg" width="306" height="460" alt="Celestino &amp; Amelia Garcia">
-</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<%--<table cellspacing="2" border="0" width="319" align="right"><tr><td><!-- photo -->--%>
+<%--<br>--%>
+<%--<img src="images/b_06.jpg" width="306" height="460" alt="Celestino &amp; Amelia Garcia">--%>
+<%--</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->--%>
+<%--San Leandro, CA  11/20/01<br>--%>
+<%--Celestino and Amelia Garcia, who were born and married in Sandias, Durango.  Celestino came to US as a bracero in the 1950s.--%>
+<%--</span></td></tr></table>--%>
+<div style="display:block; float:right">
+<g:img dir="images/b02_TwoBraceros_files" file="b_06.jpg" width="306" height="460" alt="Celestino &amp; Amelia Garcia" style="float:right"/><br/>
+<span class="caption" style="float:right; width:306px">
 San Leandro, CA  11/20/01<br>
 Celestino and Amelia Garcia, who were born and married in Sandias, Durango.  Celestino came to US as a bracero in the 1950s.
-</span></td></tr></table>
+</span>
+</div>
 </p>
 
 <p class="twc">
@@ -194,13 +204,20 @@ A lot.  My grandfather took care of me. There were five of us and he watched us 
 DB:  How many years did you go to school?
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 There was only an elementary school in our town, so I went to school there.  But there wasn't a high school.  I was 12 or 15 years old when I finished school.
-<table cellspacing="2" border="0" width="319" align="right"><tr><td><!-- photo -->
-<br>
-<img src="images/b_07.jpg" width="306" height="460" alt="Eusebio Melero">
-</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<%--<table cellspacing="2" border="0" width="319" align="right"><tr><td><!-- photo -->--%>
+<%--<br>--%>
+<%--<img src="images/b_07.jpg" width="306" height="460" alt="Eusebio Melero">--%>
+<%--</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->--%>
+<%--San Leandro, CA  11/20/01<br>--%>
+<%--Eusebio Melero was born in Sandias, Durango, and came to US as a bracero.  After many years of work he brought his family, got a job in a warehouse, and retired with a pension from  the longshore workers union.--%>
+<%--</span></td></tr></table>--%>
+<div style="display:block; float:right">
+<g:img dir="images/b02_TwoBraceros_files" file="b_07.jpg" width="306" height="460" alt="Eusebio Melero" style="float:right"/><br/>
+<span class="caption" style="float:right; width:306px">
 San Leandro, CA  11/20/01<br>
 Eusebio Melero was born in Sandias, Durango, and came to US as a bracero.  After many years of work he brought his family, got a job in a warehouse, and retired with a pension from  the longshore workers union.
-</span></td></tr></table>
+</span>
+</div>
 </p>
 
 <p class="twc">
@@ -275,13 +292,13 @@ Many years.  I came here many times without any papers, without anything, to wor
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
 
-<table cellspacing="2" border="0" width="250"><tr><td><!-- photo -->
-<br>
-<img src="images/b_08.jpg" width="250" height="166" alt="bracero camp">
-</td></tr><tr><td class="xsm"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b02_TwoBraceros_files" file="b_08.jpg" width="250" height="166" alt="bracero camp" style="float:left"/><br/>
+<span class="caption" style="float:left; width:250px">
 San Joaquin Delta, Stockton, CA  7/19/95<br>
 A camp used for braceros in the 1940s and 50s, and which was still used to house migrant farmworkers up until the 1980s.
-</span></td></tr></table>
+</span>
+</div>
 
 </TD>
 
@@ -317,7 +334,10 @@ If they liked the way you worked, they'd renew your contract and if they didn't 
 </TR>
 
 <TR ALIGN="CENTER">
-<TD COLSPAN="3" WIDTH="735"><IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5"></TD>
+<TD COLSPAN="3" WIDTH="735">
+<%--<IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5">--%>
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</TD>
 </TR>
 
 <%--<TR>--%>

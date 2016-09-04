@@ -63,13 +63,16 @@
 <%--</tr>--%>
 
 <tr align="CENTER">
-<td class="twc" colspan="3" width="735"><img src="index_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1"></td>
+<td class="twc" colspan="3" width="735">
+<%--<img src="index_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1">--%>
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</td>
 </tr>
 
 <tr valign="TOP">
 
 <td class="twc" bgcolor="#FFFFFF" width="175">
-	<span class="lg">Transnational<br>Working<br>Communities<br><br><br></span>
+	<span class="lg" style="font-weight:bold">Transnational<br>Working<br>Communities<br><br><br></span>
 	<span class="xsm">project support from<br/>the Rockefeller Foundation</span>
 </td>
 
@@ -96,8 +99,9 @@
 <div style="float:right; text-align:right">
 <%--    <a href="http://dbacon.igc.org/TWC/b0_Index.htm">--%>
     <g:link controller="tranatworcom" action="b0_Index">
-    <img src="${resource(dir: 'images/twc', file: 'splash_b.jpg')}" alt="Braceros &amp; Border Jumpers" border="0" height="166" width="250"><br/>
-    </g:link>
+<%--    <img src="${resource(dir: 'images/twc', file: 'splash_b.jpg')}" alt="Braceros &amp; Border Jumpers" border="0" height="166" width="250"><br/>--%>
+    <g:img dir="images/b0_Index_files" file="splash_b.jpg" border="0" height="166" width="250" alt="Braceros &amp; Border Jumpers"/>
+    </g:link><br/>
 <%--    </a>--%>
 <%--    <a href="b0_Index.htm">Braceros &amp; Border Jumpers</a>--%>
     <g:link controller="tranatworcom" action="b0_Index">
@@ -108,8 +112,9 @@
 <%--<tr><td align="right" nowrap="nowrap">--%>
 <%--    <a href="http://dbacon.igc.org/TWC/mm0_Index.htm">--%>
     <g:link controller="tranatworcom" action="mm0_Index">
-    <img src="${resource(dir: 'images/twc', file: 'splash_mm.jpg')}" alt="Miners &amp; Mayos" border="0" height="166" width="250"><br/>
-    </g:link>
+<%--    <img src="${resource(dir: 'images/twc', file: 'splash_mm.jpg')}" alt="Miners &amp; Mayos" border="0" height="166" width="250"><br/>--%>
+    <g:img dir="images/mm0_Index_files" file="splash_mm.jpg" border="0" height="166" width="250" alt="Miners &amp; Mayos"/>
+    </g:link><br/>
 <%--    </a>--%>
 <%--    <a href="http://dbacon.igc.org/TWC/mm0_Index.htm">Miners &amp; Mayos</a>--%>
     <g:link controller="tranatworcom" action="mm0_Index">Miners &amp; Mayos</g:link>
@@ -187,7 +192,10 @@ for whom it is a living reality.
 </tr>
 
 <tr align="CENTER">
-<td colspan="3" width="735"><img src="index_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1"></td>
+<td colspan="3" width="735">
+<%--<img src="index_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1">--%>
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</td>
 </tr>
 
 <%--<tr>--%>
