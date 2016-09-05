@@ -2,46 +2,15 @@
 <html>
     <head>
         <meta name="layout" content="main">
-        <title>Transnational Working Communities</title>
+        <title>Two Braceros</title>
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'twc.css')}" type="text/css">
     </head>
     <body>
 
 <TABLE ALIGN="CENTER" BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="775">
 
-<%--<TR ALIGN="CENTER">--%>
-<%----%>
-<%--<TD WIDTH="20" ROWSPAN="5">&nbsp;</TD>--%>
-<%----%>
-<%--<td colspan="3">--%>
-<%----%>
-<%--	<table border="0" cellpadding="0" cellspacing="0"><tr>--%>
-<%--	<td width="175">--%>
-<%--		<a href="index.htm" onMouseOver="window.status='Transnational Working Communities'; return true" onMouseOut="window.status=''">--%>
-<%--		<img src="images/logoTWC.gif" width="175" height="50" alt="Transnational Working Communities" border="0">--%>
-<%--		</a>--%>
-<%--	</td>--%>
-<%--	<td width="560">--%>
-<%--	<A HREF="../index.htm"><IMG SRC="../Splash/header.gif" WIDTH="560" HEIGHT="50" BORDER="0" ALT="David Bacon Stories & Photographs" USEMAP="#headMap"></A>--%>
-<%--	--%>
-<%--	<MAP NAME="headMap">--%>
-<%--		<AREA COORDS="247,6,315,22" HREF="../IndexPS/indexSto.htm" onMouseOver="window.status='go to the Story Index';return true" onMouseOut="window.status=''">--%>
-<%--		<AREA COORDS="198,22,335,50" HREF="../IndexPS/indexPho.htm" onMouseOver="window.status='go to the Photography Index';return true" onMouseOut="window.status=''">--%>
-<%--		<AREA COORDS="0,0,198,50" HREF="../index.htm" onMouseOver="window.status='Stories and Photographs by David Bacon';return true" onMouseOut="window.status=''">--%>
-<%--		<AREA COORDS="335,0,560,50" HREF="../index.htm" onMouseOver="window.status='Stories and Photographs by David Bacon';return true" onMouseOut="window.status=''">--%>
-<%--	</MAP>--%>
-<%--	</td>--%>
-<%--	</tr></table>--%>
-<%----%>
-<%--</td>--%>
-<%----%>
-<%--<TD WIDTH="20" ROWSPAN="5">&nbsp;</TD>--%>
-<%----%>
-<%--</TR>--%>
-
 <TR ALIGN="CENTER">
 <TD COLSPAN="3" WIDTH="735">
-<%--<IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5">--%>
 <g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
 </TD>
 </TR>
@@ -53,7 +22,7 @@
 	<span class="med" style="font-weight:bold">Two Braceros<br></span>
 	<span class="xsm">Celestino &amp; Amelia Garcia<br>
 	Eusebio Melero</span><br><br><br><br>
-    <span class="xsm">project support from<br/>the Rockefeller Foundation</span>
+    <span class="xsm">project support<br>from the<br>Rockefeller Foundation</span>
 </TD>
 
 <TD WIDTH="480" BGCOLOR="#FFFFFF">
@@ -71,13 +40,6 @@ DB:  In what year were you born, Mr. Garcia?
 Well, I think in February of 1916, in Sandias.  I was registered in Tetewanes, a municipio in Durango.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <i>He was  born the 6th of February of 1916, during the Revolution. I was born in 0ctober, 1920.</i>  
-<%--<table cellspacing="2" border="0" width="319" align="right"><tr><td><!-- photo -->--%>
-<%--<br>--%>
-<%--<img src="images/b_06.jpg" width="306" height="460" alt="Celestino &amp; Amelia Garcia">--%>
-<%--</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->--%>
-<%--San Leandro, CA  11/20/01<br>--%>
-<%--Celestino and Amelia Garcia, who were born and married in Sandias, Durango.  Celestino came to US as a bracero in the 1950s.--%>
-<%--</span></td></tr></table>--%>
 <div style="display:block; float:right">
 <g:img dir="images/b02_TwoBraceros_files" file="b_06.jpg" width="306" height="460" alt="Celestino &amp; Amelia Garcia" style="float:right"/><br/>
 <span class="caption" style="float:right; width:306px">
@@ -204,13 +166,6 @@ A lot.  My grandfather took care of me. There were five of us and he watched us 
 DB:  How many years did you go to school?
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 There was only an elementary school in our town, so I went to school there.  But there wasn't a high school.  I was 12 or 15 years old when I finished school.
-<%--<table cellspacing="2" border="0" width="319" align="right"><tr><td><!-- photo -->--%>
-<%--<br>--%>
-<%--<img src="images/b_07.jpg" width="306" height="460" alt="Eusebio Melero">--%>
-<%--</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->--%>
-<%--San Leandro, CA  11/20/01<br>--%>
-<%--Eusebio Melero was born in Sandias, Durango, and came to US as a bracero.  After many years of work he brought his family, got a job in a warehouse, and retired with a pension from  the longshore workers union.--%>
-<%--</span></td></tr></table>--%>
 <div style="display:block; float:right">
 <g:img dir="images/b02_TwoBraceros_files" file="b_07.jpg" width="306" height="460" alt="Eusebio Melero" style="float:right"/><br/>
 <span class="caption" style="float:right; width:306px">
@@ -335,39 +290,9 @@ If they liked the way you worked, they'd renew your contract and if they didn't 
 
 <TR ALIGN="CENTER">
 <TD COLSPAN="3" WIDTH="735">
-<%--<IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5">--%>
 <g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
 </TD>
 </TR>
-
-<%--<TR>--%>
-<%--	<TD COLSPAN="3" WIDTH="735" HEIGHT="125" ALIGN="CENTER"><span class="sm">--%>
-<%--	<A HREF="../Mexico/mexico.htm" onMouseOver="window.status='Mexico'; return true" onMouseOut="window.status=''">MEXICO</A> | --%>
-<%--	<A HREF="../Imgrants/imgrants.htm" onMouseOver="window.status='Immigrants'; return true" onMouseOut="window.status=''">IMMIGRANTS</A> | --%>
-<%--	<A HREF="../Art/art.htm" onMouseOver="window.status='Culture'; return true" onMouseOut="window.status=''">CULTURE</A> | --%>
-<%--	<A HREF="../Phils/phils.htm" onMouseOver="window.status='Philippines'; return true" onMouseOut="window.status=''">PHILIPPINES</A> | --%>
-<%--	<A HREF="../PJust/pjust.htm" onMouseOver="window.status='Peace &amp; Justice'; return true" onMouseOut="window.status=''">PEACE &amp; JUSTICE</A><BR>--%>
-<%--	<A HREF="../Work/work.htm" onMouseOver="window.status='Workplace'; return true" onMouseOut="window.status=''">WORKPLACE</A> | --%>
-<%--	<A HREF="../Strikes/strikes.htm" onMouseOver="window.status='Strikes'; return true" onMouseOut="window.status=''">STRIKES</A> | --%>
-<%--	<A HREF="../Portrait/portrait.htm" onMouseOver="window.status='Portraits'; return true" onMouseOut="window.status=''">PORTRAITS</A> | --%>
-<%--	<A HREF="../FarmWork/farmwork.htm" onMouseOver="window.status='Farmworkers'; return true" onMouseOut="window.status=''">FARMWORKERS</A> | --%>
-<%--	<A HREF="../Unions/unions.htm" onMouseOver="window.status='Unions'; return true" onMouseOut="window.status=''">UNIONS</A> | --%>
-<%--	<A HREF="../Students/students.htm" onMouseOver="window.status='Students'; return true" onMouseOut="window.status=''">STUDENTS</A><BR>--%>
-<%--	Special Project: <a href="../TWC/index.htm" onMouseOver="window.status='Transnational Working Communities'; return true" onMouseOut="window.status=''">TRANSNATIONAL WORKING COMMUNITIES</a><br>--%>
-<%--	<A HREF="../index.htm" onMouseOver="window.status='Home'; return true" onMouseOut="window.status=''">HOME</A> | --%>
-<%--	<A HREF="../IndexPS/news.htm" onMouseOver="window.status='News'; return true" onMouseOut="window.status=''">NEWS</A> |--%>
-<%--	<A HREF="../IndexPS/indexSto.htm" onMouseOver="window.status='Story Index'; return true" onMouseOut="window.status=''">STORIES</A> |--%>
-<%--	<A HREF="../IndexPS/indexPho.htm" onMouseOver="window.status='Photography Index'; return true" onMouseOut="window.status=''">PHOTOGRAPHS</A> |--%>
-<%--	<A HREF="../IndexPS/links.html" onMouseOver="window.status='Links'; return true" onMouseOut="window.status=''">LINKS</A></span>--%>
-<%----%>
-<%--	<p class="xsm">--%>
-<%--	photographs and stories by <A HREF="mailto:dbacon@igc.org">David Bacon</A> &#169 1990-<script language="javascript">document.write(endDate);</script>--%>
-<%--	<br><br>--%>
-<%--	website by <A HREF="http://www.digitdesigns.com">DigIt Designs</A> &#169 1999-<script language="javascript">document.write(endDate);</script>--%>
-<%--	</p>--%>
-<%----%>
-<%--</TD>--%>
-<%--</TR>--%>
 
 </TABLE>
 

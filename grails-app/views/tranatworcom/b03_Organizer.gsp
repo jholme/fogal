@@ -2,42 +2,12 @@
 <html>
     <head>
         <meta name="layout" content="main">
-        <title>Transnational Working Communities</title>
+        <title>Story of a Union Organizer</title>
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'twc.css')}" type="text/css">
     </head>
     <body>
 
 <TABLE ALIGN="CENTER" BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="775">
-
-<%--<TR ALIGN="CENTER">--%>
-<%----%>
-<%--<TD WIDTH="20" ROWSPAN="11">&nbsp;</TD>--%>
-<%----%>
-<%--<td colspan="3">--%>
-<%----%>
-<%--	<table border="0" cellpadding="0" cellspacing="0"><tr>--%>
-<%--	<td width="175">--%>
-<%--		<a href="index.htm" onMouseOver="window.status='Transnational Working Communities'; return true" onMouseOut="window.status=''">--%>
-<%--		<img src="images/logoTWC.gif" width="175" height="50" alt="Transnational Working Communities" border="0">--%>
-<%--		</a>--%>
-<%--	</td>--%>
-<%--	<td width="560">--%>
-<%--	<A HREF="../../index.htm"><IMG SRC="../Splash/header.gif" WIDTH="560" HEIGHT="50" BORDER="0" ALT="David Bacon Stories & Photographs" USEMAP="#headMap"></A>--%>
-<%--	--%>
-<%--	<MAP NAME="headMap">--%>
-<%--		<AREA COORDS="247,6,315,22" HREF="../IndexPS/indexSto.htm" onMouseOver="window.status='go to the Story Index';return true" onMouseOut="window.status=''">--%>
-<%--		<AREA COORDS="198,22,335,50" HREF="../IndexPS/indexPho.htm" onMouseOver="window.status='go to the Photography Index';return true" onMouseOut="window.status=''">--%>
-<%--		<AREA COORDS="0,0,198,50" HREF="../index.htm" onMouseOver="window.status='Stories and Photographs by David Bacon';return true" onMouseOut="window.status=''">--%>
-<%--		<AREA COORDS="335,0,560,50" HREF="../index.htm" onMouseOver="window.status='Stories and Photographs by David Bacon';return true" onMouseOut="window.status=''">--%>
-<%--	</MAP>--%>
-<%--	</td>--%>
-<%--	</tr></table>--%>
-<%----%>
-<%--</td>--%>
-<%----%>
-<%--<TD WIDTH="20" ROWSPAN="11">&nbsp;</TD>--%>
-<%----%>
-<%--</TR>--%>
 
 <TR ALIGN="CENTER">
 <TD COLSPAN="3" WIDTH="735">
@@ -50,7 +20,7 @@
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
     <span class="lg"><g:link controller="tranatworcom" action="b0_Index">Braceros &amp; Border Jumpers</g:link><br><br><br></span>
 	<span class="med" style="font-weight:bold">The Story of<br>a Union Organizer<br><br><br><br></span>
-    <span class="xsm">project support from<br/>the Rockefeller Foundation</span>
+    <span class="xsm">project support<br>from the<br>Rockefeller Foundation</span>
 </TD>
 
 <TD WIDTH="480" BGCOLOR="#FFFFFF">
@@ -369,7 +339,7 @@ DB:  It sounds from your description that the union got really good contracts fo
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 One year, just before I became the president of the union committee at Christian Brothers, they were negotiating a new contract.  Dolores Huerta, who was negotiating with the company, told the workers that if the company didn't agree, they should put union flags on the tractors and drive through the streets of Saint Helena to the Christian Brothers monastery.  That would have been a really big deal.  Then, just as we were all on the tractors, ready to get on the freeway, we got another call that the contract had been signed.  Dolores was really a gutsy person.  She would be ready to take action right to the end.  She was not afraid to do these things.  Cesar himself would say, "Do what you have to do, and deal with the lawyers later."
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-That militancy was a big part of how the union won those contracts, and why they paid so well.  Just an example was the money you could make during the pruning.  When the union was the strongest, they were making 65�/vine, pruning 3-400 vines in a day.  Some people could make $250 in a single day   They were so militant they could get whatever they wanted.  But in a way, it was no wonder those companies couldn't survive.
+That militancy was a big part of how the union won those contracts, and why they paid so well.  Just an example was the money you could make during the pruning.  When the union was the strongest, they were making 65-/vine, pruning 3-400 vines in a day.  Some people could make $250 in a single day   They were so militant they could get whatever they wanted.  But in a way, it was no wonder those companies couldn't survive.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 One of the reasons why the union lost many contracts in the late 70s and early 80s, I believe, was because people got too militant.  Sometimes they acted as though they'd become the owners of the ranch.  Mostly it was they way they restricted supervisors.  They wrote into their contract that a supervisor couldn't go into the rows of grape vines more than 10 vines.  If you were further inside, you could be asleep and he still couldn't go in any farther to warn you.  A supervisor couldn't tell you to go back to work after your 15-minute break, because he didn't know what time you'd stopped.  Things like that were just nonsense.  
 </p>
@@ -556,35 +526,6 @@ Cesar Chavez, on a picketline in front of the Mission St. Safeway, boycotting gr
 <g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
 </TD>
 </TR>
-
-<%--<TR>--%>
-<%--	<TD COLSPAN="3" WIDTH="735" HEIGHT="125" ALIGN="CENTER"><span class="sm">--%>
-<%--	<A HREF="../Mexico/mexico.htm" onMouseOver="window.status='Mexico'; return true" onMouseOut="window.status=''">MEXICO</A> | --%>
-<%--	<A HREF="../Imgrants/imgrants.htm" onMouseOver="window.status='Immigrants'; return true" onMouseOut="window.status=''">IMMIGRANTS</A> | --%>
-<%--	<A HREF="../Art/art.htm" onMouseOver="window.status='Culture'; return true" onMouseOut="window.status=''">CULTURE</A> | --%>
-<%--	<A HREF="../Phils/phils.htm" onMouseOver="window.status='Philippines'; return true" onMouseOut="window.status=''">PHILIPPINES</A> | --%>
-<%--	<A HREF="../PJust/pjust.htm" onMouseOver="window.status='Peace &amp; Justice'; return true" onMouseOut="window.status=''">PEACE &amp; JUSTICE</A><BR>--%>
-<%--	<A HREF="../Work/work.htm" onMouseOver="window.status='Workplace'; return true" onMouseOut="window.status=''">WORKPLACE</A> | --%>
-<%--	<A HREF="../Strikes/strikes.htm" onMouseOver="window.status='Strikes'; return true" onMouseOut="window.status=''">STRIKES</A> | --%>
-<%--	<A HREF="../Portrait/portrait.htm" onMouseOver="window.status='Portraits'; return true" onMouseOut="window.status=''">PORTRAITS</A> | --%>
-<%--	<A HREF="../FarmWork/farmwork.htm" onMouseOver="window.status='Farmworkers'; return true" onMouseOut="window.status=''">FARMWORKERS</A> | --%>
-<%--	<A HREF="../Unions/unions.htm" onMouseOver="window.status='Unions'; return true" onMouseOut="window.status=''">UNIONS</A> | --%>
-<%--	<A HREF="../Students/students.htm" onMouseOver="window.status='Students'; return true" onMouseOut="window.status=''">STUDENTS</A><BR>--%>
-<%--	Special Project: <a href="../TWC/index.htm" onMouseOver="window.status='Transnational Working Communities'; return true" onMouseOut="window.status=''">TRANSNATIONAL WORKING COMMUNITIES</a><br>--%>
-<%--	<A HREF="../index.htm" onMouseOver="window.status='Home'; return true" onMouseOut="window.status=''">HOME</A> | --%>
-<%--	<A HREF="../IndexPS/news.htm" onMouseOver="window.status='News'; return true" onMouseOut="window.status=''">NEWS</A> |--%>
-<%--	<A HREF="../IndexPS/indexSto.htm" onMouseOver="window.status='Story Index'; return true" onMouseOut="window.status=''">STORIES</A> |--%>
-<%--	<A HREF="../IndexPS/indexPho.htm" onMouseOver="window.status='Photography Index'; return true" onMouseOut="window.status=''">PHOTOGRAPHS</A> |--%>
-<%--	<A HREF="../IndexPS/links.html" onMouseOver="window.status='Links'; return true" onMouseOut="window.status=''">LINKS</A></span>--%>
-<%----%>
-<%--	<p class="xsm">--%>
-<%--	photographs and stories by <A HREF="mailto:dbacon@igc.org">David Bacon</A> &#169 1990-<script language="javascript">document.write(endDate);</script>--%>
-<%--	<br><br>--%>
-<%--	website by <A HREF="http://www.digitdesigns.com">DigIt Designs</A> &#169 1999-<script language="javascript">document.write(endDate);</script>--%>
-<%--	</p>--%>
-<%----%>
-<%--</TD>--%>
-<%--</TR>--%>
 
 </TABLE>
 

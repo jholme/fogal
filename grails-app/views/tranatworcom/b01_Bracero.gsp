@@ -2,58 +2,27 @@
 <html>
     <head>
         <meta name="layout" content="main">
-        <title>Transnational Working Communities</title>
+        <title>Story of a Bracero</title>
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'twc.css')}" type="text/css">
     </head>
     <body>
 
-
-
-
-
 <table align="CENTER" border="0" cellpadding="0" cellspacing="0" width="775">
 
 <tbody>
-<%--<tr align="CENTER">--%>
-<%----%>
-<%--<td rowspan="9" width="20">&nbsp;</td>--%>
-<%----%>
-<%--<td colspan="3">--%>
-<%----%>
-<%--	<table border="0" cellpadding="0" cellspacing="0"><tbody><tr>--%>
-<%--	<td width="175">--%>
-<%--		<a href="http://dbacon.igc.org/TWC/index.htm" onmouseover="window.status='Transnational Working Communities'; return true" onmouseout="window.status=''">--%>
-<%--		<img src="b01_Bracero_files/logoTWC.gif" alt="Transnational Working Communities" border="0" height="50" width="175">--%>
-<%--		</a>--%>
-<%--	</td>--%>
-<%--	<td width="560">--%>
-<%--	<img src="b01_Bracero_files/header.gif" alt="David Bacon Stories &amp; Photographs" usemap="#headMap" border="0" height="50" width="560">--%>
-<%--	--%>
-<%--	<map name="headMap">--%>
-<%--		<area coords="247,6,315,22" href="http://dbacon.igc.org/IndexPS/indexSto.htm" onmouseover="window.status='go to the Story Index';return true" onmouseout="window.status=''">--%>
-<%--		<area coords="198,22,335,50" href="http://dbacon.igc.org/IndexPS/indexPho.htm" onmouseover="window.status='go to the Photography Index';return true" onmouseout="window.status=''">--%>
-<%--		<area coords="0,0,198,50" href="http://dbacon.igc.org/index.htm" onmouseover="window.status='Stories and Photographs by David Bacon';return true" onmouseout="window.status=''">--%>
-<%--		<area coords="335,0,560,50" href="http://dbacon.igc.org/index.htm" onmouseover="window.status='Stories and Photographs by David Bacon';return true" onmouseout="window.status=''">--%>
-<%--	</map>--%>
-<%--	</td>--%>
-<%--	</tr></tbody></table>--%>
-<%----%>
-<%--</td>--%>
-<%----%>
-<%--<td rowspan="9" width="20">&nbsp;</td>--%>
-<%----%>
-<%--</tr>--%>
 
 <tr align="CENTER">
-<td class="twc" colspan="3" width="735"><g:img dir="images/twc" file="aaOnePix.GIF" height="1" width="1" vspace="5"/></td>
-</tr><%-- <img src="b01_Bracero_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1"> --%>
+<td class="twc" colspan="3" width="735">
+<g:img dir="images/twc" file="aaOnePix.GIF" height="1" width="1" vspace="5"/>
+</td>
+</tr>
 
 <tr valign="TOP">
 
 <td bgcolor="#FFFFFF" width="250">
     <span class="lg"><g:link controller="tranatworcom" action="b0_Index">Braceros &amp; Border Jumpers</g:link><br><br><br></span>
 	<span class="med" style="font-weight:bold">The Story of<br>a Bracero<br><br><br><br></span>
-    <span class="xsm" style="width:35px">project support<br/>from the Rockefeller Foundation</span>
+    <span class="xsm">project support<br>from the<br>Rockefeller Foundation</span>
 </td>
 
 <td bgcolor="#FFFFFF" width="480">
@@ -692,7 +661,7 @@ It's like now with the people who make the stoppages.  They have to sit
 down in the highways and stop the traffic.  Surround the city halls.  
 Because the government won't listen to them.  That's why there's a 
 different government in Mexico now.   And I think that's the same all 
-over the world too.  The strikes now and the ones when I was a child  � 
+over the world too.  The strikes now and the ones when I was a child  - 
 it's the same thing.  For a human being, that's the way it is.  Those 
 who can exploit, do it.  That's why Cesar said when he died in San Luis,
  "Look boys."  He gave us an example.  "Hay que educar a que pisa, y hay
@@ -761,7 +730,7 @@ different.  With laws and everything.  Laws that should have been
 respected.  
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 In the strikes I was in here, for example, the strikes in Firebaugh, 
-there was a line of sheriffs there, all from Fresno.  From Los Ba�os.  
+there was a line of sheriffs there, all from Fresno.  From Los Ba-os.  
 And their line was taking care of us.  And on the other side were the 
 strikebreakers.  Those who were on the bosses' side.  If the sheriffs 
 hadn't been there, they knew what would have happened.  There would have
@@ -803,40 +772,9 @@ the border, and live happily in my land.  And I can live happily in this
 
 <tr align="CENTER">
 <td colspan="3" width="735">
-<%--<img src="b01_Bracero_files/aaOnePix.GIF" border="0" height="1" vspace="5" width="1">--%>
 <g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
 </td>
 </tr>
-
-<%--<tr>--%>
-<%--	<!-- <TD COLSPAN="3" WIDTH="735" HEIGHT="125" ALIGN="CENTER"><span class="sm"> -->--%>
-<%--	<td colspan="3" align="CENTER" height="125" width="735"><span class="sm">--%>
-<%--	<a href="http://dbacon.igc.org/Mexico/mexico.htm" onmouseover="window.status='Mexico'; return true" onmouseout="window.status=''">MEXICO</a> | --%>
-<%--	<a href="http://dbacon.igc.org/Imgrants/imgrants.htm" onmouseover="window.status='Immigrants'; return true" onmouseout="window.status=''">IMMIGRANTS</a> | --%>
-<%--	<a href="http://dbacon.igc.org/Art/art.htm" onmouseover="window.status='Culture'; return true" onmouseout="window.status=''">CULTURE</a> | --%>
-<%--	<a href="http://dbacon.igc.org/Phils/phils.htm" onmouseover="window.status='Philippines'; return true" onmouseout="window.status=''">PHILIPPINES</a> | --%>
-<%--	<a href="http://dbacon.igc.org/PJust/pjust.htm" onmouseover="window.status='Peace &amp; Justice'; return true" onmouseout="window.status=''">PEACE &amp; JUSTICE</a><br>--%>
-<%--	<a href="http://dbacon.igc.org/Work/work.htm" onmouseover="window.status='Workplace'; return true" onmouseout="window.status=''">WORKPLACE</a> | --%>
-<%--	<a href="http://dbacon.igc.org/Strikes/strikes.htm" onmouseover="window.status='Strikes'; return true" onmouseout="window.status=''">STRIKES</a> | --%>
-<%--	<a href="http://dbacon.igc.org/Portrait/portrait.htm" onmouseover="window.status='Portraits'; return true" onmouseout="window.status=''">PORTRAITS</a> | --%>
-<%--	<a href="http://dbacon.igc.org/FarmWork/farmwork.htm" onmouseover="window.status='Farmworkers'; return true" onmouseout="window.status=''">FARMWORKERS</a> | --%>
-<%--	<a href="http://dbacon.igc.org/Unions/unions.htm" onmouseover="window.status='Unions'; return true" onmouseout="window.status=''">UNIONS</a> | --%>
-<%--	<a href="http://dbacon.igc.org/Students/students.htm" onmouseover="window.status='Students'; return true" onmouseout="window.status=''">STUDENTS</a><br>--%>
-<%--	Special Project: <a href="http://dbacon.igc.org/TWC/index.htm" onmouseover="window.status='Transnational Working Communities'; return true" onmouseout="window.status=''">TRANSNATIONAL WORKING COMMUNITIES</a><br>--%>
-<%--	<a href="http://dbacon.igc.org/index.htm" onmouseover="window.status='Home'; return true" onmouseout="window.status=''">HOME</a> | --%>
-<%--	<a href="http://dbacon.igc.org/IndexPS/news.htm" onmouseover="window.status='News'; return true" onmouseout="window.status=''">NEWS</a> |--%>
-<%--	<a href="http://dbacon.igc.org/IndexPS/indexSto.htm" onmouseover="window.status='Story Index'; return true" onmouseout="window.status=''">STORIES</a> |--%>
-<%--	<a href="http://dbacon.igc.org/IndexPS/indexPho.htm" onmouseover="window.status='Photography Index'; return true" onmouseout="window.status=''">PHOTOGRAPHS</a> |--%>
-<%--	<a href="http://dbacon.igc.org/IndexPS/links.html" onmouseover="window.status='Links'; return true" onmouseout="window.status=''">LINKS</a></span>--%>
-<%----%>
-<%--	<p class="xsm">--%>
-<%--	photographs and stories by <a href="mailto:dbacon@igc.org">David Bacon</a> � 1990-<script language="javascript">document.write(endDate);</script>2016--%>
-<%--	<br><br>--%>
-<%--	website by <a href="http://www.digitdesigns.com/">DigIt Designs</a> � 1999-<script language="javascript">document.write(endDate);</script>2016--%>
-<%--	</p>--%>
-<%----%>
-<%--</td>--%>
-<%--</tr>--%>
 
 </tbody></table>
 

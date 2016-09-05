@@ -2,53 +2,25 @@
 <html>
     <head>
         <meta name="layout" content="main">
-        <title>Transnational Working Communities</title>
+        <title>Sanctuary for Border Crossers</title>
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'twc.css')}" type="text/css">
     </head>
     <body>
 
 <TABLE ALIGN="CENTER" BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="775">
 
-<%--<TR ALIGN="CENTER">--%>
-<%----%>
-<%--<TD WIDTH="20" ROWSPAN="7">&nbsp;</TD>--%>
-<%----%>
-<%--<td colspan="3">--%>
-<%----%>
-<%--	<table border="0" cellpadding="0" cellspacing="0"><tr>--%>
-<%--	<td width="175">--%>
-<%--		<a href="index.htm" onMouseOver="window.status='Transnational Working Communities'; return true" onMouseOut="window.status=''">--%>
-<%--		<img src="images/logoTWC.gif" width="175" height="50" alt="Transnational Working Communities" border="0">--%>
-<%--		</a>--%>
-<%--	</td>--%>
-<%--	<td width="560">--%>
-<%--	<A HREF="../../index.htm"><IMG SRC="../Splash/header.gif" WIDTH="560" HEIGHT="50" BORDER="0" ALT="David Bacon Stories & Photographs" USEMAP="#headMap"></A>--%>
-<%--	--%>
-<%--	<MAP NAME="headMap">--%>
-<%--		<AREA COORDS="247,6,315,22" HREF="../IndexPS/indexSto.htm" onMouseOver="window.status='go to the Story Index';return true" onMouseOut="window.status=''">--%>
-<%--		<AREA COORDS="198,22,335,50" HREF="../IndexPS/indexPho.htm" onMouseOver="window.status='go to the Photography Index';return true" onMouseOut="window.status=''">--%>
-<%--		<AREA COORDS="0,0,198,50" HREF="../index.htm" onMouseOver="window.status='Stories and Photographs by David Bacon';return true" onMouseOut="window.status=''">--%>
-<%--		<AREA COORDS="335,0,560,50" HREF="../index.htm" onMouseOver="window.status='Stories and Photographs by David Bacon';return true" onMouseOut="window.status=''">--%>
-<%--	</MAP>--%>
-<%--	</td>--%>
-<%--	</tr></table>--%>
-<%----%>
-<%--</td>--%>
-<%----%>
-<%--<TD WIDTH="20" ROWSPAN="7">&nbsp;</TD>--%>
-<%----%>
-<%--</TR>--%>
-
 <TR ALIGN="CENTER">
-<TD COLSPAN="3" WIDTH="735"><IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5"></TD>
+<TD COLSPAN="3" WIDTH="735">
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</TD>
 </TR>
 
 <TR VALIGN="TOP">
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
     <span class="lg"><g:link controller="tranatworcom" action="b0_Index">Braceros &amp; Border Jumpers</g:link><br><br><br></span>
-	<span class="med">In the Mexican Desert, a Sanctuary for Border-Crossers<br><br><br><br></span>
-    <span class="xsm">project support from<br/>the Rockefeller Foundation</span>
+	<span class="med" style="font-weight:bold">In the Mexican Desert, a Sanctuary for Border-Crossers<br><br><br><br></span>
+    <span class="xsm">project support<br>from the<br>Rockefeller Foundation</span>
 </TD>
 
 <TD WIDTH="480" BGCOLOR="#FFFFFF">
@@ -61,13 +33,13 @@ ALTAR, SONORA, MEXICO (12/19/01) - Desperation is growing on the border.
 
 <p class="twc">
 Many Mexicans thinking of crossing to look for work in the US know the current recession will make it harder to find a job.  In the winter, the demand for farm labor, the first avenue of employment for many, is at its lowest point.  And the risks are higher.  Increased border enforcement in the wake of September 11 means having to cross through the desert even further from population centers to avoid getting caught.
-<table cellspacing="0" border="0" width="460"><tr><td><!-- photo -->
-<br>
-<img src="images/b_22.jpg" width="460" height="306" alt="migrants">
-</td></tr><tr><td class="xsm"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b04_Sanctuary_files" file="b_22.jpg" width="460" height="306" alt="migrants" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right;width:460px">
 Altar, Sonora  12/6/01<br>
 Migrants gather in the plaza of Nuestra Se&ntilde;ora de Guadalupe church before going to the border to cross into the US.
-</span></td></tr></table>
+</span>
+</div>
 </p>
 
 <p class="twc">
@@ -120,13 +92,13 @@ They also pass one of the dozens of Mexican Army checkpoints scattered just sout
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
 
-<table cellspacing="2" border="0" width="250"><tr><td><!-- photo -->
-<br>
-<img src="images/b_23.jpg" width="250" height="166" alt="the path">
-</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b04_Sanctuary_files" file="b_23.jpg" width="250" height="166" alt="the path" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right;width:250px">
 Altar, Sonora  12/6/01<br>
 The path through the desert to the border to cross into the US starts here, north of Route 2, which goes through the Sonoran desert just south of the line.
-</span></td></tr></table>
+</span>
+</div>
 
 </TD>
 
@@ -163,13 +135,13 @@ Antonio Macias, a bus driver on the Sasabe route, says that townspeople generall
 
 <TD WIDTH="250" BGCOLOR="#FFFFFF">
 
-<table cellspacing="2" border="0" width="250"><tr><td><!-- photo -->
-<br>
-<img src="images/b_24.jpg" width="250" height="166" alt="Victor Aleman">
-</td></tr><tr><td class="xsm" align="right"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b04_Sanctuary_files" file="b_24.jpg" width="250" height="166" alt="Victor Aleman" style="float:right"/><br/>
+<span class="caption" style="float:right;text-align:right;width:250px">
 Altar, Sonora  12/6/01<br>
-Victor Aleman, from Queretaro, one of a group of migrants who gather in the plaza of Nuestra Se�ora de Guadalupe church before going to the border.
-</span></td></tr></table>
+Victor Aleman, from Queretaro, one of a group of migrants who gather in the plaza of Nuestra Senora de Guadalupe church before going to the border.
+</span>
+</div>
 
 </TD>
 
@@ -200,12 +172,13 @@ In an empty lot next to the migrant dining hall, three tall crosses have been er
 
 <TR>
 <TD COLSPAN="3" WIDTH="735" BGCOLOR="#FFFFFF">
-<table border="0" width="735"><tr><td><!-- photo -->
-<img src="images/b_25.jpg" width="735" height="489" alt="the people who died">
-</td></tr><tr><td class="xsm"><span style="font-weight:bold"><!-- caption -->
+<div style="display:block; float:right">
+<g:img dir="images/b04_Sanctuary_files" file="b_25.jpg" width="735" height="489" alt="Vthe people who died" style="float:right"/><br/>
+<span class="caption" style="float:right;width:735px">
 Altar, Sonora  12/6/01<br>
-Outside the dining hall built by priests and parishoners of Nuestra Se�ora de Guadalupe church for migrant workers seeking to cross the border, crosses remember the people who died trying to get through the desert to the other side.
-</span></td></tr></table>
+Victor Aleman, from Queretaro, one of a group of migrants who gather in the plaza of Nuestra Senora de Guadalupe church before going to the border.
+</span>
+</div>
 </TD>
 </TR>
 
@@ -233,37 +206,10 @@ Outside the dining hall built by priests and parishoners of Nuestra Se�ora de 
 </TR>
 
 <TR ALIGN="CENTER">
-<TD COLSPAN="3" WIDTH="735"><IMG SRC="../Splash/aaOnePix.GIF" WIDTH="1" HEIGHT="1" BORDER="0" VSPACE="5"></TD>
+<TD COLSPAN="3" WIDTH="735">
+<g:img dir="images/twc" file="aaOnePix.GIF" border="0" height="1" width="1" vspace="5"/>
+</TD>
 </TR>
-
-<%--<TR>--%>
-<%--	<TD COLSPAN="3" WIDTH="735" HEIGHT="125" ALIGN="CENTER"><span class="sm">--%>
-<%--	<A HREF="../Mexico/mexico.htm" onMouseOver="window.status='Mexico'; return true" onMouseOut="window.status=''">MEXICO</A> | --%>
-<%--	<A HREF="../Imgrants/imgrants.htm" onMouseOver="window.status='Immigrants'; return true" onMouseOut="window.status=''">IMMIGRANTS</A> | --%>
-<%--	<A HREF="../Art/art.htm" onMouseOver="window.status='Culture'; return true" onMouseOut="window.status=''">CULTURE</A> | --%>
-<%--	<A HREF="../Phils/phils.htm" onMouseOver="window.status='Philippines'; return true" onMouseOut="window.status=''">PHILIPPINES</A> | --%>
-<%--	<A HREF="../PJust/pjust.htm" onMouseOver="window.status='Peace &amp; Justice'; return true" onMouseOut="window.status=''">PEACE &amp; JUSTICE</A><BR>--%>
-<%--	<A HREF="../Work/work.htm" onMouseOver="window.status='Workplace'; return true" onMouseOut="window.status=''">WORKPLACE</A> | --%>
-<%--	<A HREF="../Strikes/strikes.htm" onMouseOver="window.status='Strikes'; return true" onMouseOut="window.status=''">STRIKES</A> | --%>
-<%--	<A HREF="../Portrait/portrait.htm" onMouseOver="window.status='Portraits'; return true" onMouseOut="window.status=''">PORTRAITS</A> | --%>
-<%--	<A HREF="../FarmWork/farmwork.htm" onMouseOver="window.status='Farmworkers'; return true" onMouseOut="window.status=''">FARMWORKERS</A> | --%>
-<%--	<A HREF="../Unions/unions.htm" onMouseOver="window.status='Unions'; return true" onMouseOut="window.status=''">UNIONS</A> | --%>
-<%--	<A HREF="../Students/students.htm" onMouseOver="window.status='Students'; return true" onMouseOut="window.status=''">STUDENTS</A><BR>--%>
-<%--	Special Project: <a href="../TWC/index.htm" onMouseOver="window.status='Transnational Working Communities'; return true" onMouseOut="window.status=''">TRANSNATIONAL WORKING COMMUNITIES</a><br>--%>
-<%--	<A HREF="../index.htm" onMouseOver="window.status='Home'; return true" onMouseOut="window.status=''">HOME</A> | --%>
-<%--	<A HREF="../IndexPS/news.htm" onMouseOver="window.status='News'; return true" onMouseOut="window.status=''">NEWS</A> |--%>
-<%--	<A HREF="../IndexPS/indexSto.htm" onMouseOver="window.status='Story Index'; return true" onMouseOut="window.status=''">STORIES</A> |--%>
-<%--	<A HREF="../IndexPS/indexPho.htm" onMouseOver="window.status='Photography Index'; return true" onMouseOut="window.status=''">PHOTOGRAPHS</A> |--%>
-<%--	<A HREF="../IndexPS/links.html" onMouseOver="window.status='Links'; return true" onMouseOut="window.status=''">LINKS</A></span>--%>
-<%-- --%>
-<%--	<p class="xsm">--%>
-<%--	photographs and stories by <A HREF="mailto:dbacon@igc.org">David Bacon</A> &#169 1990-<script language="javascript">document.write(endDate);</script>--%>
-<%--	<br><br>--%>
-<%--	website by <A HREF="http://www.digitdesigns.com">DigIt Designs</A> &#169 1999-<script language="javascript">document.write(endDate);</script>--%>
-<%--	</p>--%>
-<%----%>
-<%--</TD>--%>
-<%--</TR>--%>
 
 </TABLE>
 
