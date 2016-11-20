@@ -25,17 +25,10 @@
             </ol>
             
             <ol class="photo-next-prev">
-                <g:if test="${photoInstance.galleryIdx > 1}"><li><g:link action="show" id="${Photo.findByGalleryIdx(photoInstance.galleryIdx - 1).id}">Previous</g:link></li></g:if><g:else><li class="invis">Previous</li></g:else>
+                <g:if test="${photoInstance.galleryIdx > 1}"><li><g:link action="show" id="${Photo.findByGalleryAndGalleryIdx(photoInstance.gallery, photoInstance.galleryIdx - 1).id}">Previous</g:link></li></g:if><g:else><li class="invis">Previous</li></g:else>
                 <li id="dialog-link" style="cursor:pointer">Description</li>
-                <g:if test="${photoInstance.galleryIdx < photoInstance.gallery.photos.size()}"><li><g:link action="show" id="${Photo.findByGalleryIdx(photoInstance.galleryIdx + 1).id}">Next</g:link></li></g:if>
+                <g:if test="${photoInstance.galleryIdx < photoInstance.gallery.photos.size()}"><li><g:link action="show" id="${Photo.findByGalleryAndGalleryIdx(photoInstance.gallery, photoInstance.galleryIdx + 1).id}">Next</g:link></li></g:if>
             </ol>
-
-<%--			<g:if test="${photoInstance?.originalFilename}"><br/>--%>
-<%--                <span id="img-container">--%>
-<%--                <img class="rendered-image" src="<g:createLink controller='photo' action='renderMainImage' id='${photoInstance.id}'/>"/><br/>--%>
-<%--                <span class="rendered-image">${photoInstance?.encodeAsHTML()}</span>--%>
-<%--                </span>--%>
-<%--			</g:if>--%>
 
             <sec:ifLoggedIn>
             <g:form url="[resource:photoInstance, action:'delete']" method="DELETE">
@@ -51,36 +44,17 @@
 		  <p>${photoInstance.description}</p>
 		</div>
             
-            <div style="display:block;">
+<%--            <div style="display:block; margin-left:-350px">--%>
+            <div style="display:block; margin-left:${photoInstance.aspect.equals(Photo.LANDSCAPE) ? '-115px' : '0px'}"><!-- works with dnbsalinasfieldcleaners01a.jpg
+             -->
             <g:if test="${photoInstance?.originalFilename}"><br/>
                 <span id="img-container">
                 <img class="rendered-image" src="<g:createLink controller='photo' action='renderMainImage' id='${photoInstance.id}'/>"/><br/>
-                <span class="rendered-image">${photoInstance?.encodeAsHTML()}</span>
+                <span class="rendered-image" style="margin-left:${photoInstance.aspect.equals(Photo.LANDSCAPE) ? '115px' : '0px'}">${photoInstance?.encodeAsHTML()}</span>
                 </span>
             </g:if>
             </div>
  
-<%--<div id="dialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" style="position: absolute; height: auto; width: 400px; top: 641px; left: 521px; display: none;" tabindex="-1" role="dialog" aria-describedby="dialog" aria-labelledby="ui-id-11">--%>
-<%--<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle">--%>
-<%--<span id="ui-id-11" class="ui-dialog-title">Dialog Title</span>--%>
-<%--<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" type="button" role="button" title="Close">--%>
-<%--<span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span>--%>
-<%--<span class="ui-button-text">Close</span>--%>
-<%--</button>--%>
-<%--</div>--%>
-<%--<div id="dialog" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 54px; max-height: none; height: auto;">--%>
-<%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>--%>
-<%--</div>--%>
-<%--<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">--%>
-<%--<div class="ui-dialog-buttonset">--%>
-<%--<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" role="button">--%>
-<%--<span class="ui-button-text">Ok</span>--%>
-<%--</button>--%>
-<%--<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" role="button">--%>
-<%--<span class="ui-button-text">Cancel</span>--%>
-<%--</button>--%>
-<%--</div>--%>
-<%--</div>--%>
         <script>
         $( "#dialog" ).dialog({
             autoOpen: false,

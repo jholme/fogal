@@ -34,7 +34,7 @@ class GalleryService {
 	private static final String SUB_LOCATION = "Sub-location"
 	private static final String PROVINCE_STATE =  "Province/State"
 	private static final String COUNTRY = "Country/Primary Location Name"
-	private static final Integer THUMBNAIL_SIZE = 200
+	//private static final Integer THUMBNAIL_SIZE = 200
 	private static final String IMAGE_HEIGHT = "Image Height"
 	private static final String IMAGE_WIDTH = "Image Width"
 	// "Keywords", "Copyright Notice"
@@ -97,29 +97,39 @@ class GalleryService {
 		println "targetPath: ${targetPath}"
 		Path newPath = Files.copy(sourcePath, targetPath)
 		File newFile = newPath.toFile()
+		_resizeImage(newFile, newFileName)
 		newFile
 	}
 	
-	private File _createNewFileFromUpload(MultipartFile file, String fileName, Gallery gallery) {
+	private File _createNewFileFromUpload(MultipartFile file, String newFileName, Gallery gallery) {
 		print "_createNewFileFromUpload"
 		String imageDir = grailsApplication.config.file.upload.directory?:'C:\fogalFiles'//'/fogalFiles'
 		println "imageDir: ${imageDir}"
-		Path newPath = Paths.get(imageDir, gallery.category.path, gallery.path, fileName)
+		Path newPath = Paths.get(imageDir, gallery.category.path, gallery.path, newFileName)
 		print "newPath: ${newPath}"
 		File newFile = newPath.toFile()
 		file.transferTo(newFile)
+		_resizeImage(newFile, newFileName)
 		newFile
+	}
+	
+	private void _resizeImage(File newFile, String newFileName) {
+		Integer photoSize = grailsApplication.config.fogal.photoSize
+		BufferedImage resizedImage = Scalr.resize(ImageIO.read(newFile), photoSize)
+		String fileExt = newFileName.split(/\./)[1]
+		ImageIO.write(resizedImage, fileExt, newFile)
 	}
 	
 	private File _createThumbnail(File newFile, String fileName, Gallery gallery) {
 		String imageDir = grailsApplication.config.file.upload.directory?:'C:\fogalFiles'//'/fogalFiles'
 		println "imageDir: ${imageDir}"
-		BufferedImage thumbnail = Scalr.resize(ImageIO.read(newFile), THUMBNAIL_SIZE);
+		Integer thumbnailSize = grailsApplication.config.fogal.thumbnailSize
+		BufferedImage resizedImage = Scalr.resize(ImageIO.read(newFile), thumbnailSize);
 		String thumbnailFilename = _buildThumbnailName(fileName)//newFilenameBase + '-thumbnail.png'
 		Path tnPath = Paths.get(imageDir, gallery.category.path, gallery.path, thumbnailFilename)
 		File thumbnailFile = tnPath.toFile()
 		String fileExt = thumbnailFilename.split(/\./)[1]
-		ImageIO.write(thumbnail, fileExt, thumbnailFile)
+		ImageIO.write(resizedImage, fileExt, thumbnailFile)
 		thumbnailFile = newFile.size() > thumbnailFile.size() ? thumbnailFile : newFile
 		thumbnailFile
 	}

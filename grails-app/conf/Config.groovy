@@ -96,6 +96,9 @@ if (System.getProperty('os.name').contains('Win')) {
 	fogalFilesNew = "/fogalFilesNew"
 }
 
+fogal.thumbnailSize = 200
+fogal.photoSize = 1200
+
 environments {
     development {
         grails.logging.jul.usebridge = true
