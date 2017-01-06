@@ -184,5 +184,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.grails.ide.eclipse.core.CLASSPATH_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
+	<classpathentry kind="lib" path="C:/Users/Margit/.m2/repository/org/apache/tika/tika-core/1.14/tika-core-1.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Margit/.m2/repository/org/apache/tika/tika-parsers/1.14/tika-parsers-1.14.jar"/>
 	<classpathentry kind="output" path="target-eclipse/classes"/>
 </classpath>

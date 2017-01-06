@@ -3,8 +3,8 @@ grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 grails.project.work.dir = "target/work"
-grails.project.target.level = 1.6
-grails.project.source.level = 1.6
+grails.project.target.level = 1.7
+grails.project.source.level = 1.7
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 grails.project.fork = [
@@ -52,9 +52,18 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.27'
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
 		compile 'org.imgscalr:imgscalr-lib:4.2' // supports bootstrap-file-upload plugin
-		compile 'com.drewnoakes:metadata-extractor:2.8.1'
+		compile 'com.drewnoakes:metadata-extractor:2.9.1'
 		compile 'com.adobe.xmp:xmpcore:5.1.2'
 		compile 'commons-io:commons-io:2.4'
+		// tika
+		compile ('org.apache.tika:tika-core:1.14') {
+			excludes: 'ehcache'
+			excludes: 'ehcache-core'
+		}
+		runtime ('org.apache.tika:tika-parsers:1.14') {
+			excludes: 'ehcache'
+			excludes: 'ehcache-core'
+		}
     }
 
     plugins {

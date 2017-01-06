@@ -30,12 +30,14 @@ class BootStrap {
 				initCategories()
 				initGalleries()
 				initPhotos()
+				initLinks()
 				security1()
 			}
 			production {
 				initCategories()
 				initGalleries()
 				initPhotos()
+				//initLinks()
 				security1()
 			}
 		}
@@ -117,6 +119,7 @@ class BootStrap {
 	}
 	
 	def initPhotos() {
+		println "initPhotos"
 		// daydead
 		try {
 			galleryService.createPhotosFromDisk(['photo1.jpg','photo2.jpg','photo3.jpg'], "daydead")
@@ -164,6 +167,26 @@ class BootStrap {
 			galleryService.createPhotosFromDisk(['photo14.jpg','photo15.jpg'], "teachersProtest")
 		} catch (Exception e) {
 			log.debug "initPhotos (teachersProtest): ${e}"
+		}
+	}
+	
+	def initLinks() {
+		println "initLinks"
+		try {
+			Link link1 = new Link(groupName:Link.ORGS, linkText:"National Network for Immigrant and Refugee Rights", linkHref:"http://www.nnirr.org/")
+			link1.save(flush:true)
+			Link link2 = new Link(groupName:Link.ORGS, linkText:"U.S. Labor Against the War", linkHref:"http://www.uslaboragainstwar.org/")
+			link2.save(flush:true)
+			Link link3 = new Link(groupName:Link.ORGS, linkText:"United Farm Workers", linkHref:"http://www.ufw.org/")
+			link3.save(flush:true)
+			Link link4 = new Link(groupName:Link.PUBS, linkText:"Race Forward", linkHref:"https://www.raceforward.org/")
+			link4.save(flush:true)
+			Link link5 = new Link(groupName:Link.PUBS, linkText:"Foreign Policy in Focus", linkHref:"http://fpif.org/")
+			link5.save(flush:true)
+			Link link6 = new Link(groupName:Link.PUBS, linkText:"Labor Notes", linkHref:"http://labornotes.org/")
+			link6.save(flush:true)
+		} catch (Exception e) {
+			println e
 		}
 	}
 

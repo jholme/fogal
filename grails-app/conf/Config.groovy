@@ -96,6 +96,8 @@ if (System.getProperty('os.name').contains('Win')) {
 	fogalFilesNew = "/fogalFilesNew"
 }
 
+link.groups = [Link.ORGS, Link.PUBS]
+
 fogal.thumbnailSize = 200
 fogal.photoSize = 1200
 
@@ -207,6 +209,14 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/category/porThum/**':				['permitAll'],
 	'/category/thumbnail/**':			['permitAll'],
 	'/category/update/**':				['ROLE_ADMIN'],
+	// link
+	'/link/index':						['permitAll'],
+	'/link/create/**':					['ROLE_ADMIN'],
+	'/link/delete/**':					['ROLE_ADMIN'],
+	'/link/edit/**':					['ROLE_ADMIN'],
+	'/link/save/**':					['ROLE_ADMIN'],
+	'/link/show/**':					['permitAll'],
+	'/link/update/**':					['ROLE_ADMIN'],
 	// photo
 	'/photo/index':						['permitAll'],
 	'/photo/create/**':					['ROLE_ADMIN'],

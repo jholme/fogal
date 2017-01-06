@@ -1,43 +1,22 @@
 package com.iii.fogal
 
-import com.drew.metadata.*
-import com.drew.metadata.exif.*
-import com.drew.metadata.iptc.*
-import com.drew.imaging.*
-import com.drew.imaging.jpeg.*
 import java.awt.image.BufferedImage
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.Files
+
 import javax.imageio.*;
 import javax.imageio.stream.*;
 import javax.imageio.metadata.*;
 import javax.imageio.ImageIO
+
 import org.apache.commons.io.FileDeleteStrategy
 import org.imgscalr.Scalr
+import org.jcp.xml.dsig.internal.dom.ApacheCanonicalizer
 import org.springframework.web.multipart.MultipartFile
 import org.w3c.dom.*;
 
 class GalleryService {
-
-	private static final String TITLE_OLD = "User Comment"// "Headline"
-	private static final String DESCRIPTION_OLD = "Image Description"// "Caption/Abstract"
-	private static final String ARTIST_OLD = "Artist"// "Credit", "Special Instructions" aka copyright
-	private static final String PHOTO_DATE_OLD = "Date/Time Original"// "Date Created"
-	//
-	private static final String TITLE = "Headline"
-	private static final String DESCRIPTION = "Caption/Abstract"
-	private static final String CREDIT = "Credit"
-	private static final String COPYRIGHT = "Special Instructions"
-	private static final String PHOTO_DATE = "Date Created"
-	private static final String CITY = "City"
-	private static final String SUB_LOCATION = "Sub-location"
-	private static final String PROVINCE_STATE =  "Province/State"
-	private static final String COUNTRY = "Country/Primary Location Name"
-	//private static final Integer THUMBNAIL_SIZE = 200
-	private static final String IMAGE_HEIGHT = "Image Height"
-	private static final String IMAGE_WIDTH = "Image Width"
-	// "Keywords", "Copyright Notice"
 	
 	def grailsApplication
 	def photoService
@@ -46,21 +25,33 @@ class GalleryService {
 		List<Photo> photoList = new ArrayList<Photo>()
 		try {
 			Gallery gallery = Gallery.findById(galleryId)
+			String imageDir = grailsApplication.config.file.upload.directory?:'C:\\fogalFiles'//'/fogalFiles'
 			println "gallery.path: ${gallery.path}"
 			for (MultipartFile file in files) {
 				String oName = file.getOriginalFilename()
 				println "oName: ${oName}"
-				String newFilename = _buildNewFilename(oName)
-				File photoFile = _createNewFileFromUpload(file, newFilename, gallery)
-				File tnFile = _createThumbnail(photoFile, newFilename, gallery)
+				String newFileName = _buildNewFilename(oName)
+				Path newPath = Paths.get(imageDir, gallery.category.path, gallery.path, newFileName)
+				File newFile = newPath.toFile()
+				File photoFile = _createNewFileFromUpload(file, newFile, gallery)
+				File tnFile = _createThumbnail(photoFile, newFileName, gallery)
 				
-				Photo photo = new Photo(title:"${oName}", fileSize:photoFile.length(), originalFilename:newFilename, thumbnailFilename:tnFile.name)
-				_initPhoto(photo, photoFile, gallery, photoList)
+				Photo photo = new Photo(title:"${oName}", fileSize:photoFile.length(), originalFilename:newFileName, thumbnailFilename:tnFile.name)
+				photo.initPhoto(gallery, photoList, photoFile)
+				_resizeImage(photoFile, newFileName)
 			}
 		} catch (Exception e) {
 			log.debug "createPhotosFromUpload: ${e}"
 		}
 		photoList
+	}
+	
+	private File _createNewFileFromUpload(MultipartFile file, File newFile, Gallery gallery) {
+		println "_createNewFileFromUpload"
+		println "file: ${file}"
+		println "newFile: ${newFile}"
+		file.transferTo(newFile)
+		newFile
 	}
 
 	List<Photo> createPhotosFromDisk(List<String> fileNames, String galleryPath) {
@@ -71,11 +62,15 @@ class GalleryService {
 			String sourceFileDir = grailsApplication.config.file.newFile.directory?:'C:\\fogalFilesNew'
 			String targetFileDir = grailsApplication.config.file.upload.directory?:'C:\\fogalFiles'//'/fogalFiles'
 			for (String fn in fileNames) {
-				File photoFile = _createNewFileFromDisk(fn, gallery, sourceFileDir, targetFileDir)
+				String newFileName = _buildNewFilename(fn)
+				Path sourcePath = Paths.get(sourceFileDir, fn)
+				Path targetPath = Paths.get(targetFileDir, gallery.category.path, gallery.path, newFileName)
+				File photoFile = _createNewFileFromDisk(newFileName, gallery, sourcePath, targetPath)
 				File tnFile = _createThumbnail(photoFile, photoFile.name, gallery)
 				
 				Photo photo = new Photo(title:"${fn}", fileSize:photoFile.length(), originalFilename:photoFile.name, thumbnailFilename:tnFile.name)
-				_initPhoto(photo, photoFile, gallery, photoList)
+				photo.initPhoto(gallery, photoList, photoFile)
+				_resizeImage(photoFile, newFileName)
 			}
 		} catch (Exception e) {
 			log.debug "createPhotosFromDisk: ${e}"
@@ -84,32 +79,14 @@ class GalleryService {
 		photoList
 	}
 	
-	private File _createNewFileFromDisk(String oName, Gallery gallery, String sourceDir, String targetDir) {
+	private File _createNewFileFromDisk(String newFileName, Gallery gallery, Path sourcePath, Path targetPath) {
 		print "_createNewFileFromDisk"
-		println "oName: ${oName}"
+		println "newFileName: ${newFileName}"
 		println "gallery.path: ${gallery.path}"
-		println "sourceDir: ${sourceDir}"
-		println "targetDir: ${targetDir}"
-		String newFileName = _buildNewFilename(oName)
-		Path sourcePath = Paths.get(sourceDir, oName)
 		println "sourcePath: ${sourcePath}"
-		Path targetPath = Paths.get(targetDir, gallery.category.path, gallery.path, newFileName)
 		println "targetPath: ${targetPath}"
 		Path newPath = Files.copy(sourcePath, targetPath)
 		File newFile = newPath.toFile()
-		_resizeImage(newFile, newFileName)
-		newFile
-	}
-	
-	private File _createNewFileFromUpload(MultipartFile file, String newFileName, Gallery gallery) {
-		print "_createNewFileFromUpload"
-		String imageDir = grailsApplication.config.file.upload.directory?:'C:\fogalFiles'//'/fogalFiles'
-		println "imageDir: ${imageDir}"
-		Path newPath = Paths.get(imageDir, gallery.category.path, gallery.path, newFileName)
-		print "newPath: ${newPath}"
-		File newFile = newPath.toFile()
-		file.transferTo(newFile)
-		_resizeImage(newFile, newFileName)
 		newFile
 	}
 	
@@ -121,37 +98,17 @@ class GalleryService {
 	}
 	
 	private File _createThumbnail(File newFile, String fileName, Gallery gallery) {
-		String imageDir = grailsApplication.config.file.upload.directory?:'C:\fogalFiles'//'/fogalFiles'
+		String imageDir = grailsApplication.config.file.upload.directory?:'C:\fogalFiles'
 		println "imageDir: ${imageDir}"
 		Integer thumbnailSize = grailsApplication.config.fogal.thumbnailSize
 		BufferedImage resizedImage = Scalr.resize(ImageIO.read(newFile), thumbnailSize);
-		String thumbnailFilename = _buildThumbnailName(fileName)//newFilenameBase + '-thumbnail.png'
+		String thumbnailFilename = _buildThumbnailName(fileName)
 		Path tnPath = Paths.get(imageDir, gallery.category.path, gallery.path, thumbnailFilename)
 		File thumbnailFile = tnPath.toFile()
 		String fileExt = thumbnailFilename.split(/\./)[1]
 		ImageIO.write(resizedImage, fileExt, thumbnailFile)
 		thumbnailFile = newFile.size() > thumbnailFile.size() ? thumbnailFile : newFile
 		thumbnailFile
-	}
-
-	private void _initPhoto(Photo photo, File photoFile, Gallery gallery, List<Photo> photoList) {
-		photo = _populatePhotoMetadata(photo, photoFile)
-		try {
-			gallery.addToPhotos(photo)
-			gallery.save(flush:true)
-			if (photo.validate()) {
-				photo.calculateAspect()
-				photo.save(flush:true)
-				photoList.add(photo)
-				println "save photo: ${photo}"
-			} else {
-				log.debug "failed to save photo: ${photo}"
-				log.error photo.errors
-			}
-	
-		} catch (Exception e) {
-			log.error "init photo failed: ${e}"
-		}
 	}
 
 	private String _buildNewFilename(String oName) {
@@ -176,97 +133,6 @@ class GalleryService {
 		println newFilename
 		newFilename
 	}
-
-	// move to Photo.groovy
-    Photo _populatePhotoMetadata(Photo photo, File file) {
-		String imageDir = grailsApplication.config.file.upload.directory?:'C:\fogalFiles'//'/fogalFiles'
-		println "imageDir: ${imageDir}"
-        try {
-			Metadata metadata = ImageMetadataReader.readMetadata(file)
-			String sublocation
-			String city
-			String state
-			String country
-			for (Directory directory : metadata.getDirectories()) {
-				for (Tag tag : directory.getTags()) {
-					String name = tag.tagName
-					String desc = tag.description
-					//System.out.println("tag.name: ${name}, tag.description: ${desc}")
-					if (TITLE.equals(name)) photo.title = desc.trim()
-					if (CREDIT.equals(name)) photo.credit = desc.trim()
-					if (COPYRIGHT.equals(name)) photo.copyright = desc.trim()
-					if (DESCRIPTION.equals(name)) photo.description = _trimAndLog(desc)
-					if (PHOTO_DATE.equals(name)) photo.photoDate = _trimAndLog(desc)//desc.trim(); println "photoDate: ${desc.trim()}" }
-					if (IMAGE_HEIGHT.equals(name)) photo.imageHeight = _castToLong(desc)
-					if (IMAGE_WIDTH.equals(name)) photo.imageWidth = _castToLong(desc)
-					if (CITY.equals(name)) city = desc.trim()
-					if (SUB_LOCATION.equals(name)) sublocation = desc.trim()
-					if (PROVINCE_STATE.equals(name)) state = desc.trim()
-					if (COUNTRY.equals(name)) country = desc.trim()
-				}
-			}
-			photo.location = _assembleLocation(sublocation, city, state, country)
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-		photo
-    }
-	
-	String _trimAndLog(String term) {
-		term = term.trim()
-		if (term.length() > 2047) term = term.substring(0, 2047)
-		log.debug term
-		term
-	}
-	
-	Long _castToLong(String term) {
-		term = term.trim()
-		Long retval = term.split(" ")[0] as Long
-	}
-	
-	private String _assembleLocation(String sublocation, String city, String state, String country) {
-		StringBuffer loc = new StringBuffer()
-		if (sublocation) loc.append("${sublocation}, ")
-		if (city) loc.append("${city} ")
-		if (state) loc.append(state)
-		if (country) {
-			if ((loc.length() > 0) && !sublocation) loc.append(", ")
-			loc.append(country)
-		}
-		return loc.toString()
-	}
-	
-//	Photo _populatePhotoMetadataOld(Photo photo, File file) {
-//		String imageDir = grailsApplication.config.file.upload.directory?:'/tmp'
-//		println "imageDir: ${imageDir}"
-//		try {
-//			Metadata metadata = ImageMetadataReader.readMetadata(file)
-//			String sublocation
-//			String city
-//			String state
-//			String country
-//			for (Directory directory : metadata.getDirectories()) {
-//				for (Tag tag : directory.getTags()) {
-//					String name = tag.tagName
-//					String desc = tag.description
-//					//System.out.println("tag.name: ${name}, tag.description: ${desc}")
-//					if (TITLE.equals(name)) photo.title = desc.trim()
-//					if (DESCRIPTION.equals(name)) photo.description = desc.trim()
-//					if (PHOTO_DATE.equals(name)) { photo.photoDate = desc.trim(); println "photoDate: ${desc.trim()}" }
-//					if (CITY.equals(name)) city = desc.trim()
-//					if (SUB_LOCATION.equals(name)) sublocation = desc.trim()
-//					if (PROVINCE_STATE.equals(name)) state = desc.trim()
-//					if (COUNTRY.equals(name)) country = desc.trim()
-//				}
-//			}
-//			photo.location = "${sublocation}, ${city} ${state}, ${country}"
-//		}
-//		catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		photo
-//	}
 	
 	def addGalleryToFileSystem(String gPath, String categoryId) {
 		try {
@@ -286,17 +152,8 @@ class GalleryService {
 	def deleteGalleryFromCategory(Gallery gallery, Category category) {
 		try {
 			log.debug(gallery)
-			// delete photos from gallery and filesystem
-			// results in ConcurrentModificationException
-//			gallery.getPhotos().each { photo ->
-//				photoService.deletePhotoFromGallery(photo, gallery)
-//			}
-			// clean-up remaining image files on filesystem
 			_deletePhotosFromGallery(gallery)
-			// remove gallery from category, filesystem and database
 			_deleteGalleryFromFileSystem(gallery)
-			//category.galleries.remove(gallery)
-			//gallery.delete(flush:true)
 		} catch (Exception e) {
 			log.debug "deleteGalleryFromCategory: ${e}"
 			throw e
@@ -309,22 +166,6 @@ class GalleryService {
 			photoService.deletePhotoFromFilesystem(photo)
 		}
 	}
-	
-//	private void _deleteAllImageFilesFromGalleryPath(Gallery gallery) {
-//		try {
-//			String baseDir = grailsApplication.config.file.upload.directory
-//			Path galleryPath = Paths.get(baseDir, gallery.category.path, gallery.path)
-//			File galleryDir = galleryPath.toFile()
-//			List<String> photoPathList = galleryDir.list()
-//			for (String photoPathString : photoPathList) {
-//				Path imagePath = Paths.get(baseDir, gallery.category.path, gallery.path, photoPathString)
-//				photoService.deleteImageFile(imagePath)
-//			}
-//		} catch (Exception e) {
-//			log.debug("_deleteAllImageFilesFromGalleryPath: ${e}")
-//			throw e
-//		}
-//	}
 	
 	private void _deleteGalleryFromFileSystem(Gallery gallery) {
 		try {

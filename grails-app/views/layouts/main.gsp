@@ -43,6 +43,8 @@
             </ul>
             <ul>
                 <li>Special Project:&nbsp;<g:link controller="tranatworcom" action="index">Transnational Working Communities</g:link></li>
+                <br/>
+                <li><g:link controller="link" action="index">Links</g:link></li>
 <%--                <li>Special Project:&nbsp;<a href="${resource(dir:'html/TWC', file:'index.htm')}">Transnational Working Communities</a></li>--%>
 <%--                <span style="color: #fff;">&nbsp;|&nbsp;</span>--%>
 <%--                <li><a href="http://www.google.com">stuff</a></li>--%>

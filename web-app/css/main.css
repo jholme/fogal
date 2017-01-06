@@ -283,6 +283,10 @@ img {
 /*     padding: 0.3em 1.8em 1.25em; */
 }
 
+.property-list .link li {
+	margin-bottom:0.5em
+}
+
 .photo-breadcrumb {
     display: block;
     float: left;
@@ -421,6 +425,14 @@ fieldset, .buttons {
     overflow: hidden;
     zoom: 1;
     width: 200px;
+}
+
+.property-list .link {
+    list-style: none;
+    overflow: hidden;
+    zoom: 1;
+    width: 800px;
+    margin-top: 0;
 }
 
 .cat-gal .fieldcontain {

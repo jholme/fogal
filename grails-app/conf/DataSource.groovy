@@ -16,8 +16,10 @@ hibernate {
 environments {
     development {
         dataSource {
+			//dialect = "org.hibernate.dialect.H2Dialect"
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+			println "dbCreate: ${dbCreate}"
+            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"//;INIT=CREATE SCHEMA IF NOT EXISTS
         }
     }
     test {
