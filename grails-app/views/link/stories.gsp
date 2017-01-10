@@ -16,7 +16,7 @@
 <%--			</ul>--%>
 <%--		</div>--%>
 		<div id="list-link" class="content fieldcontain" role="main">
-			<h1>Links</h1>
+			<h1>Stories</h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -57,29 +57,21 @@
 <%--			</table>--%>
 			
 			<ol class="property-list link" style="list-style:none">
-			<g:each in="${Link.linkCats}" var="linkCat">
-			<g:if test="${linkInstanceList.any{it.linkCat.equals(linkCat)}}">
+<%--			<g:each in="${Link.linkCats}" var="linkCat">--%>
+<%--			<g:if test="${linkInstanceList.any{it.linkCat.equals(linkCat)}}">--%>
 			<li style="margin-top:2em; margin-bottom:1em">${linkCat}</li>
                  <ol class="property-list link">
 			     <g:each in="${linkInstanceList}" var="linkInstance">
-			         <g:if test="${linkInstance.linkCat.equals(linkCat)}">
-                        <li>
-                        <sec:ifNotLoggedIn><a href="${linkInstance.linkHref}">${linkInstance.linkText}</a></sec:ifNotLoggedIn>
-						<sec:ifLoggedIn>
-						<g:form url="[resource:linkInstance, action:'delete']" method="DELETE">
-						    <a href="${linkInstance.linkHref}">${linkInstance.linkText}</a>
-						    <fieldset class="buttons">
-						        <g:link class="edit" action="edit" resource="${linkInstance}"><g:message code="default.button.edit.label" default="Edit ${linkInstance?.linkHref}" /></g:link>
-						        <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-						    </fieldset>
-						</g:form>
-						</sec:ifLoggedIn>
-                        </li>
-			         </g:if>
+<%--			         <g:if test="${linkInstance.linkCat.equals(linkCat)}">--%>
+			             <li>
+			             <a href="${linkInstance.linkHref}" target="_blank">${linkInstance.linkText}</a>
+			             <sec:ifLoggedIn>&nbsp;&lt;&lt;<g:link action="edit" id="${linkInstance.id}">Edit</g:link>&gt;&gt;</sec:ifLoggedIn>
+			             </li>
+<%--			         </g:if>--%>
 			     </g:each>
                  </ol>
-            </g:if>
-			</g:each>
+<%--            </g:if>--%>
+<%--			</g:each>--%>
 			</ol>
 			
 <%--			<div class="pagination">--%>

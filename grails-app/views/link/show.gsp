@@ -49,11 +49,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${linkInstance?.groupName}">
+				<g:if test="${linkInstance?.linkCat}">
 				<li class="fieldcontain">
-					<span id="groupName-label" class="property-label"><g:message code="link.groupName.label" default="Group Name" /></span>
+					<span id="linkCat-label" class="property-label"><g:message code="link.linkCat.label" default="Link Category" /></span>
 					
-						<span class="property-value" aria-labelledby="groupName-label"><g:fieldValue bean="${linkInstance}" field="groupName"/></span>
+						<span class="property-value" aria-labelledby="linkCat-label"><g:fieldValue bean="${linkInstance}" field="linkCat"/></span>
 					
 				</li>
 				</g:if>

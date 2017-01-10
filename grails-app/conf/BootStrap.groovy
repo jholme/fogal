@@ -31,6 +31,7 @@ class BootStrap {
 				initGalleries()
 				initPhotos()
 				initLinks()
+				initStories()
 				security1()
 			}
 			production {
@@ -38,6 +39,7 @@ class BootStrap {
 				initGalleries()
 				initPhotos()
 				//initLinks()
+				//initStories()
 				security1()
 			}
 		}
@@ -173,18 +175,32 @@ class BootStrap {
 	def initLinks() {
 		println "initLinks"
 		try {
-			Link link1 = new Link(groupName:Link.ORGS, linkText:"National Network for Immigrant and Refugee Rights", linkHref:"http://www.nnirr.org/")
+			Link link1 = new Link(linkCat:Link.ORGS, linkText:"National Network for Immigrant and Refugee Rights", linkHref:"http://www.nnirr.org/")
 			link1.save(flush:true)
-			Link link2 = new Link(groupName:Link.ORGS, linkText:"U.S. Labor Against the War", linkHref:"http://www.uslaboragainstwar.org/")
+			Link link2 = new Link(linkCat:Link.ORGS, linkText:"U.S. Labor Against the War", linkHref:"http://www.uslaboragainstwar.org/")
 			link2.save(flush:true)
-			Link link3 = new Link(groupName:Link.ORGS, linkText:"United Farm Workers", linkHref:"http://www.ufw.org/")
+			Link link3 = new Link(linkCat:Link.ORGS, linkText:"United Farm Workers", linkHref:"http://www.ufw.org/")
 			link3.save(flush:true)
-			Link link4 = new Link(groupName:Link.PUBS, linkText:"Race Forward", linkHref:"https://www.raceforward.org/")
+			Link link4 = new Link(linkCat:Link.PUBS, linkText:"Race Forward", linkHref:"https://www.raceforward.org/")
 			link4.save(flush:true)
-			Link link5 = new Link(groupName:Link.PUBS, linkText:"Foreign Policy in Focus", linkHref:"http://fpif.org/")
+			Link link5 = new Link(linkCat:Link.PUBS, linkText:"Foreign Policy in Focus", linkHref:"http://fpif.org/")
 			link5.save(flush:true)
-			Link link6 = new Link(groupName:Link.PUBS, linkText:"Labor Notes", linkHref:"http://labornotes.org/")
+			Link link6 = new Link(linkCat:Link.PUBS, linkText:"Labor Notes", linkHref:"http://labornotes.org/")
 			link6.save(flush:true)
+		} catch (Exception e) {
+			println e
+		}
+	}
+	
+	def initStories() {
+		println "initStories"
+		try {
+			Link story1 = new Link(linkCat:Link.STOS, linkText:"Streets of Berlin", linkHref:"http://davidbaconrealitycheck.blogspot.com/2016/12/streets-of-berlin-street-life.html")
+			story1.save(flush:true)
+			Link story2 = new Link(linkCat:Link.STOS, linkText:"Guadalajara in the Street", linkHref:"http://davidbaconrealitycheck.blogspot.com/2016/12/guadalajara-in-street.html")
+			story2.save(flush:true)
+			Link story3 = new Link(linkCat:Link.STOS, linkText:"Immigrant Communities Brace for Trump", linkHref:"http://davidbaconrealitycheck.blogspot.com/2016/11/immigrant-communities-brace-for-trump.html")
+			story3.save(flush:true)
 		} catch (Exception e) {
 			println e
 		}

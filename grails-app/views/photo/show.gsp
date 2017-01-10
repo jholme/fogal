@@ -40,7 +40,7 @@
             </sec:ifLoggedIn>
 		</div>
  
-		<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" style="display:none" id="dialog" title="Description">
+		<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" style="display:none" id="dialog" title="${photoInstance.title}">
 		  <p>${photoInstance.description}</p>
 		</div>
             
@@ -61,17 +61,17 @@
             width: 400,
             buttons: [
                 {
-                    text: "Ok",
+                    text: "Close",
                     click: function() {
                         $( this ).dialog( "close" );
                     }
-                },
+                }/*,
                 {
                     text: "Cancel",
                     click: function() {
                         $( this ).dialog( "close" );
                     }
-                }
+                }*/
             ]
         });
 

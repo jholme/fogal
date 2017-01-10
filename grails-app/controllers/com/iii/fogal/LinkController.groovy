@@ -1,6 +1,9 @@
 package com.iii.fogal
 
 import static org.springframework.http.HttpStatus.*
+
+import com.google.javascript.jscomp.ProcessDefines.CollectDefines
+
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -12,6 +15,12 @@ class LinkController {
         params.max = Math.min(max ?: 10, 100)
         respond Link.list(params), model:[linkInstanceCount: Link.count()]
     }
+	
+	def stories() {
+//		List<Link> storyLinks = Link.findAll { link -> link.linkCat.equals(Link.STOS) }
+		def storyLinks = Link.findAllWhere(linkCat:Link.STOS)
+		respond storyLinks, model:[linkInstanceCount: storyLinks.size()]
+	}
 
     def show(Link linkInstance) {
         respond linkInstance
@@ -99,4 +108,5 @@ class LinkController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
 }

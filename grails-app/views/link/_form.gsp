@@ -20,15 +20,15 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'groupName', 'error')} required">
-	<label for="groupName">
-		<g:message code="link.groupName.label" default="Group Name" />
+<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'linkCat', 'error')} required">
+	<label for="linkCat">
+		<g:message code="link.linkCat.label" default="Link Category" />
 		<span class="required-indicator">*</span>
 	</label>
-<%--	<g:textField name="groupName" required="" value="${linkInstance?.groupName}"/>--%>
-	<g:select name="groupName"
-          from="${Link.groupNames}" 
-          value="${linkInstance.groupName}" />
+<%--	<g:textField name="linkCat" required="" value="${linkInstance?.linkCat}"/>--%>
+	<g:select name="linkCat"
+          from="${Link.allCats}" 
+          value="${linkInstance.linkCat}" />
 <%--          optionKey="id" />--%>
 
 	

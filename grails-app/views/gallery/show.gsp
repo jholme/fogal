@@ -34,11 +34,11 @@
             <ol class="property-list">
 				<li class="fieldcontain">
 					<g:uploadForm url="[resource:galleryInstance, action:'uploadPhoto']" enctype="multipart/form-data">
-						<fieldset class="form">
+						<fieldset class="form" style="text-align:center">
+                            <input type="file" id="image" name="image" multiple="true" />
 							<label for="image">
-								<span class="buttons"><g:submitButton name="create" class="save" value="${message(code: 'default.button.upload.label', default: 'Upload Images')}" /></span>
+								<span class="buttons" style="margin-right:50px"><g:submitButton name="create" class="save" value="${message(code: 'default.button.upload.label', default: 'Upload Images')}" /></span>
 							</label>
-							<input type="file" id="image" name="image" multiple="true" />
 							<input type="hidden" name="gallery" value="${galleryInstance?.id}" />
 						</fieldset>
 					</g:uploadForm>					

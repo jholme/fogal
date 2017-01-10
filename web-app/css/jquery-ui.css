@@ -507,7 +507,7 @@ button.ui-button::-moz-focus-inner {
 	position: relative;
 	border: 0;
 	padding: .5em 1em;
-	background: none;
+	background: #fff;
 	overflow: auto;
 }
 .ui-dialog .ui-dialog-buttonpane {
@@ -853,7 +853,7 @@ body .ui-tooltip {
 }
 .ui-widget-header {
 	border: 1px solid #e3a1a1;
-	background: #ff0000 url("images/ui-bg_highlight-soft_15_ff0000_1x100.png") 50% 50% repeat-x;
+	background: #ffffff url("images/ui-bg_highlight-soft_15_ff0000_1x100.png") 50% 50% repeat-x;
 	color: #ffffff;
 	font-weight: bold;
 }

@@ -211,6 +211,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/category/update/**':				['ROLE_ADMIN'],
 	// link
 	'/link/index':						['permitAll'],
+	'/link/stories':					['permitAll'],
 	'/link/create/**':					['ROLE_ADMIN'],
 	'/link/delete/**':					['ROLE_ADMIN'],
 	'/link/edit/**':					['ROLE_ADMIN'],
