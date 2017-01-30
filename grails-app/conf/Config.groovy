@@ -100,6 +100,7 @@ link.groups = [Link.ORGS, Link.PUBS]
 
 fogal.thumbnailSize = 200
 fogal.photoSize = 1200
+fogal.onstart.init = true
 
 environments {
     development {

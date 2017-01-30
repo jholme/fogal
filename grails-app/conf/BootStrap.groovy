@@ -23,8 +23,11 @@ class BootStrap {
 	 */
 	
 	def galleryService
+	def grailsApplication
 	
     def init = { servletContext ->
+		println "onstart.init: ${grailsApplication.config.fogal.onstart.init}"
+		println "tmpdir: ${System.getProperty("java.io.tmpdir")}"
 		environments {
 			development {
 				initCategories()
@@ -191,7 +194,7 @@ class BootStrap {
 			link6.save(flush:true)
 			Link link7 = new Link(linkCat:Link.BOOKS, linkText:"Illegal People", linkHref:"http://www.beacon.org/Illegal-People-P690.aspx")
 			link7.save(flush:true)
-			Link link8 = new Link(linkCat:Link.SHOS, linkText:"Invisible No More", linkHref:"http://davidbaconrealitycheck.blogspot.com/2015/09/invisible-no-more-photography-show-by.html")
+			Link link8 = new Link(linkCat:Link.SHOWS, linkText:"Invisible No More", linkHref:"http://davidbaconrealitycheck.blogspot.com/2015/09/invisible-no-more-photography-show-by.html")
 			link8.save(flush:true)
 		} catch (Exception e) {
 			println e
