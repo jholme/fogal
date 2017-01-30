@@ -17,7 +17,6 @@ class PhotoController {
     static scaffold = Photo
 	def galleryService
 	def photoService
-	//static allowedMethods = [save: "POST", update: ['PUT','POST'], delete: 'POST']
 	
 	def renderMainImage() {
 		_renderImage(photoService.FULL_IMAGE)
@@ -30,13 +29,6 @@ class PhotoController {
 	private def _renderImage(String imageType) {
 		try {
 			Photo photo = Photo.findById(params.id)
-//			String imageDir = grailsApplication.config.file.upload.directory?:'/tmp'
-//			//String galleryPath = photo?.gallery?.path
-//			Gallery gallery = photo.gallery
-//			Category category = gallery.category
-//			String fileName = THUM_IMAGE.equals(imageType) ? photo.thumbnailFilename : FULL_IMAGE.equals(imageType) ? photo.originalFilename : ""
-//			//File imageFile = new File("${imageDir}/${galleryPath}/${fileName}")
-//			Path imagePath = Paths.get(imageDir, category.path, gallery.path, fileName)
 			File imageFile = photoService.prepareToRender(imageType, photo)//imagePath.toFile()
 			response.setContentLength(imageFile.size() as Integer)
 			InputStream fileStream = new FileInputStream(imageFile)
@@ -49,28 +41,16 @@ class PhotoController {
 	def delete() {
 		Photo photo = Photo.get(params.id)
 		Gallery gallery = photo.gallery
-//		try {
-//			log.debug(photo)
-//			photoService.deleteImages(photo)
-//			gallery.photos.remove(photo)
-//			photo.delete(flush:true)
-//		} catch (Exception e) {
-//			log.debug e
-//		}
-		//Photo tempPhoto = _createTempPhoto(photo)
 		photoService.deletePhotoFromGallery(photo)
 		photoService.deletePhotoFromFilesystem(photo)
 		redirect(controller:'gallery', action:'show', params:[id:gallery.id])
 	}
 	
-//	private Photo _createTempPhoto(Photo photo) {
-//		Photo tempPhoto = new Photo()
-//		tempPhoto.gallery = photo.gallery
-//		tempPhoto.originalFilename = photo.originalFilename
-//		tempPhoto.thumbnailFilename = photo.thumbnailFilename
-//		tempPhoto.title = photo.title
-//		tempPhoto
-//	}
+	def photos() {
+		//List<Photo> photoList = Photo.list()
+		//println "photoList: ${photoList.size()}"
+		render(view:'photos', model:[:])
+	}
 	
 	def save() {
 		log.debug "Photo.save.1"

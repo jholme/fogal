@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'link.label', default: 'Link')}" />
+		<g:set var="entityName" value="${linkInstance.linkCat.equals(Link.STOS)?"Story":"Link"}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -29,11 +29,13 @@
 			</g:hasErrors>
 			<g:form url="[resource:linkInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${linkInstance?.version}" />
+				<g:set var="cancelAction" value="${linkInstance.linkCat.equals(Link.STOS)?"stories":"index"}"></g:set>
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:link class="save" action="${cancelAction}">Cancel</g:link>
 				</fieldset>
 			</g:form>
 		</div>

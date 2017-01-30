@@ -172,6 +172,8 @@ class BootStrap {
 		}
 	}
 	
+	// 
+	
 	def initLinks() {
 		println "initLinks"
 		try {
@@ -187,6 +189,10 @@ class BootStrap {
 			link5.save(flush:true)
 			Link link6 = new Link(linkCat:Link.PUBS, linkText:"Labor Notes", linkHref:"http://labornotes.org/")
 			link6.save(flush:true)
+			Link link7 = new Link(linkCat:Link.BOOKS, linkText:"Illegal People", linkHref:"http://www.beacon.org/Illegal-People-P690.aspx")
+			link7.save(flush:true)
+			Link link8 = new Link(linkCat:Link.SHOS, linkText:"Invisible No More", linkHref:"http://davidbaconrealitycheck.blogspot.com/2015/09/invisible-no-more-photography-show-by.html")
+			link8.save(flush:true)
 		} catch (Exception e) {
 			println e
 		}

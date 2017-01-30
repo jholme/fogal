@@ -1,13 +1,22 @@
 package com.iii.fogal
 
 import org.springframework.http.HttpStatus
+
 import grails.converters.JSON
+
 import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.MultipartFile
+
 import java.awt.image.BufferedImage
+
 import org.imgscalr.Scalr
+
 import javax.imageio.ImageIO
+
 import org.apache.commons.io.IOUtils
+
+import com.google.common.cache.LocalCache.Values
+import com.sun.java.swing.plaf.motif.MotifInternalFrameTitlePane.MaximizeButton
 
 class GalleryController {
 
@@ -75,27 +84,10 @@ class GalleryController {
 	//def afterInterceptor = [action:this.&_handleGalleryPathUpdate, only:'update']
 	
 	private _validateGallery() {
-		_validateGalleryIdx()
+		println "validateGallery"
+		Boolean retval = _validateGalleryIdx()
+		if (!retval) return retval
 		_handleGalleryPathUpdate()
-	}
-	
-	private Boolean _handleGalleryPathUpdate() {
-		log.debug "_handleGalleryPathUpdate"
-		Boolean success = true
-		String newPath = params.path
-		log.debug "newPath: ${newPath}"
-		Gallery gallery = Gallery.findById(params.id as Long)
-		log.debug "oldPath: ${gallery.path}"
-		if (!newPath?.equals(gallery.path)) {
-			success = galleryService.updateGalleryOnFileSystem(gallery, newPath)
-		}
-		if (!success) {
-			String msg = "Could not change gallery path from '${gallery?.path}' to '${newPath}'"
-			log.debug msg
-			flash.message = msg
-			redirect(action: 'edit', params:['id':params.id])
-		}
-		success
 	}
 		
 	private Boolean _validateGalleryIdx() {
@@ -117,18 +109,20 @@ class GalleryController {
 		log.debug "uniqueValues: ${uniqueValues}"
 		Boolean bool = photoIdx.values().any{ it < 1 }
 		log.debug "photoIdx.values().any() < 1: ${bool}"
-		log.debug "photoIdx.values().max(): ${photoIdx.values().max()}"
+		Integer maxValue = GroovyCollections.max(photoIdx.values())
+		log.debug "photoIdx.values().max(): ${maxValue}"
 		
-		if (photoIdx.values().max() > photoIdx.size()) {
+		
+		if (!uniqueValues.size().equals(origValues.size())) {
+			flash.message = "Photo order values must be unique."
+			redirect(action: 'edit', params:['id':params.id])
+			return false
+		} else if (maxValue > photoIdx.size()) {
 			flash.message = "Photo order values must be contiguous."
 			redirect(action: 'edit', params:['id':params.id])
 			return false
 		} else if (photoIdx.values().any{ it < 1 }) {
 			flash.message = "Photo order values must 1 or higher."
-			redirect(action: 'edit', params:['id':params.id])
-			return false
-		} else if (uniqueValues.size() < origValues.size()) {
-			flash.message = "Photo order values must be unique."
 			redirect(action: 'edit', params:['id':params.id])
 			return false
 		} else {
@@ -145,7 +139,26 @@ class GalleryController {
 			return true
 		}
 	}
-		
+	
+	private Boolean _handleGalleryPathUpdate() {
+		log.debug "_handleGalleryPathUpdate"
+		Boolean success = true
+		String newPath = params.path
+		log.debug "newPath: ${newPath}"
+		Gallery gallery = Gallery.findById(params.id as Long)
+		log.debug "oldPath: ${gallery.path}"
+		if (!newPath?.equals(gallery.path)) {
+			success = galleryService.updateGalleryOnFileSystem(gallery, newPath)
+		}
+		if (!success) {
+			String msg = "Could not change gallery path from '${gallery?.path}' to '${newPath}'"
+			log.debug msg
+			flash.message = msg
+			redirect(action: 'edit', params:['id':params.id])
+		}
+		success
+	}
+
 	private Map _populatePhotoIdx(param) {
 		String key = param.key
 		String val = param.value

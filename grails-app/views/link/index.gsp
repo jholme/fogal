@@ -64,7 +64,7 @@
 			     <g:each in="${linkInstanceList}" var="linkInstance">
 			         <g:if test="${linkInstance.linkCat.equals(linkCat)}">
                         <li>
-                        <sec:ifNotLoggedIn><a href="${linkInstance.linkHref}">${linkInstance.linkText}</a></sec:ifNotLoggedIn>
+                        <sec:ifNotLoggedIn><a href="${linkInstance.linkHref}" target="_blank">${linkInstance.linkText}</a></sec:ifNotLoggedIn>
 						<sec:ifLoggedIn>
 						<g:form url="[resource:linkInstance, action:'delete']" method="DELETE">
 						    <a href="${linkInstance.linkHref}">${linkInstance.linkText}</a>

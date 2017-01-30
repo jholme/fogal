@@ -6,14 +6,17 @@ class Link {
 	String linkText
 	String linkHref
 	
-	static String OTH = "Other Links"
-	static String ORGS = "Organizations"
-	static String PHO = "Photography Links"
-	static String PUBS = "Publications"
-	static String STOS = "Stories"
-	static String PHOS = "Photos"
-	static List<String> linkCats = [ORGS,PUBS,PHO,OTH]
-	static List<String> allCats = [ORGS,PUBS,PHO,OTH,PHOS,STOS]
+	static public final String BOOKS = "Books"
+	static public final String NEWS = "News"
+	static public final String SHOS = "Shows"
+	static public final String OTH = "Other Links"
+	static public final String ORGS = "Organizations"
+	static public final String PHO = "Photography Links"
+	static public final String PUBS = "Publications"
+	static public final String STOS = "Stories"
+	static public final String PHOS = "Photos"
+	static public final List<String> linkCats = [BOOKS,NEWS,SHOS,ORGS,PUBS,PHO,OTH]
+	static public final List<String> allCats = [BOOKS,NEWS,SHOS,ORGS,PUBS,PHO,OTH,PHOS,STOS]
 	
     static constraints = {
 		linkCat blank:false, nullable:false

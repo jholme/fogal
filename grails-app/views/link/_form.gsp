@@ -1,7 +1,5 @@
 <%@ page import="com.iii.fogal.Link" %>
 
-
-
 <div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'linkText', 'error')} required">
 	<label for="linkText">
 		<g:message code="link.linkText.label" default="Link Text" />
@@ -28,7 +26,7 @@
 <%--	<g:textField name="linkCat" required="" value="${linkInstance?.linkCat}"/>--%>
 	<g:select name="linkCat"
           from="${Link.allCats}" 
-          value="${linkInstance.linkCat}" />
+          value="${linkInstance.linkCat}" />&nbsp;To create a <strong>Story</strong> link, select <strong>Stories</strong>
 <%--          optionKey="id" />--%>
 
 	

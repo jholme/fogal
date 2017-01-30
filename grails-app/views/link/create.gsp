@@ -1,8 +1,9 @@
+<%@ page import="com.iii.fogal.Link" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'link.label', default: 'Link')}" />
+        <g:set var="entityName" value="${linkInstance.linkCat.equals(Link.STOS)?"Story":"Link"}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -14,7 +15,7 @@
 <%--			</ul>--%>
 <%--		</div>--%>
 		<div id="create-link" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+			<h1>Create Link or Story</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -26,11 +27,13 @@
 			</ul>
 			</g:hasErrors>
 			<g:form url="[resource:linkInstance, action:'save']" >
+                <g:set var="cancelAction" value="${linkInstance.linkCat.equals(Link.STOS)?"stories":"index"}"></g:set>
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <g:link class="save" action="${cancelAction}">Cancel</g:link>
 				</fieldset>
 			</g:form>
 		</div>

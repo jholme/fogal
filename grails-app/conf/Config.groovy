@@ -223,6 +223,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/photo/create/**':					['ROLE_ADMIN'],
 	'/photo/delete/**':					['ROLE_ADMIN'],
 	'/photo/edit/**':					['ROLE_ADMIN'],
+	'/photo/photos/**':					['permitAll'],
 	'/photo/save/**':					['ROLE_ADMIN'],
 	'/photo/show/**':					['permitAll'],
 	'/photo/renderMainImage/**':		['permitAll'],

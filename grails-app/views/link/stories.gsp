@@ -4,8 +4,8 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'link.label', default: 'Link')}" />
-		<title>Links</title>
+		<g:set var="entityName" value="${message(code: 'story.label', default: 'Story')}" />
+		<title>Stories</title>
 	</head>
 	<body>
 		<a href="#list-link" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -24,7 +24,7 @@
             <sec:ifLoggedIn>
             <g:form url="[resource:linkInstance, action:'delete']" method="DELETE">
                 <fieldset class="buttons">
-                    <g:link class="create" action="create"><g:message code="default.button.new.label" default="New Link" /></g:link>
+                    <g:link class="create" action="create"><g:message code="default.button.new.label" default="New Story" /></g:link>
                 </fieldset>
             </g:form>
             </sec:ifLoggedIn>
@@ -64,8 +64,18 @@
 			     <g:each in="${linkInstanceList}" var="linkInstance">
 <%--			         <g:if test="${linkInstance.linkCat.equals(linkCat)}">--%>
 			             <li>
-			             <a href="${linkInstance.linkHref}" target="_blank">${linkInstance.linkText}</a>
-			             <sec:ifLoggedIn>&nbsp;&lt;&lt;<g:link action="edit" id="${linkInstance.id}">Edit</g:link>&gt;&gt;</sec:ifLoggedIn>
+<%--			             <a href="${linkInstance.linkHref}" target="_blank">${linkInstance.linkText}</a>--%>
+<%--			             <sec:ifLoggedIn>&nbsp;&lt;&lt;<g:link action="edit" id="${linkInstance.id}">Edit</g:link>&gt;&gt;</sec:ifLoggedIn>--%>
+                        <sec:ifNotLoggedIn><a href="${linkInstance.linkHref}" target="_blank">${linkInstance.linkText}</a></sec:ifNotLoggedIn>
+                        <sec:ifLoggedIn>
+                        <g:form url="[resource:linkInstance, action:'delete']" method="DELETE">
+                            <a href="${linkInstance.linkHref}">${linkInstance.linkText}</a>
+                            <fieldset class="buttons">
+                                <g:link class="edit" action="edit" resource="${linkInstance}"><g:message code="default.button.edit.label" default="Edit ${linkInstance?.linkHref}" /></g:link>
+                                <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                            </fieldset>
+                        </g:form>
+                        </sec:ifLoggedIn>
 			             </li>
 <%--			         </g:if>--%>
 			     </g:each>

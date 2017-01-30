@@ -83,6 +83,8 @@ class LinkController {
     @Transactional
     def delete(Link linkInstance) {
 
+		String redirectAction = linkInstance.linkCat.equals(Link.STOS) ? "stories" : "index" 
+		
         if (linkInstance == null) {
             notFound()
             return
@@ -93,7 +95,7 @@ class LinkController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Link.label', default: 'Link'), linkInstance.id])
-                redirect action:"index", method:"GET"
+                redirect action:redirectAction, method:"GET"
             }
             '*'{ render status: NO_CONTENT }
         }
