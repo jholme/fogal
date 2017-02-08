@@ -6,9 +6,9 @@ import com.drew.metadata.iptc.*
 import com.drew.imaging.*
 import com.drew.imaging.jpeg.*
 import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default
-import org.apache.tika.exception.*
-import org.apache.tika.metadata.*
-import org.apache.tika.parsers.*
+//import org.apache.tika.exception.*
+//import org.apache.tika.metadata.*
+//import org.apache.tika.parsers.*
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -80,18 +80,14 @@ class Photo {
 		image nullable: true, maxSize: 2000000
     }
 	
-	def beforeDelete() {
-		println "Photo.beforeDelete: ${originalFilename}"
-	}
-	
 	def afterDelete() {
-		println "Photo.afterDelete: ${originalFilename}"
+		log.info "Photo.afterDelete: ${originalFilename}"
 		List photos = gallery.photos.sort{ a,b -> a.galleryIdx <=> b.galleryIdx}
-		photos.each {println "${it.id} => ${it.galleryIdx}"}
+		photos.each {log.info "${it.id} => ${it.galleryIdx}"}
 		Integer prevIdx = 0
 		for (Photo photo in photos) {
 			Integer gidx = photo.galleryIdx
-			println "${photo.id} => ${photo.galleryIdx}"
+			log.info "${photo.id} => ${photo.galleryIdx}"
 			if (gidx != prevIdx + 1) {
 				photo.galleryIdx = gidx - 1
 				photo.save()
@@ -104,14 +100,6 @@ class Photo {
 		galleryIdx = gallery.photos.size()
 	}
 	
-	def beforeUpdate() {
-		println "before update"
-	}
-
-	def afterUpdate() {
-		println "after update"
-	}
-	
 	public void initPhoto(Gallery gallery, List<Photo> photoList, File photoFile) {
 		populatePhotoMetadata(photoFile)
 		try {
@@ -121,14 +109,14 @@ class Photo {
 				this.calculateAspect()
 				this.save(flush:true)
 				photoList.add(this)
-				println "save photo: ${this}"
+				log.info "save photo: ${this}"
 			} else {
-				println "failed to save photo: ${this}"
-				println this.errors
+				log.info "failed to save photo: ${this}"
+				log.info this.errors
 			}
 	
 		} catch (Exception e) {
-			println "init photo failed: ${e}"
+			log.error "init photo failed: ${e}"
 		}
 	}
 
@@ -148,7 +136,7 @@ class Photo {
 			def directories = metadata.getDirectories()
 			for (Directory directory : directories) {
 				def tags = directory.getTags()
-				println "${directory}"
+				//println "${directory}"
 				for (Tag tag : tags) {
 					String name = tag.tagName
 					String desc = tag.description
@@ -169,9 +157,9 @@ class Photo {
 			this.location = _assembleLocation(sublocation, city, state, country)
 		}
 		catch (Exception e) {
-			println e
+			log.error e
 		}
-		println "${this.photoDate} (${this.location}) - ${this.description}"
+		log.info "${this.photoDate} (${this.location}) - ${this.description}"
 		this
 	}
 	
@@ -190,7 +178,7 @@ class Photo {
 	String _trimAndLog(String term) {
 		term = term.trim()
 		if (term.length() > 2047) term = term.substring(0, 2047)
-		println term
+		//println term
 		term
 	}
 	
@@ -199,30 +187,30 @@ class Photo {
 		Long retval = term.split(" ")[0] as Long
 	}
 	
-	private void _tryTika(File file) {
-		org.apache.tika.metadata.Metadata metatika = new org.apache.tika.metadata.Metadata()
-		try {
-			ContentHandler handler = new DefaultHandler()
-			org.apache.tika.parser.Parser parser = new org.apache.tika.parser.jpeg.JpegParser()
-			org.apache.tika.parser.ParseContext context = new org.apache.tika.parser.ParseContext()
-			String mimeType
-			InputStream stream = IOUtils.toBufferedInputStream(FileUtils.openInputStream(file))
-			org.apache.tika.Tika tika = new org.apache.tika.Tika()
-			mimeType = tika.detect(stream)
-			metatika.set(org.apache.tika.metadata.Metadata.CONTENT_TYPE, mimeType)
-			parser.parse(stream, handler, metatika, context)
-		} catch (org.apache.tika.exception.TikaException te) {
-			println te
-			println te.cause
-		} catch (JpegProcessingException jpe) {
-			println jpe
-			println jpe.detailMessage
-		} catch (Exception e) {
-			println e
-			println e.message
-		}
-		println "metatika Model: ${metatika.get('Model')}"
-	}
+//	private void _tryTika(File file) {
+//		org.apache.tika.metadata.Metadata metatika = new org.apache.tika.metadata.Metadata()
+//		try {
+//			ContentHandler handler = new DefaultHandler()
+//			org.apache.tika.parser.Parser parser = new org.apache.tika.parser.jpeg.JpegParser()
+//			org.apache.tika.parser.ParseContext context = new org.apache.tika.parser.ParseContext()
+//			String mimeType
+//			InputStream stream = IOUtils.toBufferedInputStream(FileUtils.openInputStream(file))
+//			org.apache.tika.Tika tika = new org.apache.tika.Tika()
+//			mimeType = tika.detect(stream)
+//			metatika.set(org.apache.tika.metadata.Metadata.CONTENT_TYPE, mimeType)
+//			parser.parse(stream, handler, metatika, context)
+//		} catch (org.apache.tika.exception.TikaException te) {
+//			println te
+//			println te.cause
+//		} catch (JpegProcessingException jpe) {
+//			println jpe
+//			println jpe.detailMessage
+//		} catch (Exception e) {
+//			println e
+//			println e.message
+//		}
+//		//println "metatika Model: ${metatika.get('Model')}"
+//	}
 
 	String toString() {
 		"${title} (${galleryIdx})"

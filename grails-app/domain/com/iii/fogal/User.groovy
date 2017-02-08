@@ -4,6 +4,7 @@ class User {
 
 	transient springSecurityService
 
+	Long id
 	String username
 	String password
 	boolean enabled = true
@@ -19,6 +20,8 @@ class User {
 	}
 
 	static mapping = {
+		// reserved words in postgresql
+		table '`User`'
 		password column: '`password`'
 	}
 

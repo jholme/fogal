@@ -27,9 +27,9 @@
 
 			<ol class="photo">
 			     <g:each in="${Category.list()}" var="category">
-			         <h2><g:link controller="category" action="show" resource="${category}">${category.name}</g:link></h2>
+			         <h2>Category&nbsp;&ndash;&nbsp;<g:link controller="category" action="show" resource="${category}">${category.name}</g:link></h2>
 			         <g:each in="${category.galleries}" var="gallery">
-			             <h3><g:link controller="gallery" action="show" resource="${gallery}">${gallery.name}</g:link></h3>
+			             <h3>Gallery&nbsp;&ndash;&nbsp;<g:link controller="gallery" action="show" resource="${gallery}">${gallery.name}</g:link></h3>
 			                <g:each in="${gallery.photos.sort{a,b-> a.galleryIdx.compareTo(b.galleryIdx)}}" var="photoInstance">
 			                <li class="property-list photo">
 			                    ${photoInstance.galleryIdx}&nbsp;<g:link class="edit" action="show" resource="${photoInstance}">${photoInstance.title}</g:link>
