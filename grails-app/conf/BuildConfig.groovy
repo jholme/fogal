@@ -26,7 +26,7 @@ grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
-        excludes 'ehcache'
+        excludes 'ehcache', 'ehcache-core'
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
@@ -55,21 +55,25 @@ grails.project.dependency.resolution = {
 		compile 'com.drewnoakes:metadata-extractor:2.9.1'
 		compile 'com.adobe.xmp:xmpcore:5.1.2'
 		compile 'commons-io:commons-io:2.4'
-		// tika
-		compile ('org.apache.tika:tika-core:1.14') {
-			excludes: 'ehcache'
-			excludes: 'ehcache-core'
-		}
-		runtime ('org.apache.tika:tika-parsers:1.14') {
-			excludes: 'ehcache'
-			excludes: 'ehcache-core'
-		}
+//		// tika
+//		runtime ('org.apache.tika:tika-core:1.14') {
+//			excludes: 'ehcache'
+//			excludes: 'ehcache-core'
+//			export = false
+//		}
+//		runtime ('org.apache.tika:tika-parsers:1.14') {
+//			excludes: 'ehcache'
+//			excludes: 'ehcache-core'
+//			export = false
+//		}
+		runtime 'org.postgresql:postgresql:9.4.1212'
     }
 
     plugins {
         // plugins for the build system only
 //        build ":tomcat:7.0.50.1"
-        build ":tomcat:7.0.55.2"
+//        build ":tomcat:7.0.55.2"
+        build ":tomcat:8.0.33"
 		build ":release:3.1.1"
 		build ":rest-client-builder:2.1.1" // {export = false}
 
@@ -77,31 +81,23 @@ grails.project.dependency.resolution = {
 //        compile ":scaffolding:2.0.2"
 //        compile ':cache:1.1.1'
         compile ":scaffolding:2.1.2"
-        compile ':cache:1.1.8'
-		compile ':cache-ehcache:1.0.5'
+        //compile ':cache:1.1.8'
+		//compile ':cache-ehcache:1.0.5'
 		compile ':spring-security-core:2.0-RC5'
 		compile ':asset-pipeline:2.1.5'
 		
         // plugins needed at runtime but not for compilation
 //        runtime ":hibernate:3.6.10.8" // or ":hibernate4:4.3.1.1"
         runtime (":hibernate4:4.3.8.1") { // or ":hibernate4:4.3.1.1"
-			excludes 'ehcache'
+			//excludes 'ehcache'
+			//excludes 'ehcache-core'
+			//excludes 'hibernate-ehcache'
+			//export = false
         }
-        runtime ":database-migration:1.3.8"
+        runtime(":database-migration:1.4.0") {
+			excludes 'ehcache'
+			excludes 'ehcache-core'
+		}
         runtime ":jquery:1.11.1"
-//        runtime ":resources:1.2.1"
-        // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0.1"
-        //runtime ":cached-resources:1.1"
-        //runtime ":yui-minify-resources:0.1.5"
-
-        // An alternative to the default resources plugin is the asset-pipeline plugin
-        //compile ":asset-pipeline:1.5.0"
-
-        // Uncomment these to enable additional asset-pipeline capabilities
-        //compile ":sass-asset-pipeline:1.5.1"
-        //compile ":less-asset-pipeline:1.5.0"
-        //compile ":coffee-asset-pipeline:1.5.0"
-        //compile ":handlebars-asset-pipeline:1.0.0.3"
     }
 }

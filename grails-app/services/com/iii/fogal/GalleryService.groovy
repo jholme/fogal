@@ -26,10 +26,10 @@ class GalleryService {
 		try {
 			Gallery gallery = Gallery.findById(galleryId)
 			String imageDir = grailsApplication.config.file.upload.directory?:'C:\\fogalFiles'//'/fogalFiles'
-			println "gallery.path: ${gallery.path}"
+			log.info "gallery.path: ${gallery.path}"
 			for (MultipartFile file in files) {
 				String oName = file.getOriginalFilename()
-				println "oName: ${oName}"
+				log.info "oName: ${oName}"
 				String newFileName = _buildNewFilename(oName)
 				Path newPath = Paths.get(imageDir, gallery.category.path, gallery.path, newFileName)
 				File newFile = newPath.toFile()
@@ -47,9 +47,9 @@ class GalleryService {
 	}
 	
 	private File _createNewFileFromUpload(MultipartFile file, File newFile, Gallery gallery) {
-		println "_createNewFileFromUpload"
-		println "file: ${file}"
-		println "newFile: ${newFile}"
+		log.info "_createNewFileFromUpload: ${file} => ${newFile}"
+		//println "file: ${file}"
+		//println "newFile: ${newFile}"
 		file.transferTo(newFile)
 		newFile
 	}
@@ -80,11 +80,11 @@ class GalleryService {
 	}
 	
 	private File _createNewFileFromDisk(String newFileName, Gallery gallery, Path sourcePath, Path targetPath) {
-		print "_createNewFileFromDisk"
-		println "newFileName: ${newFileName}"
-		println "gallery.path: ${gallery.path}"
-		println "sourcePath: ${sourcePath}"
-		println "targetPath: ${targetPath}"
+		log.info "_createNewFileFromDisk: ${newFileName} - ${sourcePath} => ${targetPath}"
+		//println "newFileName: ${newFileName}"
+		//println "gallery.path: ${gallery.path}"
+		//println "sourcePath: ${sourcePath}"
+		//println "targetPath: ${targetPath}"
 		Path newPath = Files.copy(sourcePath, targetPath)
 		File newFile = newPath.toFile()
 		newFile
@@ -99,7 +99,7 @@ class GalleryService {
 	
 	private File _createThumbnail(File newFile, String fileName, Gallery gallery) {
 		String imageDir = grailsApplication.config.file.upload.directory?:'C:\fogalFiles'
-		println "imageDir: ${imageDir}"
+		//println "imageDir: ${imageDir}"
 		Integer thumbnailSize = grailsApplication.config.fogal.thumbnailSize
 		BufferedImage resizedImage = Scalr.resize(ImageIO.read(newFile), thumbnailSize);
 		String thumbnailFilename = _buildThumbnailName(fileName)
@@ -114,14 +114,14 @@ class GalleryService {
 	private String _buildNewFilename(String oName) {
 		String filenameBase = System.currentTimeMillis()
 		String newFilename = _buildFileName(filenameBase, oName)
-		println newFilename
+		log.info newFilename
 		newFilename
 	}
 	
 	private String _buildThumbnailName(String oName) {
 		String filenameBase = "thumbnail"
 		String tnFilename = _buildFileName("thumbnail", oName)
-		println tnFilename
+		log.info tnFilename
 		tnFilename
 	}
 	
@@ -130,7 +130,7 @@ class GalleryService {
 		String oFileBase = fileNameArray[0]
 		String oFileExt = fileNameArray[1]
 		String newFilename = oFileBase + "_" + suffix + "." + oFileExt
-		println newFilename
+		//println newFilename
 		newFilename
 	}
 	

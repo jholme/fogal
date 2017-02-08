@@ -30,21 +30,23 @@ class BootStrap {
 		println "tmpdir: ${System.getProperty("java.io.tmpdir")}"
 		environments {
 			development {
-				initCategories()
-				initGalleries()
-				initPhotos()
-				initLinks()
-				initStories()
-				security1()
+				if (grailsApplication.config.fogal.onstart.init) {
+					initCategories()
+					initGalleries()
+					initPhotos()
+					initLinks()
+					initStories()
+					security1()
+				}
 			}
-			production {
-				initCategories()
-				initGalleries()
-				initPhotos()
-				//initLinks()
-				//initStories()
-				security1()
-			}
+//			production {
+//				initCategories()
+//				initGalleries()
+//				initPhotos()
+//				//initLinks()
+//				//initStories()
+//				security1()
+//			}
 		}
     }
 	
@@ -216,17 +218,28 @@ class BootStrap {
 	}
 
 	def security1() {
-		// spring-security
-		Role adminRole = new Role(authority: 'ROLE_ADMIN')
-		adminRole.save()
-//		adminRole.save(flush: true)
-		Role userRole = new Role(authority: 'ROLE_USER')
-		userRole.save()
-//		userRole.save(flush: true)
-		User testUser = new User(username: 'me', password: 'password')
-		testUser.save()
-//		testUser.save(flush: true)
-		UserRole.create(testUser, adminRole)
+		println "init spring-security"
+		Role adminRole = Role.findByAuthority('ROLE_ADMIN')
+		if (!adminRole) {
+			adminRole = new Role(authority: 'ROLE_ADMIN')
+			adminRole.save()
+//			adminRole.save(flush: true)
+		}
+		Role userRole = Role.findByAuthority('ROLE_USER')
+		if (!userRole) {
+			userRole = new Role(authority: 'ROLE_USER')
+			userRole.save()
+//			userRole.save(flush: true)
+		}
+		User testUser = User.findByUsername('db@c0n!')
+		if (!testUser) {
+//			Long userid = randomUUID()
+//			testUser = new User(id:userid, username:'db@c0n!', password:'password')
+			testUser = new User(username:'db@c0n!', password:'password')
+			testUser.save()
+//			testUser.save(flush: true)
+			UserRole.create(testUser, adminRole)
+		}
 		//assert User.count() == 1
 		//assert Role.count() == 2
 		//assert UserRole.count() == 1

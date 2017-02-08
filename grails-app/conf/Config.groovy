@@ -61,9 +61,50 @@ grails {
         // escapes all not-encoded output at final stage of outputting
         // filteringCodecForContentType.'text/html' = 'html'
     }
+	cache {
+		order = 2000
+		enabled = true
+		clearAtStartup = true
+		shared = true
+		ehcache {
+			reloadable = false
+		}
+	}
 }
 
- 
+def uniqueCacheManagerName = appName + "ConfigEhcache-" + System.currentTimeMillis()
+grails.cache.ehcache.cacheManagerName = uniqueCacheManagerName
+println uniqueCacheManagerName
+
+grails.cache.config = {
+	provider {
+		updateCheck false
+		monitoring 'on'
+		dynamicConfig false
+		name uniqueCacheManagerName
+	}
+	defaultCache {
+		maxElementsInMemory 10000
+		eternal false
+		timeToIdleSeconds 120
+		timeToLiveSeconds 120
+		overflowToDisk false
+		diskPersistent false
+		memoryStoreEvictionPolicy 'LRU'
+	}
+	defaults {
+		maxElementsInMemory 10000
+		eternal false
+		timeToIdleSeconds 300 // 5 mins
+		timeToLiveSeconds 300
+		overflowToDisk false
+		maxElementsOnDisk 100000
+		diskPersistent false
+		diskExpiryThreadIntervalSeconds 120
+		memoryStoreEvictionPolicy 'LRU'
+	}
+}
+
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
@@ -83,6 +124,9 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+// run dbm-migrate on startup
+grails.plugin.databasemigration.updateOnStart = true
+
 String fogalFiles
 String fogalFilesNew
 println "os-name: ${System.getProperty('os.name')}"
@@ -100,7 +144,7 @@ link.groups = [Link.ORGS, Link.PUBS]
 
 fogal.thumbnailSize = 200
 fogal.photoSize = 1200
-fogal.onstart.init = true
+fogal.onstart.init = false
 
 environments {
     development {
@@ -134,7 +178,7 @@ log4j = {
 		info()
 	}
 	
-	debug "grails.app"
+	debug "grails.app"//, 'net.sf.ehcache.hibernate', 'org.hibernate'
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
@@ -145,7 +189,7 @@ log4j = {
            'org.codehaus.groovy.grails.plugins',            // plugins
            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
            'org.springframework',
-           'org.hibernate',
+           'org.hibernate'//,
            'net.sf.ehcache.hibernate'
 }
 
