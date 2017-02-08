@@ -33,7 +33,7 @@
     <label for="homePageTile">
         <g:message code="category.homePageTile.label" default="homePageTile" />
     </label>
-    <g:select name="homePageTile" from="${HomePageTile.values()}"/>
+    <g:select name="homePageTile" from="${HomePageTile.values()}" value="${categoryInstance.homePageTile}" />
 
 </div>
 

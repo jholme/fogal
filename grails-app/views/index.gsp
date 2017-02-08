@@ -200,7 +200,7 @@
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
                 <div class="tile portrait" id="cssId" style="top:0px; left:0px">cssId</div>
-                </sec:ifNotLoggedIn>${cssId}
+                </sec:ifNotLoggedIn>
             </g:else>
             
             <!-- tile_02 -->
