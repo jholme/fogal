@@ -130,6 +130,8 @@ grails.plugin.databasemigration.updateOnStart = true
 String fogalFiles
 String fogalFilesNew
 println "os-name: ${System.getProperty('os.name')}"
+String tmpdir = System.getProperty('java.io.tmpdir')
+println "java.io.tmpdir: ${tmpdir}"
 if (System.getProperty('os.name').contains('Win')) {
 	println "got windows"
 	fogalFiles = "C:\\fogalFiles"
@@ -139,6 +141,7 @@ if (System.getProperty('os.name').contains('Win')) {
 	fogalFiles = "/fogalFiles"
 	fogalFilesNew = "/fogalFilesNew"
 }
+grails.config.locations = ["file:${tmpdir}/fogal.groovy"]
 
 link.groups = [Link.ORGS, Link.PUBS]
 

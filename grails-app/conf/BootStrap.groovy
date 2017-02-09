@@ -26,11 +26,14 @@ class BootStrap {
 	def grailsApplication
 	
     def init = { servletContext ->
-		println "onstart.init: ${grailsApplication.config.fogal.onstart.init}"
-		println "tmpdir: ${System.getProperty("java.io.tmpdir")}"
+		def onStartInit = grailsApplication.config.fogal.onstart.init as Boolean
+		println "onstart.init: ${onStartInit}"
+		
 		environments {
 			development {
-				if (grailsApplication.config.fogal.onstart.init) {
+				_initRoles()
+				_initUsers()
+				if (onStartInit) {
 					initCategories()
 					initGalleries()
 					initPhotos()
@@ -39,14 +42,18 @@ class BootStrap {
 					security1()
 				}
 			}
-//			production {
-//				initCategories()
-//				initGalleries()
-//				initPhotos()
-//				//initLinks()
-//				//initStories()
-//				security1()
-//			}
+			production {
+				_initRoles()
+				_initUsers()
+				if (onStartInit) {
+					initCategories()
+					initGalleries()
+					initPhotos()
+					initLinks()
+					initStories()
+					security1()
+				}
+			}
 		}
     }
 	
@@ -217,32 +224,65 @@ class BootStrap {
 		}
 	}
 
-	def security1() {
-		println "init spring-security"
+	def _initRoles() {
 		Role adminRole = Role.findByAuthority('ROLE_ADMIN')
 		if (!adminRole) {
 			adminRole = new Role(authority: 'ROLE_ADMIN')
-			adminRole.save()
-//			adminRole.save(flush: true)
+			adminRole.save(flush:true)
 		}
 		Role userRole = Role.findByAuthority('ROLE_USER')
 		if (!userRole) {
 			userRole = new Role(authority: 'ROLE_USER')
-			userRole.save()
-//			userRole.save(flush: true)
+			userRole.save(flush:true)
 		}
-		User testUser = User.findByUsername('db@c0n!')
-		if (!testUser) {
-//			Long userid = randomUUID()
-//			testUser = new User(id:userid, username:'db@c0n!', password:'password')
-			testUser = new User(username:'db@c0n!', password:'password')
-			testUser.save()
-//			testUser.save(flush: true)
-			UserRole.create(testUser, adminRole)
+	}
+	
+	def _initUsers() {
+		_createUsers()
+		_delUsers()
+	}
+	
+	def _createUsers() {
+		def newUsers = grailsApplication.config.fogal.newUsers
+		if (newUsers) {
+			println "new users: ${newUsers}"
+			newUsers.each { Map up ->
+				String uname = up.username
+				User u = User.findByUsername(uname)
+				if (!u) {
+					try {
+						String pass = up.password
+						u = new User(username:uname, password:pass)
+						u.save(flush:true)
+						Role ar = Role.findByAuthority('ROLE_ADMIN')
+						UserRole.create(u, ar, true)
+						println "saved: ${u}"
+					} catch (Exception e) {
+						println e
+					}
+				}
+			}
 		}
-		//assert User.count() == 1
-		//assert Role.count() == 2
-		//assert UserRole.count() == 1
+	}
+	
+	def _delUsers() {
+		def delUsers = grailsApplication.config.fogal.delUsers
+		if (delUsers) {
+			println "del users: ${delUsers}"
+			delUsers.each { String uname ->
+				try {
+					User u = User.findByUsername(uname)
+					if (u) {
+						Role ar = Role.findByAuthority('ROLE_ADMIN')
+						UserRole.remove(u, ar, true)
+						u.delete(flush:true)
+						println "deleted: ${u}"
+					}
+				} catch (Exception e) {
+					println e
+				}
+			}
+		}
 	}
 	
 }
