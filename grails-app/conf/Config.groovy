@@ -147,7 +147,7 @@ link.groups = [Link.ORGS, Link.PUBS]
 
 fogal.thumbnailSize = 200
 fogal.photoSize = 1200
-fogal.onstart.init = false
+fogal.onstart.init = true // override at fogal.groovy
 
 environments {
     development {
@@ -162,7 +162,7 @@ environments {
         grails.logging.jul.usebridge = false
 		file.upload.directory = fogalFiles
 		file.newFile.directory = fogalFilesNew
-        // TODO: grails.serverURL = "http://www.changeme.com"
+        //grails.serverURL = "http://www.changeme.com"
  		imageUpload {
 		  temporaryFile = fogalFiles// Path to where files will be uploaded
 		}

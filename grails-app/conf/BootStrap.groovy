@@ -1,4 +1,9 @@
 import com.iii.fogal.*
+
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.nio.file.Files
+
 class BootStrap {
 
 				
@@ -26,14 +31,12 @@ class BootStrap {
 	def grailsApplication
 	
     def init = { servletContext ->
-		def onStartInit = grailsApplication.config.fogal.onstart.init as Boolean
-		println "onstart.init: ${onStartInit}"
 		
 		environments {
 			development {
 				_initRoles()
 				_initUsers()
-				if (onStartInit) {
+				if (_initFileSystem()) {
 					initCategories()
 					initGalleries()
 					initPhotos()
@@ -45,7 +48,7 @@ class BootStrap {
 			production {
 				_initRoles()
 				_initUsers()
-				if (onStartInit) {
+				if (_initFileSystem()) {
 					initCategories()
 					initGalleries()
 					initPhotos()
@@ -59,6 +62,22 @@ class BootStrap {
 	
     def destroy = {
     }
+	
+	private Boolean _initFileSystem() {
+		def onStartInit = grailsApplication.config.fogal.onstart.init as Boolean
+		println "onstart.init: ${onStartInit}"
+		String fogalFilesString = grailsApplication.config.file.upload.directory
+		Path fogalFilesPath = Paths.get(fogalFilesString)
+		File fogalFiles = fogalFilesPath.toFile()
+		println fogalFiles
+		String fogalFilesNewString = grailsApplication.config.file.newFile.directory
+		Path fogalFilesNewPath = Paths.get(fogalFilesNewString)
+		File fogalFilesNew = fogalFilesNewPath.toFile()
+		println fogalFilesNew
+		Boolean initFiles = (fogalFiles.exists() && fogalFilesNew.exists())
+		println "initFiles: ${initFiles}"
+		onStartInit && initFiles
+	}
 	
 	def initCategories() {
 		println "initCategories"
@@ -138,49 +157,49 @@ class BootStrap {
 		try {
 			galleryService.createPhotosFromDisk(['photo1.jpg','photo2.jpg','photo3.jpg'], "daydead")
 		} catch (Exception e) {
-			log.debug "initPhotos (daydead): ${e}"
+			log.error "initPhotos (daydead): ${e}"
 		}
 		// bicycles
 		try {
 			galleryService.createPhotosFromDisk(['photo4.jpg', 'photo44.jpg'], "bicycles")
 		} catch (Exception e) {
-			log.debug "initPhotos (bicycles): ${e}"
+			log.error "initPhotos (bicycles): ${e}"
 		}
 		// blancaNavidad
 		try {
 			galleryService.createPhotosFromDisk(['photo5.jpg'], "blancaNavidad")
 		} catch (Exception e) {
-			log.debug "initPhotos (blancaNavidad): ${e}"
+			log.error "initPhotos (blancaNavidad): ${e}"
 		}
 		// coastalFarmworkers
 		try {
 			galleryService.createPhotosFromDisk(['photo6.jpg','photo11.jpg'], "coastalFarmworkers")
 		} catch (Exception e) {
-			log.debug "initPhotos (coastalFarmworkers): ${e}"
+			log.error "initPhotos (coastalFarmworkers): ${e}"
 		}
 		// feeHikeProtest
 		try {
 			galleryService.createPhotosFromDisk(['photo7.jpg','photo8.jpg'], "feeHikeProtest")
 		} catch (Exception e) {
-			log.debug "initPhotos (feeHikeProtest): ${e}"
+			log.error "initPhotos (feeHikeProtest): ${e}"
 		}
 		// janitorsStrike
 		try {
 			galleryService.createPhotosFromDisk(['photo9.jpg','photo10.jpg','photo99.jpg'], "janitorsStrike")
 		} catch (Exception e) {
-			log.debug "initPhotos (janitorsStrike): ${e}"
+			log.error "initPhotos (janitorsStrike): ${e}"
 		}
 		// nahuatls
 		try {
 			galleryService.createPhotosFromDisk(['photo12.jpg','photo13.jpg'], "nahuatls")
 		} catch (Exception e) {
-			log.debug "initPhotos (nahuatls): ${e}"
+			log.error "initPhotos (nahuatls): ${e}"
 		}
 		// teachersProtest
 		try {
 			galleryService.createPhotosFromDisk(['photo14.jpg','photo15.jpg'], "teachersProtest")
 		} catch (Exception e) {
-			log.debug "initPhotos (teachersProtest): ${e}"
+			log.error "initPhotos (teachersProtest): ${e}"
 		}
 	}
 	
