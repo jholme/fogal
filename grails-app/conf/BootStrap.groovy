@@ -42,7 +42,6 @@ class BootStrap {
 					initPhotos()
 					initLinks()
 					initStories()
-					security1()
 				}
 			}
 			production {
@@ -54,7 +53,6 @@ class BootStrap {
 					initPhotos()
 					initLinks()
 					initStories()
-					security1()
 				}
 			}
 		}

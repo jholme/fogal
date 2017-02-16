@@ -147,7 +147,7 @@ link.groups = [Link.ORGS, Link.PUBS]
 
 fogal.thumbnailSize = 200
 fogal.photoSize = 1200
-fogal.onstart.init = true // override at fogal.groovy
+fogal.onstart.init = false // override at fogal.groovy
 
 environments {
     development {
