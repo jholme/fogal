@@ -237,6 +237,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 // intercept url map
 grails.plugin.springsecurity.interceptUrlMap = [
 	'/':								['permitAll'],
+	'/fogal':							['permitAll'],
 	'/index':							['permitAll'],
 	'/index.gsp':						['permitAll'],
 	'/**/js/**':						['permitAll'],

@@ -26,10 +26,10 @@
 		<div id="dbaconLogo" role="banner">
 		    <img id="logoLink" usemap="#headMap" src="${resource(dir: 'images/dbacon', file: 'header.gif')}" title="Stories &amp; Photographs" alt="Stories &amp; Photographs"/>
 			<map name="headMap">
-			<area onmouseout="rollOff();window.status=''" onmouseover="window.status='go to the Story Index';rollOver('stors');return true" href="/fogal" coords="229,0,291,23">
-			<area onmouseout="rollOff();window.status=''" onmouseover="window.status='go to the Photography Index';rollOver('photos');return true" href="/fogal" coords="183,23,311,50">
-			<area onmouseout="rollOff();window.status=''" onmouseover="window.status='News about David\'s Work';rollOver('news');return true" href="/fogal" coords="0,0,229,50">
-			<area onmouseout="rollOff();window.status=''" onmouseover="window.status='News about David\'s Work';rollOver('news');return true" href="/fogal" coords="291,0,519,50">
+			<area onmouseout="rollOff();window.status=''" onmouseover="window.status='go to the Story Index';rollOver('stors');return true" href="/" coords="229,0,291,23">
+			<area onmouseout="rollOff();window.status=''" onmouseover="window.status='go to the Photography Index';rollOver('photos');return true" href="/" coords="183,23,311,50">
+			<area onmouseout="rollOff();window.status=''" onmouseover="window.status='News about David\'s Work';rollOver('news');return true" href="/" coords="0,0,229,50">
+			<area onmouseout="rollOff();window.status=''" onmouseover="window.status='News about David\'s Work';rollOver('news');return true" href="/" coords="291,0,519,50">
 			</map>
 		</div>
 		<g:layoutBody/>
